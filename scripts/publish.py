@@ -35,6 +35,18 @@ def wait_finished(container_id, label, tries=40, delay=5):
         time.sleep(delay)
     raise RuntimeError(f"{label} container not ready after {tries*delay}s")
 
+def publish_reel(post, date, repo, branch, ig_user, caption):
+    base = f"https://raw.githubusercontent.com/{repo}/{branch}/{post}"
+    url = f"{base}/reel.mp4"
+    print("reel container for", url)
+    res = api(f"{ig_user}/media", {
+        "media_type": "REELS", "video_url": url,
+        "caption": caption, "share_to_feed": "true",
+    }, "POST")
+    wait_finished(res["id"], "reel", tries=60, delay=10)
+    pub = api(f"{ig_user}/media_publish", {"creation_id": res["id"]}, "POST")
+    return pub["id"]
+
 def main(post_dir):
     post = pathlib.Path(post_dir)
     date = post.name
@@ -42,6 +54,26 @@ def main(post_dir):
     branch = os.environ.get("BRANCH", "main")
     ig_user = os.environ["IG_USER_ID"]
     caption = (post / "caption.txt").read_text()
+
+    fmt = "carousel"
+    pj = post / "publish.json"
+    if pj.exists():
+        fmt = json.loads(pj.read_text()).get("format", "carousel")
+
+    if fmt == "reel":
+        media_id = publish_reel(post_dir, date, repo, branch, ig_user, caption)
+        perma = {}
+        try:
+            perma = api(media_id, {"fields": "permalink"})
+        except Exception as e:
+            print("permalink lookup failed:", e)
+        out = {"date": date, "status": "published", "format": "reel",
+               "media_id": media_id, "permalink": perma.get("permalink", "")}
+        rj = pathlib.Path("results") / f"{date}.json"
+        rj.parent.mkdir(exist_ok=True)
+        rj.write_text(json.dumps(out, indent=2))
+        print("SUCCESS:", json.dumps(out))
+        return
 
     slides = sorted(post.glob("slide*.jpg"))
     if not 2 <= len(slides) <= 10:
