@@ -1,0 +1,26 @@
+name: Refresh Instagram token
+on:
+  schedule:
+    - cron: "30 3 1,15 * *"   # 1st and 15th of each month, 03:30 UTC
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refresh long-lived token
+        id: refresh
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: |
+          RESP=$(curl -sf "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_TOKEN}")
+          NEW=$(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+          echo "::add-mask::$NEW"
+          echo "token=$NEW" >> "$GITHUB_OUTPUT"
+          echo "Refreshed OK. Expires in: $(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin).get('expires_in'))") seconds"
+
+      - name: Store new token as repo secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set IG_TOKEN --repo "${{ github.repository }}" --body "${{ steps.refresh.outputs.token }}"

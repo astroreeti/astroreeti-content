@@ -1,0 +1,63 @@
+name: Publish to Instagram
+on:
+  push:
+    paths:
+      - "posts/**/publish.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find post to publish
+        id: find
+        run: |
+          DIR=$(git diff --name-only HEAD~1 HEAD | grep -E '^posts/[^/]+/publish\.json$' | head -1 | xargs -r dirname)
+          if [ -z "$DIR" ]; then
+            echo "No new publish.json in this push; nothing to do."
+            echo "dir=" >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+            echo "Publishing $DIR"
+          fi
+
+      - name: Skip if already published
+        id: guard
+        if: steps.find.outputs.dir != ''
+        run: |
+          DATE=$(basename "${{ steps.find.outputs.dir }}")
+          if [ -f "results/$DATE.json" ] && grep -q '"published"' "results/$DATE.json"; then
+            echo "Already published $DATE; skipping."
+            echo "go=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish carousel
+        if: steps.find.outputs.dir != '' && steps.guard.outputs.go == 'yes'
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: "17841442486927671"
+          REPO: ${{ github.repository }}
+          BRANCH: main
+        run: python3 scripts/publish.py "${{ steps.find.outputs.dir }}"
+
+      - name: Commit result
+        if: always() && steps.find.outputs.dir != '' && steps.guard.outputs.go == 'yes'
+        run: |
+          git config user.name "astroreeti-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/
+          git commit -m "result for ${{ steps.find.outputs.dir }}" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push
