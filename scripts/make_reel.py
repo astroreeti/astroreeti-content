@@ -33,12 +33,15 @@ def main(post_dir, music, per_slide=3.5):
         prev = out
         off += per_slide - FADE
 
+    # force yuv420p at the very end for universal playback (phones/IG)
+    filters.append(f"[{prev}]format=yuv420p[vout]")
     cmd = ["ffmpeg", "-y", *inputs, "-i", str(music),
            "-filter_complex", ";".join(filters),
-           "-map", f"[{prev}]", "-map", f"{n}:a",
+           "-map", "[vout]", "-map", f"{n}:a",
            "-t", f"{total:.2f}", "-af", f"afade=t=out:st={total-1.2:.2f}:d=1.2",
-           "-r", "30", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
-           "-c:a", "aac", "-b:a", "128k", "-shortest",
+           "-r", "30", "-c:v", "libx264", "-profile:v", "high", "-level", "4.0",
+           "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "21",
+           "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", "-shortest",
            str(post / "reel.mp4")]
     subprocess.run(cmd, check=True, capture_output=True)
     size = (post / "reel.mp4").stat().st_size

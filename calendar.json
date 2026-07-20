@@ -1,0 +1,366 @@
+{
+  "start_date": "2026-07-21",
+  "days": [
+    {
+      "day": 1,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Shaadi kab hogi? The 7th house & what must be strong"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Ashwini — the cosmic healers, why you move fast"
+      },
+      "date": "2026-07-21"
+    },
+    {
+      "day": 2,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Which house decides your career vs your job"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Ashtakavarga basics: your planet's \"score\" explained"
+      },
+      "date": "2026-07-22"
+    },
+    {
+      "day": 3,
+      "morning": {
+        "pillar": "TL",
+        "topic": "This week's Moon transit & what it stirs in you"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Bharani — Yama's star, the weight you carry"
+      },
+      "date": "2026-07-23"
+    },
+    {
+      "day": 4,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Paisa kahan se aayega? 2nd vs 11th house"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "What the D9 (Navamsa) really shows about marriage"
+      },
+      "date": "2026-07-24"
+    },
+    {
+      "day": 5,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Foreign settlement yoga — the 12th house truth"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Krittika — Kartikeya's flame, the cutting clarity"
+      },
+      "date": "2026-07-25"
+    },
+    {
+      "day": 6,
+      "morning": {
+        "pillar": "DD",
+        "topic": "Nakshatra padas: why two \"same-sign\" people differ"
+      },
+      "evening": {
+        "pillar": "RL",
+        "topic": "Business ya naukri? The 10th house tells you"
+      },
+      "date": "2026-07-26"
+    },
+    {
+      "day": 7,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Weekend panchang: best muhurta windows"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Rohini — Chandra's beloved, why you crave beauty"
+      },
+      "date": "2026-07-27"
+    },
+    {
+      "day": 8,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Santaan yoga — the 5th house & Jupiter"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "The D10 (Dashamsa): your real career chart"
+      },
+      "date": "2026-07-28"
+    },
+    {
+      "day": 9,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Why your \"good time\" hasn't come — Mahadasha 101"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Mrigashira — the seeker's star, the restless mind"
+      },
+      "date": "2026-07-29"
+    },
+    {
+      "day": 10,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Transit alert: what's changing this week"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Gaja-Kesari yoga: the truth vs the hype"
+      },
+      "date": "2026-07-30"
+    },
+    {
+      "day": 11,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Property & vehicles — the 4th house"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Ardra — Rudra's storm, transformation through tears"
+      },
+      "date": "2026-07-31"
+    },
+    {
+      "day": 12,
+      "morning": {
+        "pillar": "DD",
+        "topic": "Ashtakavarga part 2: reading transits with bindus"
+      },
+      "evening": {
+        "pillar": "RL",
+        "topic": "Litigation & hidden enemies — the 6th house"
+      },
+      "date": "2026-08-01"
+    },
+    {
+      "day": 13,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Full-moon / Purnima meaning this month"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Punarvasu — Aditi's return, the eternal optimist"
+      },
+      "date": "2026-08-02"
+    },
+    {
+      "day": 14,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Late marriage — which planets delay the 7th"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "D60 (Shashtiamsa): the karma microscope"
+      },
+      "date": "2026-08-03"
+    },
+    {
+      "day": 15,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Health & the 6th house — what to strengthen"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Pushya — the nourisher, the most auspicious star"
+      },
+      "date": "2026-08-04"
+    },
+    {
+      "day": 16,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Weekly transit read (verified)"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Kaal Sarp yoga: what it actually is (myth-bust)"
+      },
+      "date": "2026-08-05"
+    },
+    {
+      "day": 17,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Sudden money / lottery — 8th house realities"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Ashlesha — the serpent's coil, hypnotic depth"
+      },
+      "date": "2026-08-06"
+    },
+    {
+      "day": 18,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Which planet rules your mind — Moon & Mercury"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Muhurta: how to pick a date the Vedic way"
+      },
+      "date": "2026-08-07"
+    },
+    {
+      "day": 19,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Amavasya this month — remedies & meaning"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Magha — the throne of ancestors, born to lead"
+      },
+      "date": "2026-08-08"
+    },
+    {
+      "day": 20,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Fame & recognition — the 10th & the Sun"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Vipareeta Raja yoga: strength from the \"bad\" houses"
+      },
+      "date": "2026-08-09"
+    },
+    {
+      "day": 21,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Partnership vs solo business — 7th house"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Purva Phalguni — Bhaga's delight, love of pleasure"
+      },
+      "date": "2026-08-10"
+    },
+    {
+      "day": 22,
+      "morning": {
+        "pillar": "DD",
+        "topic": "Retrograde planets: what they really do in a chart"
+      },
+      "evening": {
+        "pillar": "RL",
+        "topic": "Education & higher studies — 4th, 5th, 9th"
+      },
+      "date": "2026-08-11"
+    },
+    {
+      "day": 23,
+      "morning": {
+        "pillar": "TL",
+        "topic": "This week's Venus/Mercury movement"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Uttara Phalguni — the generous friend, Aryaman's star"
+      },
+      "date": "2026-08-12"
+    },
+    {
+      "day": 24,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Debt & loans — the 6th house cycle"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Neecha Bhanga: when a weak planet becomes strong"
+      },
+      "date": "2026-08-13"
+    },
+    {
+      "day": 25,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Spiritual growth & moksha — 9th & 12th"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Hasta — the hand of skill, Savitr's craft"
+      },
+      "date": "2026-08-14"
+    },
+    {
+      "day": 26,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Sankranti / solar transit tie-in"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Reading dasha + transit together (the real skill)"
+      },
+      "date": "2026-08-15"
+    },
+    {
+      "day": 27,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Twins born same time — why charts still differ"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Chitra — Vishwakarma's jewel, born to create beauty"
+      },
+      "date": "2026-08-16"
+    },
+    {
+      "day": 28,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Which house rules social media fame today"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "Argala: the \"intervention\" technique nobody teaches"
+      },
+      "date": "2026-08-17"
+    },
+    {
+      "day": 29,
+      "morning": {
+        "pillar": "TL",
+        "topic": "Month-ahead transit preview"
+      },
+      "evening": {
+        "pillar": "NK",
+        "topic": "Swati — Vayu's wind, the independent soul"
+      },
+      "date": "2026-08-18"
+    },
+    {
+      "day": 30,
+      "morning": {
+        "pillar": "RL",
+        "topic": "Your strongest planet — how to find & use it"
+      },
+      "evening": {
+        "pillar": "DD",
+        "topic": "30-day recap: build your own chart-reading checklist"
+      },
+      "date": "2026-08-19"
+    }
+  ],
+  "note": "After day 30, generate fresh topics following the pillar rotation in GUIDE.md; never repeat topics.md entries."
+}
