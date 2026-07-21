@@ -4,9 +4,10 @@ You produce content for **@astroreeti** — a Vedic astrology page owning
 *technical Jyotish depth* in relatable Hinglish. There are **two runs per day**,
 each fired by its own scheduled task:
 
-- **MORNING run (~7:30 AM IST):** a **Reel** (video + music) for reach. Posted
-  as a Trial Reel by nature of being a new reel.
-- **EVENING run (~7:30 PM IST):** a **deep-dive Carousel** for saves.
+- **MORNING run (~7:30 AM IST):** a **Reel** (animated video + music) for reach.
+  Posted as a Trial Reel by nature of being a new reel.
+- **EVENING run (~7:30 PM IST):** a **deep-dive Reel** for saves (more slides,
+  more depth — same animated-video format as morning, different audio track).
 
 Your scheduled-task prompt tells you which run you are. Read `GROWTH-STRATEGY.md`
 for the why, `CALENDAR-30day.md` for the plan, and `calendar.json` for today's
@@ -50,25 +51,33 @@ exact topics (machine-readable).
 ## 3a. MORNING run — build the Reel
 
 - Write a **punchy 5–6 slide** spec (reels favour big text, fast beats). Same
-  `spec.json` schema as carousels — see `posts/2026-07-20/` in git history.
+  `spec.json` schema as before — see `posts/2026-07-20/` in git history.
   Slide 1 = a scroll-stopping hook. Last slide = follow/comment CTA.
 - Caption: hook + 3-4 value lines + comment prompt (e.g. "comment your Moon sign")
   + follow CTA + ~20 hashtags incl. #astroreeti. Write to `caption.txt`.
-- Render slides: `python3 generator/generate.py posts/<date>/spec.json posts/<date>/`
 - Music track: use the fixed brand track `generator/audio/astroreeti_raga.mp3`
-  for all morning reels (no more rotation).
-- Render reel: `python3 scripts/make_reel.py posts/<date> generator/audio/astroreeti_raga.mp3 4`
-  (at least 4 seconds per slide — do not go faster than this, slides need to
-  be readable).
+  for all morning reels.
+- Render the reel directly from the spec (this is now a single animated-video
+  step — no separate static-slide render):
+  `python3 generator/generate_reel.py posts/<date>/spec.json posts/<date> generator/audio/astroreeti_raga.mp3 4`
+  (last arg = seconds per slide; must stay **≥ 4** so text stays readable — the
+  script hard-fails below that). This produces `posts/<date>/reel.mp4` with
+  ambient star twinkle, a slow zoom, a glowing frame pulse, and staggered
+  text-entrance animations baked in — never plain static text on a flat
+  background.
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
 
-## 3b. EVENING run — build the Carousel
+## 3b. EVENING run — build the deep-dive Reel
 
-- Write a **6–8 slide** deep-dive spec (more depth, save-worthy). Render slides.
+- Write a **6–8 slide** deep-dive spec (more depth, save-worthy).
 - Caption as above (save + share CTA emphasised).
+- Music track: use `generator/audio/AstroReeti_voice.mp3` for all evening reels
+  (different from the morning track, so the two runs feel distinct).
+- Render the same way as the morning run, just with the evening spec/audio/dir:
+  `python3 generator/generate_reel.py posts/<date>/spec.json posts/<date> generator/audio/AstroReeti_voice.mp3 4`
 - Create `posts/<date>/publish.json`:
-  `{"format":"carousel","requested":"<date>","post":"posts/<date>"}`
+  `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
   *(evening posts go in the same dated folder but use a distinct filename prefix
   if both run same day — see note below).*
 
@@ -79,9 +88,13 @@ accordingly. The publish workflow keys results by folder name.
 
 ## 4. Visual QA (both)
 
-Read the rendered slide JPGs (at least slide 1, the longest-text slide, and the
-last). Text must stay inside the border frame; shorten copy and re-render if it
-overflows. For reels, also extract a frame from the mp4 and check it looks right.
+There are no separate static slide JPGs anymore — everything is baked directly
+into `reel.mp4`. Extract a few still frames with ffmpeg and read them (at least
+one early slide, the longest-text slide, and the last/CTA slide), e.g.:
+`ffmpeg -ss 2 -i posts/<date>/reel.mp4 -frames:v 1 /tmp/check.jpg`
+Text must stay inside the border frame; shorten copy and re-render if it
+overflows. Also sanity-check the total duration looks right for the slide count
+(`ffprobe -show_entries format=duration posts/<date>/reel.mp4`).
 
 ## 5. Publish
 
@@ -93,22 +106,21 @@ overflows. For reels, also extract a frame from the mp4 and check it looks right
   On `"status":"published"`, report the permalink. On failure, report the exact
   error and attach the generated media so Reeti can post manually as fallback.
 - The same push also cross-posts to the AstroReeti Facebook Page automatically
-  (reel → FB Reel, carousel → FB multi-photo post), reusing the same rendered
-  media at no extra cost. Check `results/<folder>.json`'s `"facebook"` field —
-  `"skipped"` means the FB secrets aren't configured, `"failed"` is non-fatal
-  (Instagram still counts as success) but should be reported alongside the
-  main result, `"published"` needs no comment.
-- Morning reels also cross-post to YouTube Shorts automatically (best-effort,
-  same `reel.mp4`). Check `results/<folder>.json`'s `"youtube"` field —
-  `"skipped"` means it's not a reel or the YT secrets aren't configured,
+  as an FB Reel, reusing the same rendered `reel.mp4` at no extra cost. Check
+  `results/<folder>.json`'s `"facebook"` field — `"skipped"` means the FB
+  secrets aren't configured, `"failed"` is non-fatal (Instagram still counts
+  as success) but should be reported alongside the main result, `"published"`
+  needs no comment.
+- Both morning and evening reels also cross-post to YouTube Shorts
+  automatically (best-effort, same `reel.mp4`). Check `results/<folder>.json`'s
+  `"youtube"` field — `"skipped"` means the YT secrets aren't configured,
   `"failed"` is non-fatal (Instagram still counts as success) but should be
   reported alongside the main result, `"published"` includes a
-  `youtube.com/shorts/<id>` permalink. Carousel (evening) posts always show
-  `"skipped"` for YouTube since there's no video to upload.
+  `youtube.com/shorts/<id>` permalink.
 
 ## 6. Report
 
 One short message: run (morning/evening), pillar, topic, Instagram permalink,
 Facebook cross-post status (if not a plain "published"), YouTube Shorts
-cross-post status/permalink for morning reels (if not a plain "published" or
-expected "skipped"), and note tomorrow's planned slot. Keep it tight.
+cross-post status/permalink (if not a plain "published"), and note tomorrow's
+planned slot. Keep it tight.
