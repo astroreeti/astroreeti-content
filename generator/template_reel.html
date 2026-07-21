@@ -9,14 +9,20 @@
   html,body { width:1080px; height:1920px; overflow:hidden; }
   body {
     background:#F6EEDF;
-    background-image:
-      radial-gradient(ellipse at 50% -6%, rgba(224,138,46,.16), transparent 50%),
-      radial-gradient(ellipse at 50% 106%, rgba(110,30,30,.14), transparent 50%);
     font-family:'Cormorant Garamond','Noto Serif Devanagari', serif;
     color:#3A2A1E;
     position:relative;
   }
   .dev { font-family:'Noto Serif Devanagari', serif; }
+
+  /* background scene: swapped per-slide (gradient + a large faint brand
+     motif) so consecutive slides don't look identical. Sits behind
+     everything, cross-fades on its own. */
+  #scene { position:absolute; inset:0; z-index:0; }
+  #scene-bg { position:absolute; inset:0; transition:none; }
+  #scene-motif { position:absolute; inset:0; opacity:.9; }
+  #stars { position:absolute; inset:0; z-index:1; }
+  #card { z-index:2; }
 
   /* ambient twinkling stars, drift slowly across the whole 1080x1920 canvas */
   .star {
@@ -125,6 +131,10 @@
 </style>
 </head>
 <body>
+  <div id="scene">
+    <div id="scene-bg"></div>
+    <div id="scene-motif"></div>
+  </div>
   <div id="stars"></div>
 
   <div id="card">
@@ -201,6 +211,70 @@
     { duration: 4000, iterations: Infinity, easing: 'ease-in-out' }
   );
 
+  // Four brand-consistent (cream/gold/maroon) background scenes, rotated
+  // per slide so the backdrop visibly changes instead of staying static.
+  var SCENES = [
+    { // dawn glow — big dashed mandala ring behind the card
+      bg: 'radial-gradient(ellipse at 50% -6%, rgba(224,138,46,.24), transparent 55%),' +
+          'radial-gradient(ellipse at 50% 108%, rgba(110,30,30,.10), transparent 55%),#F8F1E4',
+      motif: '<svg viewBox="0 0 1080 1920" width="1080" height="1920">' +
+             '<circle cx="540" cy="960" r="560" fill="none" stroke="rgba(122,35,35,.10)" stroke-width="3" stroke-dasharray="4 14"/>' +
+             '<circle cx="540" cy="960" r="480" fill="none" stroke="rgba(193,154,73,.12)" stroke-width="2" stroke-dasharray="2 10"/>' +
+             '</svg>',
+    },
+    { // dusk glow — crescent cluster, top-right
+      bg: 'radial-gradient(ellipse at 78% 8%, rgba(110,30,30,.16), transparent 45%),' +
+          'radial-gradient(ellipse at 50% 104%, rgba(224,138,46,.20), transparent 55%),#F6EEDF',
+      motif: '<svg viewBox="0 0 1080 1920" width="1080" height="1920">' +
+             '<circle cx="880" cy="300" r="230" fill="rgba(110,30,30,.06)"/>' +
+             '<circle cx="960" cy="230" r="230" fill="#F6EEDF"/>' +
+             '<circle cx="180" cy="1650" r="170" fill="none" stroke="rgba(193,154,73,.14)" stroke-width="2" stroke-dasharray="3 9"/>' +
+             '</svg>',
+    },
+    { // temple — layered arch silhouette at the base
+      bg: 'radial-gradient(ellipse at 12% 30%, rgba(193,154,73,.14), transparent 50%),' +
+          'radial-gradient(ellipse at 88% 70%, rgba(110,30,30,.12), transparent 50%),#F7EFE0',
+      motif: '<svg viewBox="0 0 1080 1920" width="1080" height="1920">' +
+             '<path d="M270 1920 L270 1500 Q270 1300 540 1260 Q810 1300 810 1500 L810 1920 Z" fill="rgba(122,35,35,.055)"/>' +
+             '<path d="M370 1920 L370 1560 Q370 1420 540 1390 Q710 1420 710 1560 L710 1920 Z" fill="rgba(193,154,73,.07)"/>' +
+             '</svg>',
+    },
+    { // constellation — connect-the-dots cluster, upper canvas
+      bg: 'radial-gradient(ellipse at 50% 4%, rgba(193,154,73,.18), transparent 50%),' +
+          'radial-gradient(ellipse at 50% 100%, rgba(110,30,30,.10), transparent 50%),#F8F1E2',
+      motif: '<svg viewBox="0 0 1080 1920" width="1080" height="1920">' +
+             '<g stroke="rgba(122,35,35,.14)" stroke-width="1.5" fill="rgba(193,154,73,.5)">' +
+             '<line x1="180" y1="160" x2="340" y2="90"/><line x1="340" y1="90" x2="520" y2="180"/>' +
+             '<line x1="520" y1="180" x2="470" y2="330"/><line x1="900" y1="1720" x2="760" y2="1640"/>' +
+             '<line x1="760" y1="1640" x2="820" y2="1500"/>' +
+             '<circle cx="180" cy="160" r="6"/><circle cx="340" cy="90" r="5"/><circle cx="520" cy="180" r="6"/>' +
+             '<circle cx="470" cy="330" r="4"/><circle cx="900" cy="1720" r="5"/><circle cx="760" cy="1640" r="6"/>' +
+             '<circle cx="820" cy="1500" r="4"/>' +
+             '</g></svg>',
+    },
+  ];
+
+  // Four transition styles between slides, rotated so consecutive cuts
+  // don't all look the same. Each returns {out, in} WAAPI keyframe lists.
+  var TRANSITIONS = [
+    { // fade + rise from below
+      out: [{ opacity: 1, transform: 'translateY(0px) scale(1)' }, { opacity: 0, transform: 'translateY(-30px) scale(1)' }],
+      in:  [{ opacity: 0, transform: 'translateY(30px) scale(1)' }, { opacity: 1, transform: 'translateY(0px) scale(1)' }],
+    },
+    { // slide sideways
+      out: [{ opacity: 1, transform: 'translateX(0px) scale(1)' }, { opacity: 0, transform: 'translateX(-90px) scale(1)' }],
+      in:  [{ opacity: 0, transform: 'translateX(90px) scale(1)' }, { opacity: 1, transform: 'translateX(0px) scale(1)' }],
+    },
+    { // zoom through
+      out: [{ opacity: 1, transform: 'translateY(0px) scale(1)' }, { opacity: 0, transform: 'translateY(0px) scale(.92)' }],
+      in:  [{ opacity: 0, transform: 'translateY(0px) scale(1.08)' }, { opacity: 1, transform: 'translateY(0px) scale(1)' }],
+    },
+    { // plain crossfade
+      out: [{ opacity: 1, transform: 'translateY(0px) scale(1)' }, { opacity: 0, transform: 'translateY(0px) scale(1)' }],
+      in:  [{ opacity: 0, transform: 'translateY(0px) scale(1)' }, { opacity: 1, transform: 'translateY(0px) scale(1)' }],
+    },
+  ];
+
   var SLIDES = __SLIDES__;
   var PER_MS = __PER_SLIDE_MS__;
   var i = 0;
@@ -208,6 +282,16 @@
   var pageEl = document.getElementById('page');
   var cardEl = document.getElementById('card');
   var zoomEl = document.getElementById('zoom');
+  var sceneBgEl = document.getElementById('scene-bg');
+  var sceneMotifEl = document.getElementById('scene-motif');
+
+  function applyScene(idx) {
+    var scene = SCENES[idx % SCENES.length];
+    sceneBgEl.style.backgroundImage = scene.bg;
+    sceneMotifEl.innerHTML = scene.motif;
+    sceneMotifEl.style.opacity = '0';
+    sceneMotifEl.animate([{ opacity: 0 }, { opacity: .9 }], { duration: 500, easing: 'ease-out', fill: 'forwards' });
+  }
 
   function riseInChildren(container) {
     var kids = container.children;
@@ -233,33 +317,23 @@
   function renderSlide(idx) {
     contentEl.innerHTML = SLIDES[idx].html;
     pageEl.textContent = SLIDES[idx].page;
+    applyScene(idx);
     riseInChildren(contentEl);
     zoomCard();
   }
 
   function next() {
-    var out = cardEl.animate(
-      [
-        { opacity: 1, transform: 'translateY(0px)' },
-        { opacity: 0, transform: 'translateY(-30px)' },
-      ],
-      { duration: 340, easing: 'ease-in', fill: 'forwards' }
-    );
+    var t = TRANSITIONS[i % TRANSITIONS.length];
+    var out = cardEl.animate(t.out, { duration: 360, easing: 'ease-in', fill: 'forwards' });
     out.onfinish = function () {
       i++;
       if (i >= SLIDES.length) {
-        cardEl.animate([{ opacity: 1, transform: 'translateY(0px)' }],
-          { duration: 1, fill: 'forwards' });
+        cardEl.animate([{ opacity: 1 }], { duration: 1, fill: 'forwards' });
         return;
       }
       renderSlide(i);
-      cardEl.animate(
-        [
-          { opacity: 0, transform: 'translateY(30px)' },
-          { opacity: 1, transform: 'translateY(0px)' },
-        ],
-        { duration: 340, easing: 'ease-out', fill: 'forwards' }
-      );
+      var t2 = TRANSITIONS[i % TRANSITIONS.length];
+      cardEl.animate(t2.in, { duration: 360, easing: 'ease-out', fill: 'forwards' });
       setTimeout(next, PER_MS);
     };
   }
