@@ -27,7 +27,6 @@ jobs:
 
       - name: Refresh Facebook Page long-lived token
         id: fb_refresh
-        if: ${{ secrets.FB_PAGE_TOKEN != '' }}
         env:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           FB_APP_ID: "2735860743452735"
@@ -40,7 +39,6 @@ jobs:
           echo "Refreshed OK. Expires in: $(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin).get('expires_in'))") seconds"
 
       - name: Store new Facebook Page token as repo secret
-        if: ${{ secrets.FB_PAGE_TOKEN != '' }}
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
