@@ -96,9 +96,17 @@ overflows. For reels, also extract a frame from the mp4 and check it looks right
   `"skipped"` means the FB secrets aren't configured, `"failed"` is non-fatal
   (Instagram still counts as success) but should be reported alongside the
   main result, `"published"` needs no comment.
+- Morning reels also cross-post to YouTube Shorts automatically (best-effort,
+  same `reel.mp4`). Check `results/<folder>.json`'s `"youtube"` field —
+  `"skipped"` means it's not a reel or the YT secrets aren't configured,
+  `"failed"` is non-fatal (Instagram still counts as success) but should be
+  reported alongside the main result, `"published"` includes a
+  `youtube.com/shorts/<id>` permalink. Carousel (evening) posts always show
+  `"skipped"` for YouTube since there's no video to upload.
 
 ## 6. Report
 
 One short message: run (morning/evening), pillar, topic, Instagram permalink,
-Facebook cross-post status (if not a plain "published"), and note tomorrow's
-planned slot. Keep it tight.
+Facebook cross-post status (if not a plain "published"), YouTube Shorts
+cross-post status/permalink for morning reels (if not a plain "published" or
+expected "skipped"), and note tomorrow's planned slot. Keep it tight.

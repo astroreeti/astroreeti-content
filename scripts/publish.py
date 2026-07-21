@@ -130,6 +130,90 @@ def publish_to_facebook(post, date, repo, branch, fmt, caption):
         print("Facebook cross-post failed (non-fatal):", e)
         return {"status": "failed", "error": str(e)}
 
+# ---------------------------------------------------------------------------
+# YouTube Shorts cross-post (best-effort; never raises out of publish_to_youtube)
+# ---------------------------------------------------------------------------
+
+YT_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token"
+YT_UPLOAD_URL = "https://www.googleapis.com/upload/youtube/v3/videos"
+
+def yt_get_access_token():
+    params = {
+        "client_id": os.environ["YT_CLIENT_ID"],
+        "client_secret": os.environ["YT_CLIENT_SECRET"],
+        "refresh_token": os.environ["YT_REFRESH_TOKEN"],
+        "grant_type": "refresh_token",
+    }
+    data = urllib.parse.urlencode(params).encode()
+    req = urllib.request.Request(YT_OAUTH_TOKEN_URL, data=data, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.load(r)["access_token"]
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        raise RuntimeError(f"YT token refresh -> HTTP {e.code}: {body}")
+
+def yt_upload_short(post, access_token, title, description):
+    """Resumable upload of reel.mp4 to YouTube as a Short."""
+    video_path = post / "reel.mp4"
+    size = video_path.stat().st_size
+
+    metadata = {
+        "snippet": {
+            "title": title[:100],
+            "description": description,
+            "categoryId": "24",  # Entertainment
+        },
+        "status": {
+            "privacyStatus": "public",
+            "selfDeclaredMadeForKids": False,
+        },
+    }
+    body = json.dumps(metadata).encode()
+    init_req = urllib.request.Request(
+        f"{YT_UPLOAD_URL}?uploadType=resumable&part=snippet,status",
+        data=body,
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json; charset=UTF-8",
+            "X-Upload-Content-Type": "video/mp4",
+            "X-Upload-Content-Length": str(size),
+        },
+    )
+    with urllib.request.urlopen(init_req, timeout=60) as r:
+        upload_url = r.headers.get("Location")
+    if not upload_url:
+        raise RuntimeError("YouTube resumable upload init did not return a Location header")
+
+    with open(video_path, "rb") as f:
+        video_bytes = f.read()
+    up_req = urllib.request.Request(
+        upload_url, data=video_bytes, method="PUT",
+        headers={"Content-Type": "video/mp4", "Content-Length": str(size)},
+    )
+    with urllib.request.urlopen(up_req, timeout=300) as r:
+        res = json.load(r)
+    return res.get("id")
+
+def publish_to_youtube(post, date, fmt, caption):
+    """Best-effort YouTube Shorts cross-post. Only applies to reels. Never raises."""
+    if fmt != "reel":
+        return {"status": "skipped", "reason": "not a reel"}
+    if not (os.environ.get("YT_CLIENT_ID") and os.environ.get("YT_CLIENT_SECRET")
+            and os.environ.get("YT_REFRESH_TOKEN")):
+        return {"status": "skipped", "reason": "YT_CLIENT_ID/YT_CLIENT_SECRET/YT_REFRESH_TOKEN not configured"}
+    try:
+        access_token = yt_get_access_token()
+        title = caption.split("\n", 1)[0][:95] + " #Shorts"
+        description = caption + "\n\n#Shorts"
+        video_id = yt_upload_short(post, access_token, title, description)
+        return {"status": "published", "video_id": video_id,
+                "permalink": f"https://youtube.com/shorts/{video_id}" if video_id else ""}
+    except Exception as e:
+        print("YouTube cross-post failed (non-fatal):", e)
+        return {"status": "failed", "error": str(e)}
+
 def main(post_dir):
     post = pathlib.Path(post_dir)
     date = post.name
@@ -153,6 +237,7 @@ def main(post_dir):
         out = {"date": date, "status": "published", "format": "reel",
                "media_id": media_id, "permalink": perma.get("permalink", "")}
         out["facebook"] = publish_to_facebook(post, date, repo, branch, fmt, caption)
+        out["youtube"] = publish_to_youtube(post, date, fmt, caption)
         rj = pathlib.Path("results") / f"{date}.json"
         rj.parent.mkdir(exist_ok=True)
         rj.write_text(json.dumps(out, indent=2))
@@ -195,6 +280,7 @@ def main(post_dir):
     out = {"date": date, "status": "published", "media_id": media_id,
            "permalink": perma.get("permalink", ""), "slides": len(slides)}
     out["facebook"] = publish_to_facebook(post, date, repo, branch, fmt, caption)
+    out["youtube"] = publish_to_youtube(post, date, fmt, caption)
     rj = pathlib.Path("results") / f"{date}.json"
     rj.parent.mkdir(exist_ok=True)
     rj.write_text(json.dumps(out, indent=2))
