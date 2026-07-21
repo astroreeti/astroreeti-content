@@ -1,0 +1,5 @@
+{
+  "date": "2026-07-21-am",
+  "status": "failed",
+  "error": "17841442486927671/media -> HTTP 400: {\"error\":{\"message\":\"API access blocked.\",\"type\":\"OAuthException\",\"code\":200,\"fbtrace_id\":\"A1d_8r2OFhVybto0oeas0iB\"}}"
+}
