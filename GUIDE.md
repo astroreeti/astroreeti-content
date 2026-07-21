@@ -85,13 +85,20 @@ overflows. For reels, also extract a frame from the mp4 and check it looks right
 
 - Add a row to `topics.md` (date, run, pillar, topic).
 - Commit everything and push to `main`. GitHub Actions publishes automatically.
-  You never call the Instagram API yourself (it is blocked from this environment;
-  the Action's relay handles it).
+  You never call the Instagram or Facebook APIs yourself (blocked from this
+  environment; the Action's relay handles it).
 - Poll `results/<folder>.json` (git pull every ~15s, up to 6 min for reels).
   On `"status":"published"`, report the permalink. On failure, report the exact
   error and attach the generated media so Reeti can post manually as fallback.
+- The same push also cross-posts to the AstroReeti Facebook Page automatically
+  (reel → FB Reel, carousel → FB multi-photo post), reusing the same rendered
+  media at no extra cost. Check `results/<folder>.json`'s `"facebook"` field —
+  `"skipped"` means the FB secrets aren't configured, `"failed"` is non-fatal
+  (Instagram still counts as success) but should be reported alongside the
+  main result, `"published"` needs no comment.
 
 ## 6. Report
 
-One short message: run (morning/evening), pillar, topic, permalink, and note
-tomorrow's planned slot. Keep it tight.
+One short message: run (morning/evening), pillar, topic, Instagram permalink,
+Facebook cross-post status (if not a plain "published"), and note tomorrow's
+planned slot. Keep it tight.

@@ -1,4 +1,4 @@
-name: Refresh Instagram token
+name: Refresh Instagram + Facebook tokens
 on:
   schedule:
     - cron: "30 3 1,15 * *"   # 1st and 15th of each month, 03:30 UTC
@@ -8,7 +8,7 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Refresh long-lived token
+      - name: Refresh Instagram long-lived token
         id: refresh
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
@@ -19,8 +19,29 @@ jobs:
           echo "token=$NEW" >> "$GITHUB_OUTPUT"
           echo "Refreshed OK. Expires in: $(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin).get('expires_in'))") seconds"
 
-      - name: Store new token as repo secret
+      - name: Store new Instagram token as repo secret
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh secret set IG_TOKEN --repo "${{ github.repository }}" --body "${{ steps.refresh.outputs.token }}"
+
+      - name: Refresh Facebook Page long-lived token
+        id: fb_refresh
+        if: ${{ secrets.FB_PAGE_TOKEN != '' }}
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_APP_ID: "2735860743452735"
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+        run: |
+          RESP=$(curl -sf "https://graph.facebook.com/v21.0/oauth/access_token?grant_type=fb_exchange_token&client_id=${FB_APP_ID}&client_secret=${FB_APP_SECRET}&fb_exchange_token=${FB_PAGE_TOKEN}")
+          NEW=$(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+          echo "::add-mask::$NEW"
+          echo "token=$NEW" >> "$GITHUB_OUTPUT"
+          echo "Refreshed OK. Expires in: $(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin).get('expires_in'))") seconds"
+
+      - name: Store new Facebook Page token as repo secret
+        if: ${{ secrets.FB_PAGE_TOKEN != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set FB_PAGE_TOKEN --repo "${{ github.repository }}" --body "${{ steps.fb_refresh.outputs.token }}"
