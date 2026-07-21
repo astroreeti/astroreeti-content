@@ -1,0 +1,46 @@
+name: YouTube OAuth - one-time code exchange
+on:
+  workflow_dispatch:
+    inputs:
+      auth_code:
+        description: "Authorization 'code' param captured from the localhost redirect after Google consent"
+        required: true
+      redirect_uri:
+        description: "Must match exactly the redirect_uri used in the consent URL"
+        required: true
+        default: "http://localhost:8080"
+
+jobs:
+  exchange:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exchange authorization code for tokens
+        id: exchange
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          AUTH_CODE: ${{ github.event.inputs.auth_code }}
+          REDIRECT_URI: ${{ github.event.inputs.redirect_uri }}
+        run: |
+          RESP=$(curl -sf -X POST https://oauth2.googleapis.com/token \
+            -d "code=${AUTH_CODE}" \
+            -d "client_id=${YT_CLIENT_ID}" \
+            -d "client_secret=${YT_CLIENT_SECRET}" \
+            -d "redirect_uri=${REDIRECT_URI}" \
+            -d "grant_type=authorization_code")
+          REFRESH=$(echo "$RESP" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('refresh_token',''))")
+          if [ -z "$REFRESH" ]; then
+            echo "No refresh_token in response (already consented before without prompt=consent, or code reused/expired)."
+            echo "Response keys: $(echo "$RESP" | python3 -c "import json,sys; print(list(json.load(sys.stdin).keys()))")"
+            exit 1
+          fi
+          echo "::add-mask::$REFRESH"
+          echo "refresh_token=$REFRESH" >> "$GITHUB_OUTPUT"
+          echo "Got refresh_token OK. access_token expires in: $(echo "$RESP" | python3 -c "import json,sys; print(json.load(sys.stdin).get('expires_in'))") seconds"
+
+      - name: Store refresh token as repo secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set YT_REFRESH_TOKEN --repo "${{ github.repository }}" --body "${{ steps.exchange.outputs.refresh_token }}"
+          echo "Stored YT_REFRESH_TOKEN secret."
