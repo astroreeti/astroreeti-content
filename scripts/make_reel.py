@@ -9,12 +9,13 @@ import pathlib, subprocess, sys
 BG = "#F6EEDF"
 FADE = 0.6
 
-def main(post_dir, music, per_slide=3.5):
+def main(post_dir, music, per_slide=4.0):
     post = pathlib.Path(post_dir)
     slides = sorted(post.glob("slide*.jpg"))
     n = len(slides)
     assert n >= 2, "need at least 2 slides"
     per_slide = float(per_slide)
+    assert per_slide >= 4.0, "each slide must stay on screen at least 4 seconds"
     total = n * per_slide - (n - 1) * FADE
 
     inputs, filters = [], []

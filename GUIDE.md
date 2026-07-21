@@ -55,9 +55,11 @@ exact topics (machine-readable).
 - Caption: hook + 3-4 value lines + comment prompt (e.g. "comment your Moon sign")
   + follow CTA + ~20 hashtags incl. #astroreeti. Write to `caption.txt`.
 - Render slides: `python3 generator/generate.py posts/<date>/spec.json posts/<date>/`
-- Pick a music track by rotation: `generator/music/` has floating-temple,
-  day-dreams, lucid-dreaming — rotate by day number (day % 3).
-- Render reel: `python3 scripts/make_reel.py posts/<date> generator/music/<track>.mp3 3.5`
+- Music track: use the fixed brand track `generator/audio/astroreeti_raga.mp3`
+  for all morning reels (no more rotation).
+- Render reel: `python3 scripts/make_reel.py posts/<date> generator/audio/astroreeti_raga.mp3 4`
+  (at least 4 seconds per slide — do not go faster than this, slides need to
+  be readable).
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
 
