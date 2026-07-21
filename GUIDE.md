@@ -67,15 +67,25 @@ exact topics (machine-readable).
   background.
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
+- NOTE: morning is still on the CSS-drawn-scene renderer (`generate_reel.py`)
+  pending a morning-specific background video from Reeti, matching evening's
+  `generate_reel_video.py` setup below. Once that video is added (expected at
+  `generator/video/morning_bg.mp4`), switch morning to the same video-overlay
+  pipeline and delete this note.
 
 ## 3b. EVENING run — build the deep-dive Reel
 
 - Write a **6–8 slide** deep-dive spec (more depth, save-worthy).
 - Caption as above (save + share CTA emphasised).
-- Music track: use `generator/audio/AstroReeti_voice.mp3` for all evening reels
-  (different from the morning track, so the two runs feel distinct).
-- Render the same way as the morning run, just with the evening spec/audio/dir:
-  `python3 generator/generate_reel.py posts/<date>/spec.json posts/<date> generator/audio/AstroReeti_voice.mp3 4`
+- Evening reels use a **real background video** (`generator/video/evening_bg.mp4`,
+  ~30s, has its own baked-in music — do NOT add a separate audio track) instead
+  of the CSS-drawn scenes morning uses. Render with the video-overlay generator:
+  `python3 generator/generate_reel_video.py posts/<date>/spec.json posts/<date> generator/video/evening_bg.mp4 4`
+  This composites light-colored text (white/gold, no card/frame — the video
+  itself carries the visual richness) on top of the video via true-alpha frame
+  capture, and keeps the video's own audio untouched. If `slides × seconds`
+  runs longer than the background video, it automatically loops the video
+  (audio included) to cover the full length rather than cutting slides short.
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
   *(evening posts go in the same dated folder but use a distinct filename prefix
@@ -92,9 +102,12 @@ There are no separate static slide JPGs anymore — everything is baked directly
 into `reel.mp4`. Extract a few still frames with ffmpeg and read them (at least
 one early slide, the longest-text slide, and the last/CTA slide), e.g.:
 `ffmpeg -ss 2 -i posts/<date>/reel.mp4 -frames:v 1 /tmp/check.jpg`
-Text must stay inside the border frame; shorten copy and re-render if it
-overflows. Also sanity-check the total duration looks right for the slide count
-(`ffprobe -show_entries format=duration posts/<date>/reel.mp4`).
+Morning: text must stay inside the border frame; shorten copy and re-render if
+it overflows. Evening (video background): check the light text is legible
+against that particular frame of footage — if a bright patch of video washes
+out the text, shorten copy or accept it (the per-slide text shadow usually
+carries it). Also sanity-check the total duration looks right for the slide
+count (`ffprobe -show_entries format=duration posts/<date>/reel.mp4`).
 
 ## 5. Publish
 

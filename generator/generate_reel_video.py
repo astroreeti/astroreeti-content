@@ -14,7 +14,7 @@ green-screen + colorkey pipeline is prone to, at the cost of a slower render
 Usage: generate_reel_video.py <spec.json> <outdir> <bg_video.mp4> [seconds_per_slide]
 Writes <outdir>/reel.mp4, matching the background video's resolution.
 """
-import json, sys, pathlib, subprocess, shutil
+import json, math, sys, pathlib, subprocess, shutil
 
 from playwright.sync_api import sync_playwright
 
@@ -57,13 +57,14 @@ def main(spec_path, outdir, bg_video, per_slide=4.0):
     h = int(probe(bg_video, "height"))
     video_dur = probe_duration(bg_video)
 
-    desired_s = per_slide * n
-    total_s = min(desired_s, video_dur)
-    if desired_s > video_dur:
-        print(f"WARNING: {n} slides x {per_slide}s = {desired_s:.1f}s exceeds the "
-              f"{video_dur:.1f}s background video — trimming to {total_s:.1f}s "
-              f"(the last slide(s) will be cut short). Use a longer background "
-              f"video or fewer/shorter slides to avoid this.")
+    total_s = per_slide * n
+    # If the content runs longer than the background video, loop the video
+    # (audio included) enough times to cover it rather than cutting slides
+    # short.
+    loop_count = max(0, math.ceil(total_s / video_dur) - 1)
+    if loop_count:
+        print(f"Content is {total_s:.1f}s but the background video is only "
+              f"{video_dur:.1f}s — looping it {loop_count + 1}x to cover the full reel.")
     total_frames = int(round(total_s * FPS))
 
     template = (BASE / "template_reel_video.html").read_text()
@@ -93,7 +94,7 @@ def main(spec_path, outdir, bg_video, per_slide=4.0):
     out = outdir / "reel.mp4"
     subprocess.run([
         "ffmpeg", "-y",
-        "-t", f"{total_s:.2f}", "-i", str(bg_video),
+        "-stream_loop", str(loop_count), "-i", str(bg_video),
         "-framerate", str(FPS), "-i", str(frames_dir / "f%05d.png"),
         "-filter_complex", "[0:v][1:v]overlay=0:0:shortest=1[vout]",
         "-map", "[vout]", "-map", "0:a?",
