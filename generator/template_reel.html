@@ -26,9 +26,15 @@
   @keyframes twinkle { 0%,100% { opacity:.15; } 50% { opacity:.85; } }
   @keyframes drift { from { transform:translateY(0); } to { transform:translateY(-18px); } }
 
-  /* the 1080x1350 slide "card", vertically centered in the 1080x1920 canvas */
+  /* the 1080x1350 slide "card", vertically centered in the 1080x1920 canvas.
+     #card handles the slide-to-slide fade/slide transition; #zoom (nested
+     inside) handles the independent slow scale so the two transforms never
+     fight over the same element. */
   #card {
     position:absolute; top:285px; left:0; width:1080px; height:1350px;
+  }
+  #zoom {
+    position:relative; width:100%; height:100%;
     transform-origin:center center;
   }
 
@@ -55,8 +61,6 @@
     text-align:center; padding:90px 96px 110px;
   }
 
-  @keyframes riseIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-  #content > * { animation: riseIn .6s cubic-bezier(.19,.7,.28,1) both; }
 
   .eyebrow {
     font-family:'Playfair Display','Noto Serif Devanagari'; font-weight:600;
@@ -124,6 +128,7 @@
   <div id="stars"></div>
 
   <div id="card">
+   <div id="zoom">
     <div class="frame-outer"></div>
     <div class="frame-inner"></div>
 
@@ -155,25 +160,46 @@
     <div id="content"></div>
 
     <div class="footer"><span class="dot"></span><span>@ASTROREETI</span><span class="dot"></span><span id="page"></span><span class="dot"></span></div>
+   </div>
   </div>
 
 <script>
-  // ambient stars
+  // ambient stars — each one gets its own independent Web Animations API
+  // twinkle + drift loop (reliable, doesn't depend on CSS animation restart
+  // tricks that browsers can silently drop).
   (function () {
     var starsEl = document.getElementById('stars');
-    var n = 26;
+    var n = 30;
     for (var i = 0; i < n; i++) {
       var s = document.createElement('div');
-      var size = 2 + Math.random() * 4;
+      var size = 3 + Math.random() * 5;
       s.className = 'star';
       s.style.width = size + 'px';
       s.style.height = size + 'px';
       s.style.left = Math.round(Math.random() * 1080) + 'px';
       s.style.top = Math.round(Math.random() * 1920) + 'px';
-      s.style.animationDelay = (Math.random() * 3).toFixed(2) + 's, ' + (Math.random() * 6).toFixed(2) + 's';
       starsEl.appendChild(s);
+      s.animate(
+        [{ opacity: .1 }, { opacity: .95 }, { opacity: .1 }],
+        { duration: 1600 + Math.random() * 2400, iterations: Infinity, delay: Math.random() * 2000 }
+      );
+      s.animate(
+        [{ transform: 'translateY(0px)' }, { transform: 'translateY(-26px)' }],
+        { duration: 5000 + Math.random() * 6000, iterations: Infinity, direction: 'alternate',
+          easing: 'ease-in-out', delay: Math.random() * 3000 }
+      );
     }
   })();
+
+  // slow pulsing glow around the frame
+  document.querySelector('.frame-outer').animate(
+    [
+      { boxShadow: '0 0 0px rgba(193,154,73,0)' },
+      { boxShadow: '0 0 34px rgba(193,154,73,.55)' },
+      { boxShadow: '0 0 0px rgba(193,154,73,0)' },
+    ],
+    { duration: 4000, iterations: Infinity, easing: 'ease-in-out' }
+  );
 
   var SLIDES = __SLIDES__;
   var PER_MS = __PER_SLIDE_MS__;
@@ -181,36 +207,61 @@
   var contentEl = document.getElementById('content');
   var pageEl = document.getElementById('page');
   var cardEl = document.getElementById('card');
+  var zoomEl = document.getElementById('zoom');
+
+  function riseInChildren(container) {
+    var kids = container.children;
+    for (var k = 0; k < kids.length; k++) {
+      kids[k].style.opacity = '0';
+      kids[k].animate(
+        [
+          { opacity: 0, transform: 'translateY(40px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ],
+        { duration: 650, delay: k * 130, easing: 'cubic-bezier(.19,.7,.28,1)', fill: 'forwards' }
+      );
+    }
+  }
+
+  function zoomCard() {
+    zoomEl.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(1.05)' }],
+      { duration: PER_MS + 400, easing: 'ease-out', fill: 'forwards' }
+    );
+  }
 
   function renderSlide(idx) {
     contentEl.innerHTML = SLIDES[idx].html;
     pageEl.textContent = SLIDES[idx].page;
-    var kids = contentEl.children;
-    for (var k = 0; k < kids.length; k++) {
-      kids[k].style.animation = 'none';
-      void kids[k].offsetWidth;
-      kids[k].style.animationDelay = (k * 0.09) + 's';
-      kids[k].style.animation = '';
-    }
-    cardEl.style.animation = 'none';
-    void cardEl.offsetWidth;
-    cardEl.style.animation = 'zoomSlow ' + (PER_MS / 1000) + 's ease-out both';
+    riseInChildren(contentEl);
+    zoomCard();
   }
 
-  var styleEl = document.createElement('style');
-  styleEl.textContent = '@keyframes zoomSlow { from { transform:scale(1); } to { transform:scale(1.02); } }';
-  document.head.appendChild(styleEl);
-
   function next() {
-    cardEl.style.transition = 'opacity .26s ease';
-    cardEl.style.opacity = '0';
-    setTimeout(function () {
+    var out = cardEl.animate(
+      [
+        { opacity: 1, transform: 'translateY(0px)' },
+        { opacity: 0, transform: 'translateY(-30px)' },
+      ],
+      { duration: 340, easing: 'ease-in', fill: 'forwards' }
+    );
+    out.onfinish = function () {
       i++;
-      if (i >= SLIDES.length) { cardEl.style.opacity = '1'; return; }
+      if (i >= SLIDES.length) {
+        cardEl.animate([{ opacity: 1, transform: 'translateY(0px)' }],
+          { duration: 1, fill: 'forwards' });
+        return;
+      }
       renderSlide(i);
-      cardEl.style.opacity = '1';
+      cardEl.animate(
+        [
+          { opacity: 0, transform: 'translateY(30px)' },
+          { opacity: 1, transform: 'translateY(0px)' },
+        ],
+        { duration: 340, easing: 'ease-out', fill: 'forwards' }
+      );
       setTimeout(next, PER_MS);
-    }, 260);
+    };
   }
 
   renderSlide(0);
