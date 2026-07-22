@@ -66,7 +66,7 @@
   },
   "page_permissions": {
     "ok": false,
-    "error": "1224808644049541/permissions -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (permissions)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"AwiRlHmgrSVKELTHBvuiBvN\"}}"
+    "error": "1224808644049541/permissions -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (permissions)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"AryYq5AoCLcKydhzQ6YykwN\"}}"
   },
   "video_info": {
     "ok": true,
@@ -93,7 +93,7 @@
   },
   "video_insights": {
     "ok": false,
-    "error": "1693231971719643/video_insights -> HTTP 403: {\"error\":{\"message\":\"(#200) read_insights permission missing (https:\\/\\/developers.facebook.com\\/docs\\/permissions\\/reference\\/read_insights)\",\"type\":\"OAuthException\",\"code\":200,\"fbtrace_id\":\"AcPrplff2-CVApCyRMrKMs3\"}}"
+    "error": "1693231971719643/video_insights -> HTTP 403: {\"error\":{\"message\":\"(#200) read_insights permission missing (https:\\/\\/developers.facebook.com\\/docs\\/permissions\\/reference\\/read_insights)\",\"type\":\"OAuthException\",\"code\":200,\"fbtrace_id\":\"APJzdULZFPMqoko4ZWaer3w\"}}"
   },
   "page_videos_list": {
     "ok": true,
@@ -262,14 +262,14 @@
       ],
       "paging": {
         "cursors": {
-          "before": "QVFIU3NGQi1TZATZAxbW1oRzVUVUJQR1ZACTnl6Y2o4emFaTUFITkVwM3FLc0VtZAmhEdjZAiZAWMyTEdZAUFBHbXFULUZAXMjdqblQyb203ZAElfX1ItS3FHSkM0S3ZA6bjI2S2U2TGgxQUhXYlRoVlkxRGNJYWZAMd1czcTJucEJWd0xZAMmpUaVd1NXdvR0dZAUE1peUF6dFpHRVVOUi0xVE1jdk1HNWRScHZAXcnRxcmRVZAEc0WWRsRDNOVjNkMzFQLWpZATEFJZATVVSVNqSU0xVmVIOVAtX0QtcXFYYjVSbUJDemxfY0ljRHZAvLTE3UzZAsbWFBanNNYk1BV3ZApbHdkZA1ZAKbWg2di1YQjB2ZAWNqdW12NDJqTk40SUpnaW1LZAklzQTV3bm1rbEV2SWFObTRZAa04zNks1c1dhSXVWRm9xODF4azJfWWdmTUVTYlNCdFR2U1NpSXJxbGdTNDUzWTBwLWhNdXM0YnlsOXBpZAzFyd2dnenRqQTNFOEpMVkhSS2NkdEJ1WUp4LU52d1VXU2QtdUV1cFBKY081Tjc0UUwtOEFZAZAjNfdXUwUWtkWmVrQUI3RWtWWU54SVlla1lfQ0pyS0tUSG1KX3JfdHhzSjNuT0lYNVNFcEdmd01DUDFfdUpEcGVabUFUZAFJwN2ZATUVJRODh6NGM0a0EzNDFzQVBuaEtkYUx4TTA5Q3BNUmRNR1ZAOVmEyLVQ3aUpxa2FnNmRvQVhmNnFSOVgyVndCRHNKUGFYWDVzRlBiVVBMTV9wcVZAIckQyQkw1UmJ6QnhIU2xBQVQ5OXV3RDNNU2dwTGo4TnNBVExjeUpQVkV0LWJkRzlLUnVkMTAZD",
-          "after": "QVFIU0dpUjBTNWJPZAnRTeElES2d4c2FGN2pERkRlMWFDLTVkeGNySTVLZA0FxZAzZAqRDBRMXBLMldZAUDNtdmpnZA256Mm1QaUVrcHNhZAVpMZAUU3SExlUVVWVkF3bmh4QXRvUGpxLW12Y1lBWGpPQ3YtQk1LOVl5ZA1dLOEYteUpITmdGdExRdXVZAV1o2c1FjSzdvSEE5eGVZAUXZAUOFYzUEkxb2Q5YWhXYTlOVTJabHN5X3RlY2N5WWpMYjcxNWU0QktIWi16OGZAZAdWkzWkstblVpcEhGR1d5VXgzNi1hNUs0OW9UM2N4NjNNdmdVMW9xNExyUlpGMDNOOHJBTThIcFc0dlZAqSzFLV0VRRjdRcW9iNnpCSmloZAlprVDdTVC10dnQ4N3BfOGl2ajctVnd3MGxqSktQM3NhMV9GcDZAjdTVlYXhLMlhNaGc2ckY1NHNwQmhURVpaYnBaSW1JVVdiNUtVTDduVDJiT294YVBHQ2JLYWlNeHRlaGkxRGV6ZAmxuMTNiUGlFOGJJclVUY1ZAKdnMyTXJxVVpyRnlGQnhma09vS1ZAZARGpCbHQxaHpweGhIOFdMZAzh5aXNiNlFRRFVnY21LYUZAfdFhrNDcyNzRVbVVTZAGpQTURKRXdKUUlBMGZAUeW9OTkFaZATd5bFJwZADRNbVJjdE5tZAHpEdDlKbGRiUm5wMExzSGRfMXBMSnVvbXNpbm93VkJpV25QMHNEejRnRUpZAWEt0X1BJUFlIRDFvd0JXOEVDYWlFYWdkR0dSdzlYOXlTOU1YUk9INm82cEFXd1hSQ1YxUW5wUE5FdzVWWXBMVFhhcXhDUDdHWWs0R1pwVUEZD"
+          "before": "QVFIU1VJTEIyMEJlNWVyLWh3eTBXQmxZAbTdaMkExOVBnNllEY3haWmlLVTdaMHVFc29sRHpScFBUaHJxR3pndEduSFVqRlRtZAC1hRVRLeW9xOWR1R3FGWWQxWXV0UjNBX1kwUmx1Rm9OMmVmUjQ1WmF2N1UxckcwUUNRYTB1NnhxU2hhT1BuT0FWdDNmeDVEX2gySkRLWmhfRW5KSmZAkYUlxX3ExcmRLbDNHOWxRSUoxeVZAvckZALT0JiMkd6ckdNVGF6R3JPWkpBUXIzaUNZAYVA1MHkyTzZA6b3NIRVBhWlpyX2R5MWlodlhoZA3hOdW4wWEVsSkZAqNlZARb252bmEzd3VOX3JEcXdadWIwbnk5UDFaQlNqTUxjV0ExMzU3RGdNZA2V2cF9iRnBieGdqbE13bUE3eEp5cjN3blRfTWY1cm9YLUtvanJJZA0dwRVVDdGRFdTNXNWoyQmxoOTMtU3pNRGkzd0RFWFFPN3NSdU01UHR5VzBudzhVMWpYM0JpTHVmb0NrZAU9vUW81VmNHQnN2M1NGS3BKWFZAaUzRSWnRhX1VmYlhCNUFYNHVTZAEJwcmJTdUdXN0NFTGJPRlN5ajNJWVMzS3FVNHp6Nnh0dWtLa1NRbUNDSWl1dTl2b2NtbmhRNTBQZA2ZAKd242Mlh4R2Y5dHRqaWdMN2s1VVE3UVZAicXFNaFJpUTZAfUmhmX2xiZA2JYQlphWktxZAHh0Ymo1ZAV96WmFBbmJxSndxWHo3bmNoU3JOVUozVjQwbVhfdWxLdXNoeEMxV182NUNNYXV0YW95bkYwN1lITjZAHOWEtQkw3bnYwcUw1YnpBYUExaGVTODgZD",
+          "after": "QVFIUzlaZAlV0VU9uWHJnQ3Q0bnpfZAEhlY1daRnZAwRmFrVUF2NkVyeklvMGV4MVNDVll6T1FDa1FxMmpDM1k4NDJDS2dreEJtN3UtM2ktak5HM0E4QUNvbHVWMEViQTdVYXZAoUFlabDQxR0FCNHJvbUNSZAHYzcnBKSzVMNnJMSTFLNXNXczZA4MHphX0tfTjRfUjkzOVk0b1N2TFA5UzFjdDlJOUluSGJON0YyWWVnckFwbUs2T19EMHQwYUxHYndXYVluRV90MTd0dzM4cm5nX1JBeG92bk1IbnBZAd2p2cFZAmb0E4emxJN3pVcTZAfdWN6amVDa3ZAoc1FYN05uOGo3STBnTkM1VVlETGIwNnVIenA3YXh3eHpaV2EtOXNDMGxnYmw5ZAWo1U2swQWtIeFAwY1V1NVZAjRkRqQ3hhVGhJUFNsTmhzZAnFHczd6bW5OYS1uZAi1za0lLMUt6c3kxLUVZAdXRCS3VRdjJjckt3LURSaE41VHN0X2pHc0ZAtMTl1UndXd3YxRmlVbDlrMUVLWXY2WUJRYXNxMFNuQ2piS2ZATZA2pHeHVjWVRMYWgtLXkzX3NxSXlaRGJwM2lDMmw5eHV1N1FsdmltVmU3N1Q0clNST29JamRaSDJNc1pSbngxTUpla19IWDkxYzFMY1p4Umt6WmJxYmhrS1hGS3d1NmgyODM5QVF5WXppN2JTQ3IyRUxuNjBVLVEtVjBLOWdoQTNTSUM4Mkxqbm5uczZAnYU0zdUxjWHhzaDNWNVJiTHlicHNpNnBRSjQ4aU4yNHl1RFRuYWZA1dkxWbVRDb2k2dlRKbUJCdHZALSEtwNVg1OVJkZAUkZD"
         }
       }
     }
   },
   "page_feed_list": {
     "ok": false,
-    "error": "1224808644049541/feed -> HTTP 400: {\"error\":{\"message\":\"(#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/login-permissions#manage-pages and https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/feature#reference-PAGES_ACCESS for details.\",\"type\":\"OAuthException\",\"code\":10,\"fbtrace_id\":\"AnwE_OpKsrkV20biAxyD55-\"}}"
+    "error": "1224808644049541/feed -> HTTP 400: {\"error\":{\"message\":\"(#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/login-permissions#manage-pages and https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/feature#reference-PAGES_ACCESS for details.\",\"type\":\"OAuthException\",\"code\":10,\"fbtrace_id\":\"ASZNlc5iLz7qg2Nph4U382p\"}}"
   }
 }
