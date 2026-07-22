@@ -53,53 +53,20 @@
     }
   },
   "page_info": {
-    "ok": true,
-    "data": {
-      "name": "AstroReeti",
-      "verification_status": "not_verified",
-      "fan_count": 2,
-      "is_published": true,
-      "link": "https://www.facebook.com/1224808644049541",
-      "category": "Astrologist",
-      "id": "1224808644049541"
-    }
+    "ok": false,
+    "error": "1224808644049541 -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (restriction_info)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"ALuD__S6udewhRgb0nyE3wT\"}}"
   },
   "page_permissions": {
     "ok": false,
-    "error": "1224808644049541/permissions -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (permissions)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"Afrbzd6CsFt6gaVZ-_wYeqH\"}}"
+    "error": "1224808644049541/permissions -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (permissions)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"AFlNOov3k3Tr_oDU19UWgi0\"}}"
   },
   "video_info": {
-    "ok": true,
-    "data": {
-      "permalink_url": "/reel/1035964418977026/",
-      "description": "\u0915\u0941\u0902\u0921\u0932\u0940 \u092e\u0947\u0902 \u0939\u0930 \u0917\u094d\u0930\u0939 \u0915\u093e \u090f\u0915 \"\u0938\u094d\u0915\u094b\u0930\" \u0939\u094b\u0924\u093e \u0939\u0948 \u2014 \u0914\u0930 \u091c\u093c\u094d\u092f\u093e\u0926\u093e\u0924\u0930 \u0932\u094b\u0917 \u0909\u0938\u0947 \u0926\u0947\u0916\u0924\u0947 \u0939\u0940 \u0928\u0939\u0940\u0902 \ud83d\udcca\u2728\n\n\u0907\u0938\u0947 \u0915\u0939\u0924\u0947 \u0939\u0948\u0902 \u0905\u0937\u094d\u091f\u0915\u0935\u0930\u094d\u0917 \u2014 \u0939\u0930 \u0917\u094d\u0930\u0939 \u0915\u0947 \u0932\u093f\u090f 7 \u0917\u094d\u0930\u0939 + \u0932\u0917\u094d\u0928 (\u0915\u0941\u0932 \u0906\u0920) \u092e\u093f\u0932\u0915\u0930 \u0924\u092f \u0915\u0930\u0924\u0947 \u0939\u0948\u0902 \u0915\u093f \u0915\u094c\u0928-\u0938\u0940 \u0930\u093e\u0936\u093f \u0909\u0938\u0915\u0947 \u0932\u093f\u090f \u0936\u0941\u092d \u0939\u0948 \u0914\u0930 \u0915\u094c\u0928-\u0938\u0940 \u0928\u0939\u0940\u0902\u0964\n\n\u0907\u0938 \u0921\u0940\u092a-\u0921\u093e\u0907\u0935 \u092e\u0947\u0902 \u091c\u093e\u0928\u093f\u090f:\n\u2726 \u092c\u093f\u0902\u0926\u0941 \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u2014 \u0939\u0930 \u0930\u093e\u0936\u093f \u092e\u0947\u0902 0 \u0938\u0947 8 \u0915\u093e \u0938\u094d\u0915\u094b\u0930, 4 \u0914\u0938\u0924, 5+ \u092c\u0932\u0935\u093e\u0928\n\u2726 \u0938\u0930\u094d\u0935\u093e\u0937\u094d\u091f\u0915\u0935\u0930\u094d\u0917 (SAV) \u2014 \u0915\u0941\u0932 337 \u092c\u093f\u0902\u0926\u0941, \u0914\u0938\u0924 ~28 \u092a\u094d\u0930\u0924\u093f \u0930\u093e\u0936\u093f, 30+ = \u092e\u091c\u093c\u092c\u0942\u0924 \u0915\u094d\u0937\u0947\u0924\u094d\u0930\n\u2726 \u0917\u094b\u091a\u0930 \u0915\u093e \u0905\u0938\u0932\u0940 \u0928\u093f\u092f\u092e \u2014 \u090f\u0915 \u0939\u0940 \u0936\u0928\u093f \u0915\u093f\u0938\u0940 \u0915\u094b \u0909\u0928\u094d\u0928\u0924\u093f \u0914\u0930 \u0915\u093f\u0938\u0940 \u0915\u094b \u0938\u0902\u0918\u0930\u094d\u0937 \u0915\u094d\u092f\u094b\u0902 \u0926\u0947\u0924\u093e \u0939\u0948\n\u2726 3 \u0906\u0938\u093e\u0928 \u0915\u0926\u092e \u2014 \u0905\u092a\u0928\u0940 \u0915\u0941\u0902\u0921\u0932\u0940 \u0915\u0940 \u0905\u0937\u094d\u091f\u0915\u0935\u0930\u094d\u0917 \u0924\u093e\u0932\u093f\u0915\u093e \u0916\u0941\u0926 \u0915\u0948\u0938\u0947 \u092a\u0922\u093c\u0947\u0902\n\n\u092f\u0939\u0940 \u0935\u091c\u0939 \u0939\u0948 \u0915\u093f \u0938\u093e\u0922\u093c\u0947 \u0938\u093e\u0924\u0940 \u0938\u092c \u092a\u0930 \u090f\u0915-\u0938\u0940 \u0928\u0939\u0940\u0902 \u092c\u0940\u0924\u0924\u0940 \u2014 \u092c\u093f\u0902\u0926\u0941 \u0926\u0947\u0916\u093f\u090f, \u0921\u0930 \u0928\u0939\u0940\u0902 \ud83d\ude4f\n\n\ud83d\udccc \u092f\u0939 \u0930\u0940\u0932 \u0938\u0947\u0935 \u0915\u0930\u0947\u0902 \u2014 \u0905\u0917\u0932\u0940 \u092c\u093e\u0930 \u0915\u094b\u0908 \u092d\u0940 \u0917\u094b\u091a\u0930 \u0926\u0947\u0916\u0924\u0947 \u0938\u092e\u092f \u092f\u0939\u0940 \u0924\u093e\u0932\u093f\u0915\u093e \u0915\u093e\u092e \u0906\u090f\u0917\u0940\n\ud83d\udce4 \u0909\u0938 \u0926\u094b\u0938\u094d\u0924 \u0915\u094b \u092d\u0947\u091c\u0947\u0902 \u091c\u094b \u0938\u093e\u0922\u093c\u0947 \u0938\u093e\u0924\u0940 \u0938\u0947 \u0918\u092c\u0930\u093e\u092f\u093e \u0939\u0941\u0906 \u0939\u0948\n\ud83d\udcac \u0915\u092e\u0947\u0902\u091f \u0915\u0930\u0947\u0902 \"\u0905\u0937\u094d\u091f\u0915\u0935\u0930\u094d\u0917\" \u2014 \u0905\u0917\u0932\u093e \u092d\u093e\u0917 \u0915\u0915\u094d\u0937\u094d\u092f\u093e \u0914\u0930 \u0917\u094b\u091a\u0930 \u0915\u0947 \u0938\u0942\u0915\u094d\u0937\u094d\u092e \u0928\u093f\u092f\u092e \u092a\u0930\n\u2728 \u0924\u0915\u0928\u0940\u0915\u0940 \u091c\u094d\u092f\u094b\u0924\u093f\u0937 \u0939\u0930 \u0938\u092a\u094d\u0924\u093e\u0939 \u2014 \u092b\u093c\u0949\u0932\u094b \u0915\u0930\u0947\u0902 @astroreeti\n\n#\u0935\u0948\u0926\u093f\u0915\u091c\u094d\u092f\u094b\u0924\u093f\u0937 #\u091c\u094d\u092f\u094b\u0924\u093f\u0937 #\u0905\u0937\u094d\u091f\u0915\u0935\u0930\u094d\u0917 #\u0915\u0941\u0902\u0921\u0932\u0940 #\u0917\u094b\u091a\u0930 #\u0936\u0928\u093f #\u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 #\u092c\u093f\u0902\u0926\u0941 #\u0930\u093e\u0936\u093f\u092b\u0932 #\u091c\u094d\u092f\u094b\u0924\u093f\u0937\u0936\u093e\u0938\u094d\u0924\u094d\u0930 #\u092d\u093e\u0930\u0924\u0940\u092f\u091c\u094d\u092f\u094b\u0924\u093f\u0937 #\u0917\u094d\u0930\u0939 #\u0930\u093e\u0936\u093f #\u0926\u0936\u093e #\u091c\u094d\u092f\u094b\u0924\u093f\u0937\u0938\u0940\u0916\u0947\u0902 #Ashtakavarga #VedicAstrology #Jyotish #SadeSati #Gochar #astroreeti",
-      "length": 58,
-      "status": {
-        "video_status": "ready",
-        "uploading_phase": {
-          "status": "complete",
-          "bytes_transferred": 9213396
-        },
-        "processing_phase": {
-          "status": "complete"
-        },
-        "publishing_phase": {
-          "status": "complete",
-          "publish_status": "published",
-          "publish_time": "2026-07-22T16:04:55+0000"
-        },
-        "copyright_check_status": {
-          "status": "complete",
-          "matches_found": false
-        }
-      },
-      "created_time": "2026-07-22T16:04:55+0000",
-      "id": "1035964418977026"
-    }
+    "ok": false,
+    "error": "1035964418977026 -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (unpublished_content_type)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"AcXnuzk1-1rls1N3Tn3-Y48\"}}"
   },
   "video_insights": {
     "ok": false,
-    "error": "1035964418977026/video_insights -> HTTP 403: {\"error\":{\"message\":\"(#200) read_insights permission missing (https:\\/\\/developers.facebook.com\\/docs\\/permissions\\/reference\\/read_insights)\",\"type\":\"OAuthException\",\"code\":200,\"fbtrace_id\":\"A2yDI10qK9nHvXp0emIlV2z\"}}"
+    "error": "1035964418977026/video_insights -> HTTP 403: {\"error\":{\"message\":\"(#200) read_insights permission missing (https:\\/\\/developers.facebook.com\\/docs\\/permissions\\/reference\\/read_insights)\",\"type\":\"OAuthException\",\"code\":200,\"fbtrace_id\":\"AZ3wmNAeLtfS_Tt0vERQL-A\"}}"
   },
   "page_videos_list": {
     "ok": true,
@@ -325,14 +292,14 @@
       ],
       "paging": {
         "cursors": {
-          "before": "QVFIU3hYX2VnTFI0bXl5X0Q1S011aHoyWVBadEVzblkwNFN1V1dWQzlLS004d3ZAuUzM3bjZAzZAVFzdndiZAUJiTkROWGk5WHhUQ2RNM3RtR285bEZAFV2JrWlJDVllqS3FYQ3Y0OTdiRTF1THZA0Q2xNZAF9nblR1VlRxQXFXYVpjbk14cEhMVDZAwMGdHQnNRQUpLVlhYdnk4YzY5cTJXcDRvT2M2a0JVOXFDLThxaTFLVktjekpnX1M1Ri1CcnZA1YVZAfVk4tNy0wYXI1SFJWaDZAmdWhqRjZAUUnFiSE9sRWpLcU5BajVucjNDYkZALQlVxa3g2UmZAaUmIzcmVPRGM4OVJNVU1GajBvWUFZAZAHFDS0VlWnNoYldlNklLRGxVQzE0UVFLUHltZADh1a2lUVEY5V1FaNzFNaFZATOEVfRGVLQWd0dXpHUkdnbGFfXzF1LU5nT3BLR3B6WnRodU1TcDcyeVZAHWGREUTRVY252X0ZALanZArQ2pNNVZAjaXFBX3dlSTZAPeHdDNEpEVUx1a09ndHRaUHFyMG9RRllaRXp3ZADNfODVVenE0aFQ1ZAy14anFRMF9OUnpQM1phYWZAZAYXMxTmZALZAnpzZA2lYRlcyMFhmQVVFcjZAHaTFxSXlyMEc1bWN5YTVuSFFhdHl0WmFIUGk4a1JBUUtyNW9Sb1YzUU9GYkM1U2R5TkE5aW4wQWQ3ZADhkMnRPbWNMak5JM0hpQk1DeXdOeHpVTTRRMHNsLWRIcjltSzFVWkZA0RV9OQnp1dVo1dEM5bTRtckctVzNMMTA5cE9COVhyc2RTM0FXc0ZARRnExMGlBWkgxSF95R2drWmFOM0lHeWcZD",
-          "after": "QVFIU0tBdnI0Sk43VXUwNkZA3SHRSSzY0YThVdklSS1oxeTMtT2tJbW91TlVsVTJfVFhPYTY5RFdMQXoyTzFKaEk2S3ZAaN2IzaER1Y1ozU1UzWTdkNnpaSGZAwV1BRZAHdTR2laSFFuOVhzZA3RiQmtsX2p0Y0xsQl9RVDFsd3ZAwWVVjVTlVbEk3ZAXJYVkJheU1fWmVjMVpndjg3ZAnk3TDVvQjlYTmg1V0ViZAjJJUUt4T1RzS0JzWjBoSlVZASG5fWS1NbFpjYUpwLWtSWDBPVko4TWhITUg2elN2cTcwSWk0MU9zOTJWZAi1xRWJoQUxOQnd3QnJEaXZAha3lQUW9fM2NnUS1IMkM5TXc0cGdhRk02Rmo4djJCYzNVSjVtQ1FfVEtGY3Bvb2w2bkF2UENBak9DSzBJYTA5dVV2R1czTGQ4MjQxNHFldEpNU3ZAGY3NFVWxOdURPaG52NmFGNE1ucUNMZAkpnUUNvYlo4Uk1zM1U2aHc0SW40dlF5eWE0Y1M0V3NLcFJ3UWdnbWVMbHhqZAHhJZAjZABZAXhPdTAwYlNuNHBQejllcGtIUFgxWEU1eTJDZAXRWZAllGdmhVUmd5WmlLNDdnUVF1U2xVbmpnbUoxY2xUTnBzdE5GUW5HNFB4NVN2VHA3OGdCM3NKTXN5N0xZAbzM0RUFpVlBHMEtqdS1UZAnpVU0FUWG16SEJ4Rm05QVRCNWJDeHBkeEY3a1lDaU1fLW1iMk9MRy1qTmUyQ1BLdkU3NnYxTDhlRkRIcEVHRTdsYXdXLXI3S3pJSUg0UXp4ckJjM3pWRUdPZA3Q0UTRjNkFUSWhaMG5EeFpnSU1TZAVp5SmcZD"
+          "before": "QVFIU29oaFRfSzFKbzRnZAlZAHeTcwaTgtQXQ4OVpwNy0wOENIeVY3Y3VuNmItdHF2ZAFF1VHhxelhJdV9zbUFnb1pkWjQ3OEVFd1ZATNlFvMXc0U3VURWFDZAFgyeThIMXVJYktDenNmZAnZAwSUJzdnB5RXhNd2ZAybURUYnIzckEtVVQ3SEQxSzA0bFN3MWhTeHdJR3Y2bTJEMnN3VkRpUnlJX215ZATQ3UzlqVkEwZAk1JV3V2bGpJY183LU9SMXF1VXIzNThmUUJxa19VaktfZATJrS05VdHNKQTdZAQnhZATjRZAXzRNdDVJXzlDcE5aM2hzWjA4QTg3R3RVWTFkRzI5WjFaMXB5Q2RWeWdWVExfOWZADMXh0dFA4RkhFcG5tRnhJVlFjZAmdOZAHNBREp0dGxaNTI3ZAGJTQzRwbTVnUndmbHExeHYwNlVxRExIQkJNaDNfNlBEaUVacFRqbXQ5ZA09jOWt1SW51V2tOYmdRV1JrR0dxWGkwclpQQ0F1NXd1NWlTTy13RHRnSEFyZAEEwZAEU2Xy1jZAU1zczR1Qk5BaFFrdXJQUjYtQ083cWpncVBrb3IyeVVQRExFM2prekJ6UE1raWhvNnFPM29SWEMwU01qQVplNGJGenQ2UHdMMHFWQ090X3lXbko5UEd1eUJzNzhwLWJINElWM2RKeGdNQlV0cS01bUxiZAXJYbXljd2wxQXZABb1VkSm9IekpVMHduX24xNU5FRzVvdVk4aFNvd0tUUWhxT0I4aF9CWnctOFBXVWxzdnBmNzBTMDltQXpWNFpYTDVGNkVqaDBXRWR5SENlMDZAiQWVZAcldwcUhqZATdiRVIzNE0ZD",
+          "after": "QVFIU2FKMnhEWUUzUkxtZAGNVOW03b1pyUVVJVmZAHd3UtM3h1NFJ6THhOeEQ0ZA1hTbm9Vd0dyc2xTaEpvZAlU2TnBRblFtMFp5Tnlvdy1rX2xkUU5MajFxNFU0MXk3SXpjZA3hLQnRZAR2dMcjhjamFMQXVVSlhZAMGpodWFlcUNWdGlieUFnTTlzS3hXQnJDNGl0ZAXJsT2s2SlpfUmlRVWhjZAHFBenZAzbFVBUmkxUjlVQ0N6SDBDd200ZAGxocnFWYVExUlNyUnVKOGJqaE9xVjZAnUGtmaW55RWRGOEZAXVkxMZAUMyM29oaTlCamFyRkJHSm5BRWQ4cl9RQ1dsNDZAhUzAwa3NoNWNnNDV0VmhrMjBMZAFdhME90WHNCMmlkYUMyX2QyOXFBejhpMURvV1VMa3VWZAlVQeFpKWm8wb0tPOWd1MThON25RNFRydzUzeDVDcldsTlhVSUlESmstaU5uWGFRZA2RNQU9ZASXFCVXFJR3pQd21OLTNVRU5lRWFpT2FXelgxWDBBMU13Sk16TVNPMVhIWlN0ZAFJEM045VWdLWXRZAUzlnbnBFYWp0UWNBdmlkcWJGaEdyOGlndHVFOTFiVHViMTU0NzJMMXdGeEN4a1JLbUVia1FvbXl1VzNzWFJGS3A3RmpoMzZALQ05qc09lTkRXSUYxdHVaYjZAncTA1djRYUXIwOU5qNVJKRjRKNll4NDV6Qm9MbGtyREowY2Q0RVk1X1V6LXFUU0gwYWZAzd2hsOEhfSnZAqRW5kM0ZAXZAldycXVuaXNGRGFRaHpBX1ptc3dRUWVBM3pWV19hd1V1bGJ4NXU2THdXQmlndVRhOWItbkUZD"
         }
       }
     }
   },
   "page_feed_list": {
     "ok": false,
-    "error": "1224808644049541/feed -> HTTP 400: {\"error\":{\"message\":\"(#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/login-permissions#manage-pages and https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/feature#reference-PAGES_ACCESS for details.\",\"type\":\"OAuthException\",\"code\":10,\"fbtrace_id\":\"AtYOLU7ntJFtvT3H16sQbCi\"}}"
+    "error": "1224808644049541/feed -> HTTP 400: {\"error\":{\"message\":\"(#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/login-permissions#manage-pages and https:\\/\\/developers.facebook.com\\/docs\\/apps\\/review\\/feature#reference-PAGES_ACCESS for details.\",\"type\":\"OAuthException\",\"code\":10,\"fbtrace_id\":\"A5zmnc2GqiaOLWCTJvUNrdm\"}}"
   }
 }
