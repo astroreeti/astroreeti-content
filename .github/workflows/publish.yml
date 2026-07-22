@@ -36,7 +36,12 @@ jobs:
         if: steps.find.outputs.dir != ''
         run: |
           DATE=$(basename "${{ steps.find.outputs.dir }}")
-          if [ -f "results/$DATE.json" ] && grep -q '"published"' "results/$DATE.json"; then
+          # Check the TOP-LEVEL status specifically -- a naive grep for the
+          # substring "published" anywhere in the file would false-positive
+          # on a nested "facebook":{"status":"published"} even when the
+          # top-level (Instagram) status is "failed", wrongly skipping a
+          # legitimate retry.
+          if [ -f "results/$DATE.json" ] && python3 -c "import json,sys; sys.exit(0 if json.load(open('results/$DATE.json')).get('status')=='published' else 1)"; then
             echo "Already published $DATE; skipping."
             echo "go=no" >> "$GITHUB_OUTPUT"
           else

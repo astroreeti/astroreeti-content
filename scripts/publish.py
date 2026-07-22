@@ -269,20 +269,41 @@ def main(post_dir):
         fmt = json.loads(pj.read_text()).get("format", "carousel")
 
     if fmt == "reel":
-        media_id = publish_reel(post_dir, date, repo, branch, ig_user, caption)
-        perma = {}
+        # Instagram is the primary/required channel, but Facebook and YouTube
+        # are entirely independent platforms/credentials -- an Instagram-side
+        # failure (token issue, Meta app restriction, etc.) should never
+        # silently skip attempting the other two. Try IG first, capture its
+        # outcome without raising, then always attempt Facebook + YouTube.
+        media_id, permalink, ig_error = None, "", None
         try:
-            perma = api(media_id, {"fields": "permalink"})
+            media_id = publish_reel(post_dir, date, repo, branch, ig_user, caption)
+            try:
+                perma = api(media_id, {"fields": "permalink"})
+                permalink = perma.get("permalink", "")
+            except Exception as e:
+                print("permalink lookup failed:", e)
         except Exception as e:
-            print("permalink lookup failed:", e)
-        out = {"date": date, "status": "published", "format": "reel",
-               "media_id": media_id, "permalink": perma.get("permalink", "")}
+            ig_error = str(e)
+            print("Instagram publish failed (still attempting Facebook/YouTube):", e)
+
+        out = {"date": date, "format": "reel"}
+        if ig_error:
+            out["status"] = "failed"
+            out["error"] = ig_error
+        else:
+            out["status"] = "published"
+            out["media_id"] = media_id
+            out["permalink"] = permalink
         out["facebook"] = publish_to_facebook(post, date, repo, branch, fmt, caption)
         out["youtube"] = publish_to_youtube(post, date, fmt, caption)
         rj = pathlib.Path("results") / f"{date}.json"
         rj.parent.mkdir(exist_ok=True)
         rj.write_text(json.dumps(out, indent=2))
-        print("SUCCESS:", json.dumps(out))
+        print("RESULT:", json.dumps(out))
+        # Don't raise on an IG-only failure -- results already captured the
+        # full picture (including any Facebook/YouTube success) and __main__'s
+        # exception handler would otherwise clobber that richer result with a
+        # bare {"status":"failed"} dict.
         return
 
     slides = sorted(post.glob("slide*.jpg"))
