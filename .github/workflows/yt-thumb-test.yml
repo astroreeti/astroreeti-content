@@ -31,7 +31,8 @@ jobs:
             echo "video_id=${{ github.event.inputs.video_id }}" >> "$GITHUB_OUTPUT"
             echo "post_dir=${{ github.event.inputs.post_dir }}" >> "$GITHUB_OUTPUT"
           else
-            read -r VID PDIR < .github/yt-thumb-trigger
+            VID=$(awk '{print $1}' .github/yt-thumb-trigger)
+            PDIR=$(awk '{print $2}' .github/yt-thumb-trigger)
             echo "video_id=$VID" >> "$GITHUB_OUTPUT"
             echo "post_dir=$PDIR" >> "$GITHUB_OUTPUT"
           fi
