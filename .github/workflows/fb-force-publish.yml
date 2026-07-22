@@ -47,7 +47,7 @@ jobs:
         run: |
           git config user.name "astroreeti-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add results/fb-force-publish.json
+          git add results/fb-force-publish.json || echo "no results file to add"
           git commit -m "fb-force-publish result" || echo "nothing to commit"
           git pull --rebase origin main || true
           git push
