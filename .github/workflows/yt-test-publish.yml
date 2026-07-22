@@ -1,5 +1,10 @@
 name: YouTube-only test publish
 
+# workflow_dispatch is here for manual runs from the GitHub UI (Actions tab
+# -> this workflow -> "Run workflow"). It's also triggered by a push that
+# touches .github/yt-test-trigger, whose contents are the post_dir to
+# re-test — this lets a session without GitHub API access (only git
+# push/pull) still kick this off.
 on:
   workflow_dispatch:
     inputs:
@@ -7,6 +12,9 @@ on:
         description: "Existing post folder with a rendered reel.mp4 + caption.txt (e.g. posts/2026-07-22-am)"
         required: true
         default: "posts/2026-07-22-am"
+  push:
+    paths:
+      - ".github/yt-test-trigger"
 
 permissions:
   contents: read
@@ -17,9 +25,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Resolve post_dir
+        id: resolve
+        run: |
+          if [ -n "${{ github.event.inputs.post_dir }}" ]; then
+            echo "post_dir=${{ github.event.inputs.post_dir }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "post_dir=$(cat .github/yt-test-trigger)" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Upload to YouTube Shorts (diagnostic only, no IG/FB)
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        run: python3 scripts/yt_test_publish.py "${{ github.event.inputs.post_dir }}"
+        run: python3 scripts/yt_test_publish.py "${{ steps.resolve.outputs.post_dir }}"
