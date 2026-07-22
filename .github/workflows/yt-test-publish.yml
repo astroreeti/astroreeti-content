@@ -1,0 +1,25 @@
+name: YouTube-only test publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_dir:
+        description: "Existing post folder with a rendered reel.mp4 + caption.txt (e.g. posts/2026-07-22-am)"
+        required: true
+        default: "posts/2026-07-22-am"
+
+permissions:
+  contents: read
+
+jobs:
+  yt-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload to YouTube Shorts (diagnostic only, no IG/FB)
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python3 scripts/yt_test_publish.py "${{ github.event.inputs.post_dir }}"

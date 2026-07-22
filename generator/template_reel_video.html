@@ -110,11 +110,20 @@
   // it screenshots the transparent-background result. This makes the
   // capture frame-accurate (no wall-clock/vsync drift) and gives a true
   // alpha channel (no green-screen spill on thin text).
+  // Each slide now carries its OWN duration (durMs), sized to its actual text
+  // length by the Python driver — a one-liner and an 8-point deep-dive no
+  // longer get the same fixed beat. Entrance/exit timings are also slower and
+  // more deliberate than the original fast-cut feel.
   var SLIDES = __SLIDES__;
-  var PER_MS = __PER_SLIDE_MS__;
-  var ENTRANCE_DUR = 650;
-  var STAGGER = 130;
-  var GAP_FADE = 300; // ms faded at the very start/end of each slide's dwell
+  var ENTRANCE_DUR = 900;
+  var STAGGER = 200;
+  var GAP_FADE = 450; // ms faded at the very start/end of each slide's dwell
+
+  var STARTS = (function () {
+    var acc = 0, out = [];
+    for (var i = 0; i < SLIDES.length; i++) { out.push(acc); acc += SLIDES[i].durMs; }
+    return out;
+  })();
 
   var contentEl = document.getElementById('content');
   var pageEl = document.getElementById('page');
@@ -123,10 +132,17 @@
   function easeOutCubic(p) { return 1 - Math.pow(1 - p, 3); }
   function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
 
+  function slideIndexAt(tMs) {
+    var n = SLIDES.length;
+    for (var i = n - 1; i >= 0; i--) { if (tMs >= STARTS[i]) return i; }
+    return 0;
+  }
+
   window.renderAtTime = function (tMs) {
     var n = SLIDES.length;
-    var idx = Math.min(n - 1, Math.floor(tMs / PER_MS));
-    var slideStart = idx * PER_MS;
+    var idx = Math.min(n - 1, slideIndexAt(tMs));
+    var slideStart = STARTS[idx];
+    var durMs = SLIDES[idx].durMs;
     var localT = tMs - slideStart;
 
     if (idx !== renderedIdx) {
@@ -147,7 +163,7 @@
     // whole-block fade at the seam between slides (skipped on the very
     // first slide's entrance and the very last slide's hold)
     var fadeIn = idx === 0 ? 1 : clamp01(localT / GAP_FADE);
-    var fadeOut = idx === n - 1 ? 1 : clamp01((PER_MS - localT) / GAP_FADE);
+    var fadeOut = idx === n - 1 ? 1 : clamp01((durMs - localT) / GAP_FADE);
     contentEl.style.opacity = String(Math.min(fadeIn, fadeOut));
   };
 

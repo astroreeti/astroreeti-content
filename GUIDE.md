@@ -59,12 +59,15 @@ exact topics (machine-readable).
   ~60s, has its own baked-in music — do NOT add a separate audio track).
   Render with the video-overlay generator:
   `python3 generator/generate_reel_video.py posts/<date>/spec.json posts/<date> generator/video/morning_bg.mp4 4`
-  (last arg = seconds per slide; must stay **≥ 4** so text stays readable — the
-  script hard-fails below that). This composites light-colored text (white/gold,
+  (last arg = a *minimum* seconds-per-slide floor; must stay **≥ 4**, the
+  script hard-fails below that). Each slide's actual on-screen time is now
+  computed from how much text it holds (a one-liner and an 8-point deep-dive
+  do not get the same beat), then the whole reel is scaled to land between 30s
+  and 58s total — long enough to feel substantial, short enough to stay under
+  Facebook's 60s Reels limit. This composites light-colored text (white/gold,
   no card/frame — the video itself carries the visual richness) on top of the
-  video via true-alpha frame capture, keeps the video's own audio untouched, and
-  trims to the content's length (or loops the video if slides × seconds ever
-  runs longer than it).
+  video via true-alpha frame capture, keeps the video's own audio untouched,
+  and loops the background video if the content ever runs longer than it.
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
 
@@ -76,11 +79,13 @@ exact topics (machine-readable).
   ~60s, has its own baked-in music — do NOT add a separate audio track). Render
   with the video-overlay generator:
   `python3 generator/generate_reel_video.py posts/<date>/spec.json posts/<date> generator/video/evening_bg.mp4 4`
-  This composites light-colored text (white/gold, no card/frame — the video
-  itself carries the visual richness) on top of the video via true-alpha frame
-  capture, and keeps the video's own audio untouched. If `slides × seconds`
-  runs longer than the background video, it automatically loops the video
-  (audio included) to cover the full length rather than cutting slides short.
+  As with morning, each slide's on-screen time is computed from its own text
+  length and the whole reel is scaled to 30–58s total (see morning section
+  above for why). This composites light-colored text (white/gold, no
+  card/frame — the video itself carries the visual richness) on top of the
+  video via true-alpha frame capture, and keeps the video's own audio
+  untouched. If the content ever runs longer than the background video, it
+  automatically loops the video (audio included) to cover the full length.
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
   *(evening posts go in the same dated folder but use a distinct filename prefix
