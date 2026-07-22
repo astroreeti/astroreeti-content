@@ -111,6 +111,18 @@ def main(spec_path, outdir, bg_video, per_slide=4.0):
     print(f"reel.mp4 written: {total_s:.1f}s, {w}x{h}, {total_frames} frames, "
           f"{size / 1e6:.1f} MB (background audio kept)")
 
+    # A static cover.jpg so IG/inbox previews don't default to frame 0 (which
+    # is blank pre-entrance-animation) — grabbed once slide 1's text has
+    # fully risen in.
+    cover_t = min(1.6, max(total_s - 0.1, 0.1))
+    cover = outdir / "cover.jpg"
+    subprocess.run(
+        ["ffmpeg", "-y", "-ss", f"{cover_t:.2f}", "-i", str(out), "-frames:v", "1",
+         "-q:v", "2", str(cover)],
+        check=True, capture_output=True,
+    )
+    print(f"cover.jpg written (frame @ {cover_t:.2f}s)")
+
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2], sys.argv[3], *(sys.argv[4:5] or []))

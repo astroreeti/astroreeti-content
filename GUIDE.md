@@ -99,7 +99,11 @@ accordingly. The publish workflow keys results by folder name.
 ## 4. Visual QA (both)
 
 There are no separate static slide JPGs anymore — everything is baked directly
-into `reel.mp4`. Extract a few still frames with ffmpeg and read them (at least
+into `reel.mp4`. Both renderers also write a `posts/<date>/cover.jpg` (a still
+grabbed once slide 1's text has fully risen in, ~1.6s) — this is uploaded as
+the IG Reel's `cover_url` so the inbox/profile preview doesn't show a blank
+pre-animation frame. It's produced automatically; no extra step needed.
+Extract a few still frames with ffmpeg and read them (at least
 one early slide, the longest-text slide, and the last/CTA slide), e.g.:
 `ffmpeg -ss 2 -i posts/<date>/reel.mp4 -frames:v 1 /tmp/check.jpg`
 Morning: text must stay inside the border frame; shorten copy and re-render if

@@ -43,10 +43,15 @@ def publish_reel(post, date, repo, branch, ig_user, caption):
     base = f"https://raw.githubusercontent.com/{repo}/{branch}/{post}"
     url = f"{base}/reel.mp4"
     print("reel container for", url)
-    res = api(f"{ig_user}/media", {
+    params = {
         "media_type": "REELS", "video_url": url,
         "caption": caption, "share_to_feed": "true",
-    }, "POST")
+    }
+    # A public JPEG cover so the IG inbox/preview doesn't default to frame 0
+    # (which is blank pre-entrance-animation) via thumb_offset=0.
+    if (pathlib.Path(post) / "cover.jpg").exists():
+        params["cover_url"] = f"{base}/cover.jpg"
+    res = api(f"{ig_user}/media", params, "POST")
     wait_finished(res["id"], "reel", tries=60, delay=10)
     pub = api(f"{ig_user}/media_publish", {"creation_id": res["id"]}, "POST")
     return pub["id"]
@@ -77,7 +82,12 @@ def fb_publish_reel(post, page_id, caption):
     video_path = post / "reel.mp4"
     size = video_path.stat().st_size
 
-    start = fb_api(f"{page_id}/video_reels", {"upload_phase": "start"}, "POST")
+    # Meta's docs document description/title as START-phase params (not FINISH,
+    # where we were previously sending description only) — send it here too so
+    # the caption is actually attached to the reel.
+    start = fb_api(f"{page_id}/video_reels", {
+        "upload_phase": "start", "description": caption,
+    }, "POST")
     video_id = start["video_id"]
     upload_url = start["upload_url"]
 
@@ -181,8 +191,12 @@ def yt_upload_short(post, access_token, title, description):
             "X-Upload-Content-Length": str(size),
         },
     )
-    with urllib.request.urlopen(init_req, timeout=60) as r:
-        upload_url = r.headers.get("Location")
+    try:
+        with urllib.request.urlopen(init_req, timeout=60) as r:
+            upload_url = r.headers.get("Location")
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        raise RuntimeError(f"YouTube upload init -> HTTP {e.code}: {body}")
     if not upload_url:
         raise RuntimeError("YouTube resumable upload init did not return a Location header")
 
@@ -192,9 +206,34 @@ def yt_upload_short(post, access_token, title, description):
         upload_url, data=video_bytes, method="PUT",
         headers={"Content-Type": "video/mp4", "Content-Length": str(size)},
     )
-    with urllib.request.urlopen(up_req, timeout=300) as r:
-        res = json.load(r)
+    try:
+        with urllib.request.urlopen(up_req, timeout=300) as r:
+            res = json.load(r)
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        raise RuntimeError(f"YouTube upload -> HTTP {e.code}: {body}")
     return res.get("id")
+
+
+def yt_set_thumbnail(video_id, access_token, post):
+    """Best-effort: set the reel's cover.jpg as the YouTube Short's thumbnail."""
+    thumb = pathlib.Path(post) / "cover.jpg"
+    if not thumb.exists():
+        return
+    data = thumb.read_bytes()
+    req = urllib.request.Request(
+        f"https://www.googleapis.com/upload/youtube/v3/thumbnails/set"
+        f"?uploadType=media&videoId={video_id}",
+        data=data, method="POST",
+        headers={"Authorization": f"Bearer {access_token}", "Content-Type": "image/jpeg"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            json.load(r)
+    except urllib.error.HTTPError as e:
+        print(f"YouTube thumbnail set failed (non-fatal): HTTP {e.code}: {e.read().decode()}")
+    except Exception as e:
+        print("YouTube thumbnail set failed (non-fatal):", e)
 
 def publish_to_youtube(post, date, fmt, caption):
     """Best-effort YouTube Shorts cross-post. Only applies to reels. Never raises."""
@@ -208,6 +247,8 @@ def publish_to_youtube(post, date, fmt, caption):
         title = caption.split("\n", 1)[0][:95] + " #Shorts"
         description = caption + "\n\n#Shorts"
         video_id = yt_upload_short(post, access_token, title, description)
+        if video_id:
+            yt_set_thumbnail(video_id, access_token, post)
         return {"status": "published", "video_id": video_id,
                 "permalink": f"https://youtube.com/shorts/{video_id}" if video_id else ""}
     except Exception as e:
