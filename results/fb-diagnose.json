@@ -1,0 +1,79 @@
+{
+  "token_debug": {
+    "ok": true,
+    "data": {
+      "data": {
+        "app_id": "2735860743452735",
+        "type": "PAGE",
+        "application": "AstroReeti",
+        "data_access_expires_at": 1792392826,
+        "expires_at": 1789800826,
+        "is_valid": true,
+        "issued_at": 1784617503,
+        "profile_id": "1224808644049541",
+        "scopes": [
+          "threads_business_basic",
+          "pages_show_list",
+          "ads_management",
+          "ads_read",
+          "business_management",
+          "pages_read_engagement",
+          "pages_manage_ads",
+          "pages_manage_posts",
+          "public_profile"
+        ],
+        "granular_scopes": [
+          {
+            "scope": "pages_show_list"
+          },
+          {
+            "scope": "ads_management"
+          },
+          {
+            "scope": "ads_read"
+          },
+          {
+            "scope": "business_management",
+            "target_ids": [
+              "4576630125952796"
+            ]
+          },
+          {
+            "scope": "pages_read_engagement"
+          },
+          {
+            "scope": "pages_manage_ads"
+          },
+          {
+            "scope": "pages_manage_posts"
+          }
+        ],
+        "user_id": "122106668421393599"
+      }
+    }
+  },
+  "page_info": {
+    "ok": true,
+    "data": {
+      "name": "AstroReeti",
+      "verification_status": "not_verified",
+      "fan_count": 2,
+      "is_published": true,
+      "link": "https://www.facebook.com/1224808644049541",
+      "category": "Astrologist",
+      "id": "1224808644049541"
+    }
+  },
+  "page_permissions": {
+    "ok": false,
+    "error": "1224808644049541/permissions -> HTTP 400: {\"error\":{\"message\":\"(#100) Tried accessing nonexisting field (permissions)\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"A6uOFI1xoxaPjzCfEd5QSZQ\"}}"
+  },
+  "video_info": {
+    "ok": false,
+    "error": "1334616465489221 -> HTTP 400: {\"error\":{\"message\":\"Unsupported get request. Object with ID '1334616465489221' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https:\\/\\/developers.facebook.com\\/docs\\/graph-api\",\"type\":\"GraphMethodException\",\"code\":100,\"error_subcode\":33,\"fbtrace_id\":\"ANoSRrG4NqDWbMCwtmMZmLm\"}}"
+  },
+  "video_insights": {
+    "ok": false,
+    "error": "1334616465489221/video_insights -> HTTP 400: {\"error\":{\"message\":\"Unsupported get request. Object with ID '1334616465489221' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https:\\/\\/developers.facebook.com\\/docs\\/graph-api\",\"type\":\"GraphMethodException\",\"code\":100,\"error_subcode\":33,\"fbtrace_id\":\"AoeoAsknqjprUK5sXrjWFIP\"}}"
+  }
+}
