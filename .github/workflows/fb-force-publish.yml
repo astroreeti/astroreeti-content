@@ -1,0 +1,53 @@
+name: Facebook Reel force-publish fix
+
+# Re-issues the FINISH call on a Reel stuck in publish_status=="draft" and
+# verifies it actually transitions to "published". Triggered by a push
+# touching .github/fb-force-publish-trigger, whose contents are
+# "<page_id> <video_id>".
+on:
+  workflow_dispatch:
+    inputs:
+      page_id:
+        required: true
+      video_id:
+        required: true
+  push:
+    paths:
+      - ".github/fb-force-publish-trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  force-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve args
+        id: resolve
+        run: |
+          if [ -n "${{ github.event.inputs.page_id }}" ]; then
+            echo "page_id=${{ github.event.inputs.page_id }}" >> "$GITHUB_OUTPUT"
+            echo "video_id=${{ github.event.inputs.video_id }}" >> "$GITHUB_OUTPUT"
+          else
+            PID=$(awk '{print $1}' .github/fb-force-publish-trigger)
+            VID=$(awk '{print $2}' .github/fb-force-publish-trigger)
+            echo "page_id=$PID" >> "$GITHUB_OUTPUT"
+            echo "video_id=$VID" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Force-publish stuck reel
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: python3 scripts/fb_force_publish.py "${{ steps.resolve.outputs.page_id }}" "${{ steps.resolve.outputs.video_id }}"
+
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "astroreeti-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/fb-force-publish.json
+          git commit -m "fb-force-publish result" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push
