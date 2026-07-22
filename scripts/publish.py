@@ -274,17 +274,37 @@ def main(post_dir):
         # failure (token issue, Meta app restriction, etc.) should never
         # silently skip attempting the other two. Try IG first, capture its
         # outcome without raising, then always attempt Facebook + YouTube.
-        media_id, permalink, ig_error = None, "", None
-        try:
-            media_id = publish_reel(post_dir, date, repo, branch, ig_user, caption)
+        #
+        # IMPORTANT: a retry (re-pushing publish.json after a partial
+        # failure) must be idempotent PER PLATFORM. Once a platform reports
+        # "published" in a previous results file, a later retry (e.g. to get
+        # a still-failing Instagram working) must NOT re-publish to that
+        # platform again -- otherwise every retry duplicates the post on
+        # whichever platforms already succeeded.
+        rj = pathlib.Path("results") / f"{date}.json"
+        existing = {}
+        if rj.exists():
             try:
-                perma = api(media_id, {"fields": "permalink"})
-                permalink = perma.get("permalink", "")
+                existing = json.loads(rj.read_text())
+            except Exception:
+                existing = {}
+
+        media_id, permalink, ig_error = None, "", None
+        if existing.get("status") == "published":
+            print("Instagram already published on a previous attempt; not re-publishing.")
+            media_id = existing.get("media_id")
+            permalink = existing.get("permalink", "")
+        else:
+            try:
+                media_id = publish_reel(post_dir, date, repo, branch, ig_user, caption)
+                try:
+                    perma = api(media_id, {"fields": "permalink"})
+                    permalink = perma.get("permalink", "")
+                except Exception as e:
+                    print("permalink lookup failed:", e)
             except Exception as e:
-                print("permalink lookup failed:", e)
-        except Exception as e:
-            ig_error = str(e)
-            print("Instagram publish failed (still attempting Facebook/YouTube):", e)
+                ig_error = str(e)
+                print("Instagram publish failed (still attempting Facebook/YouTube):", e)
 
         out = {"date": date, "format": "reel"}
         if ig_error:
@@ -294,9 +314,18 @@ def main(post_dir):
             out["status"] = "published"
             out["media_id"] = media_id
             out["permalink"] = permalink
-        out["facebook"] = publish_to_facebook(post, date, repo, branch, fmt, caption)
-        out["youtube"] = publish_to_youtube(post, date, fmt, caption)
-        rj = pathlib.Path("results") / f"{date}.json"
+
+        if existing.get("facebook", {}).get("status") == "published":
+            print("Facebook already published on a previous attempt; not re-publishing.")
+            out["facebook"] = existing["facebook"]
+        else:
+            out["facebook"] = publish_to_facebook(post, date, repo, branch, fmt, caption)
+
+        if existing.get("youtube", {}).get("status") == "published":
+            print("YouTube already published on a previous attempt; not re-publishing.")
+            out["youtube"] = existing["youtube"]
+        else:
+            out["youtube"] = publish_to_youtube(post, date, fmt, caption)
         rj.parent.mkdir(exist_ok=True)
         rj.write_text(json.dumps(out, indent=2))
         print("RESULT:", json.dumps(out))
