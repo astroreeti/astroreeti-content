@@ -29,8 +29,7 @@ def main(page_id, video_id):
         lambda: fb_api("debug_token", {"input_token": token}), "token_debug")
 
     out["page_info"] = safe(
-        lambda: fb_api(page_id, {"fields": "name,verification_status,fan_count,is_published,link,category,"
-                                            "restriction_info,is_permanently_closed,is_unclaimed"}),
+        lambda: fb_api(page_id, {"fields": "name,verification_status,fan_count,is_published,link,category"}),
         "page_info")
 
     out["page_permissions"] = safe(
@@ -38,8 +37,8 @@ def main(page_id, video_id):
 
     out["video_info"] = safe(
         lambda: fb_api(video_id, {"fields": "permalink_url,description,length,status,created_time,"
-                                             "privacy,unpublished_content_type,is_crosspost_video,"
-                                             "content_category,backdated_time,updated_time"}),
+                                             "privacy,is_crosspost_video,content_category,"
+                                             "backdated_time,updated_time"}),
         "video_info")
 
     out["video_insights"] = safe(
