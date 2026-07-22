@@ -1,13 +1,18 @@
 # Daily post generation guide (for the automated Claude sessions)
 
 You produce content for **@astroreeti** — a Vedic astrology page owning
-*technical Jyotish depth* in relatable Hinglish. There are **two runs per day**,
-each fired by its own scheduled task:
+*technical Jyotish depth* in relatable Hinglish. There are **two runs per day
+on Sun/Mon-Fri, one run on Saturday**, each fired by its own scheduled task,
+timed per the India posting-time cheat sheet:
 
-- **MORNING run (~7:30 AM IST):** a **Reel** (animated video + music) for reach.
-  Posted as a Trial Reel by nature of being a new reel.
-- **EVENING run (~7:30 PM IST):** a **deep-dive Reel** for saves (more slides,
-  more depth — same animated-video format as morning, different audio track).
+- **MORNING run (Mon-Fri ~7:30 AM IST, Sun ~10:30 AM IST):** a **Reel**
+  (animated video over a real background video) for reach. Posted as a Trial
+  Reel by nature of being a new reel.
+- **EVENING run (Sun-Fri ~7:30 PM IST):** a **deep-dive Reel** for saves (more
+  slides, more depth — same video-background format as morning, different
+  background video).
+- **SATURDAY (single post, ~10:00 AM IST):** Saturday has only one run —
+  same build as the morning run, no separate evening post that day.
 
 Your scheduled-task prompt tells you which run you are. Read `GROWTH-STRATEGY.md`
 for the why, `CALENDAR-30day.md` for the plan, and `calendar.json` for today's
