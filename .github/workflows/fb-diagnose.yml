@@ -1,0 +1,52 @@
+name: Facebook Reels distribution diagnostic
+
+# Read-only diagnostic (no posting) to find out why FB Reels aren't reaching
+# followers. Triggered by a push touching .github/fb-diagnose-trigger, whose
+# contents are "<page_id> <video_id>".
+on:
+  workflow_dispatch:
+    inputs:
+      page_id:
+        required: true
+      video_id:
+        required: true
+  push:
+    paths:
+      - ".github/fb-diagnose-trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve args
+        id: resolve
+        run: |
+          if [ -n "${{ github.event.inputs.page_id }}" ]; then
+            echo "page_id=${{ github.event.inputs.page_id }}" >> "$GITHUB_OUTPUT"
+            echo "video_id=${{ github.event.inputs.video_id }}" >> "$GITHUB_OUTPUT"
+          else
+            PID=$(awk '{print $1}' .github/fb-diagnose-trigger)
+            VID=$(awk '{print $2}' .github/fb-diagnose-trigger)
+            echo "page_id=$PID" >> "$GITHUB_OUTPUT"
+            echo "video_id=$VID" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Diagnose Facebook Reels distribution
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: python3 scripts/fb_diagnose.py "${{ steps.resolve.outputs.page_id }}" "${{ steps.resolve.outputs.video_id }}"
+
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "astroreeti-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/fb-diagnose.json
+          git commit -m "fb-diagnose result" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push
