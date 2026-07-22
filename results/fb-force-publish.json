@@ -1,0 +1,32 @@
+{
+  "video_id": "1693231971719643",
+  "status_before": {
+    "video_status": "ready",
+    "uploading_phase": {
+      "status": "complete"
+    },
+    "processing_phase": {
+      "status": "complete"
+    },
+    "publishing_phase": {
+      "status": "complete",
+      "publish_status": "draft"
+    }
+  },
+  "finish_error": "1224808644049541/video_reels -> HTTP 400: {\"error\":{\"message\":\"There was a problem uploading your video file. Please try again with another file.\",\"type\":\"OAuthException\",\"code\":6000,\"error_subcode\":1363130,\"is_transient\":false,\"error_user_title\":\"Video Upload Is Missing\",\"error_user_msg\":\"The video was not uploaded.\",\"fbtrace_id\":\"AQYea4_lPJoNIN3parb1JDq\"}}",
+  "status_after": {
+    "video_status": "ready",
+    "uploading_phase": {
+      "status": "complete"
+    },
+    "processing_phase": {
+      "status": "complete"
+    },
+    "publishing_phase": {
+      "status": "complete",
+      "publish_status": "draft"
+    }
+  },
+  "permalink_after": "/reel/1693231971719643/",
+  "fixed": false
+}
