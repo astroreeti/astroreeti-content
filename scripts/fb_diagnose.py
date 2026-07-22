@@ -46,6 +46,26 @@ def main(page_id, video_id):
                       "total_video_impressions_fan_unique"
         }), "video_insights")
 
+    # List what the Page's own video/reel/post libraries actually contain,
+    # via our own token -- if our uploads don't show up here either, that's
+    # independent confirmation they never truly registered as public content,
+    # regardless of what an outside viewer sees.
+    out["page_videos_list"] = safe(
+        lambda: fb_api(f"{page_id}/videos", {"fields": "id,description,permalink_url,created_time,status"}),
+        "page_videos_list")
+
+    out["page_video_reels_list"] = safe(
+        lambda: fb_api(f"{page_id}/video_reels", {"fields": "id,description,permalink_url,created_time,status"}),
+        "page_video_reels_list")
+
+    out["page_posts_list"] = safe(
+        lambda: fb_api(f"{page_id}/posts", {"fields": "id,message,permalink_url,created_time,status_type"}),
+        "page_posts_list")
+
+    out["page_feed_list"] = safe(
+        lambda: fb_api(f"{page_id}/feed", {"fields": "id,message,permalink_url,created_time,status_type"}),
+        "page_feed_list")
+
     out_path = pathlib.Path("results") / "fb-diagnose.json"
     out_path.parent.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(out, indent=2))
