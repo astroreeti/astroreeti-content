@@ -1,5 +1,4 @@
 {
-  "video_id": "t0VjAGJNTgw",
-  "status": "failed",
-  "error": "HTTP 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"The authenticated user doesn't have permissions to upload and set custom video thumbnails.\",\n    \"errors\": [\n      {\n        \"message\": \"The authenticated user doesn't have permissions to upload and set custom video thumbnails.\",\n        \"domain\": \"youtube.thumbnail\",\n        \"reason\": \"forbidden\",\n        \"location\": \"Authorization\",\n        \"locationType\": \"header\"\n      }\n    ]\n  }\n}\n"
+  "video_id": "7XJVnbqTtoc",
+  "status": "success"
 }
