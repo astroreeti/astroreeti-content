@@ -1,0 +1,54 @@
+name: Facebook full re-publish (verified)
+
+# Fully re-publishes a post to Facebook from scratch using the hardened
+# fb_publish_reel() (which now verifies the reel actually left draft status
+# before reporting success), and corrects results/<date>.json accordingly.
+# Triggered by a push touching .github/fb-republish-trigger, whose contents
+# are "<post_dir> <page_id>".
+on:
+  workflow_dispatch:
+    inputs:
+      post_dir:
+        required: true
+      page_id:
+        required: true
+  push:
+    paths:
+      - ".github/fb-republish-trigger"
+
+permissions:
+  contents: write
+
+jobs:
+  republish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve args
+        id: resolve
+        run: |
+          if [ -n "${{ github.event.inputs.post_dir }}" ]; then
+            echo "post_dir=${{ github.event.inputs.post_dir }}" >> "$GITHUB_OUTPUT"
+            echo "page_id=${{ github.event.inputs.page_id }}" >> "$GITHUB_OUTPUT"
+          else
+            PDIR=$(awk '{print $1}' .github/fb-republish-trigger)
+            PID=$(awk '{print $2}' .github/fb-republish-trigger)
+            echo "post_dir=$PDIR" >> "$GITHUB_OUTPUT"
+            echo "page_id=$PID" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Re-publish to Facebook (verified)
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: python3 scripts/fb_republish.py "${{ steps.resolve.outputs.post_dir }}" "${{ steps.resolve.outputs.page_id }}"
+
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "astroreeti-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/
+          git commit -m "fb-republish result" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push

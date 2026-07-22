@@ -100,13 +100,36 @@ def fb_publish_reel(post, page_id, caption):
         "Content-Type": "application/octet-stream",
     })
     with urllib.request.urlopen(req, timeout=180) as r:
-        json.load(r)
+        upload_res = json.load(r)
+    if not upload_res.get("success"):
+        raise RuntimeError(f"Facebook video byte upload did not report success: {upload_res}")
 
     finish = fb_api(f"{page_id}/video_reels", {
         "upload_phase": "finish", "video_id": video_id,
         "video_state": "PUBLISHED", "description": caption,
     }, "POST")
-    return video_id if finish.get("success", True) else None
+    if not finish.get("success", True):
+        raise RuntimeError(f"Facebook video_reels finish call did not report success: {finish}")
+
+    # Meta's FINISH response returning {"success": true} does NOT guarantee
+    # the reel actually left draft state -- seen in practice: a video whose
+    # byte upload silently failed still got a success response here, and the
+    # reel sat in publish_status="draft" forever (invisible to everyone but
+    # the Page admin) while our code happily reported it as published. Poll
+    # the video's own status until it actually reports "published" before
+    # trusting this.
+    for _ in range(6):
+        time.sleep(5)
+        status = fb_api(video_id, {"fields": "status"}).get("status", {})
+        publish_status = status.get("publishing_phase", {}).get("publish_status")
+        if publish_status == "published":
+            return video_id
+        if publish_status not in (None, "draft", "scheduled"):
+            raise RuntimeError(f"Facebook reel {video_id} in unexpected state: {status}")
+    raise RuntimeError(
+        f"Facebook reel {video_id} never left draft status after FINISH reported success "
+        f"(last status: {status}) -- the underlying video upload likely failed silently."
+    )
 
 def fb_publish_photos(post, repo, branch, page_id, caption):
     """Post carousel slides to the Facebook Page as a multi-photo feed post."""
