@@ -1,11 +1,12 @@
 {
   "date": "2026-07-22-pm",
   "format": "reel",
-  "status": "failed",
-  "error": "17841442486927671/media -> HTTP 400: {\"error\":{\"message\":\"API access blocked.\",\"type\":\"OAuthException\",\"code\":200,\"fbtrace_id\":\"ABlb_-mWY_ubBnQSZ2F6Ym4\"}}",
+  "status": "published",
+  "media_id": "18258619696307249",
+  "permalink": "https://www.instagram.com/reel/DbGVpj1kpBA/",
   "facebook": {
-    "status": "failed",
-    "error": "1224808644049541/video_reels -> HTTP 400: {\"error\":{\"message\":\"Any of the pages_read_engagement, pages_manage_metadata,\\n        pages_read_user_content, pages_manage_ads, pages_show_list or\\n        pages_messaging permission(s) must be granted before impersonating a\\n        user's page.\",\"type\":\"OAuthException\",\"code\":190,\"fbtrace_id\":\"AG1vmQDk_JFlAurkq9tOldo\"}}"
+    "status": "published",
+    "post_id": "1334616465489221"
   },
   "youtube": {
     "status": "published",
