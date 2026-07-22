@@ -42,7 +42,12 @@ def main(spec_path, outdir, audio, per_slide=4.0):
     hf.write_text(html)
 
     hold_tail_ms = 900  # let the last (usually CTA) slide sit before we cut
-    total_ms = int(per_slide * 1000 * n) + hold_tail_ms
+    # Each slide-change adds a 360ms out-transition before the timer restarts,
+    # and the recording itself drifts a little slower than wall clock under
+    # animation load — pad generously so the last (CTA) slide is never cut off.
+    transition_ms = 360 * (n - 1)
+    drift_pad_ms = 2500
+    total_ms = int(per_slide * 1000 * n) + transition_ms + hold_tail_ms + drift_pad_ms
 
     with sync_playwright() as p:
         browser = p.chromium.launch()

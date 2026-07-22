@@ -8,4 +8,6 @@
 | 2026-07-21 | morning | RL | शादी कब होगी? — सप्तम भाव, शुक्र-गुरु का बल, दशा-गोचर (reel) |
 | 2026-07-21 | evening | NK | अश्विनी नक्षत्र — अश्विनी कुमार कथा, केतु, तेज़ चाल का रहस्य (reel) |
 
+| 2026-07-22 | morning | RL | करियर vs नौकरी — दशम भाव बनाम षष्ठ भाव, सूर्य-शनि (reel) |
+
 Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
