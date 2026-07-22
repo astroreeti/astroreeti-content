@@ -55,31 +55,26 @@ exact topics (machine-readable).
   Slide 1 = a scroll-stopping hook. Last slide = follow/comment CTA.
 - Caption: hook + 3-4 value lines + comment prompt (e.g. "comment your Moon sign")
   + follow CTA + ~20 hashtags incl. #astroreeti. Write to `caption.txt`.
-- Music track: use the fixed brand track `generator/audio/astroreeti_raga.mp3`
-  for all morning reels.
-- Render the reel directly from the spec (this is now a single animated-video
-  step — no separate static-slide render):
-  `python3 generator/generate_reel.py posts/<date>/spec.json posts/<date> generator/audio/astroreeti_raga.mp3 4`
+- Morning reels use a **real background video** (`generator/video/morning_bg.mp4`,
+  ~60s, has its own baked-in music — do NOT add a separate audio track).
+  Render with the video-overlay generator:
+  `python3 generator/generate_reel_video.py posts/<date>/spec.json posts/<date> generator/video/morning_bg.mp4 4`
   (last arg = seconds per slide; must stay **≥ 4** so text stays readable — the
-  script hard-fails below that). This produces `posts/<date>/reel.mp4` with
-  ambient star twinkle, a slow zoom, a glowing frame pulse, and staggered
-  text-entrance animations baked in — never plain static text on a flat
-  background.
+  script hard-fails below that). This composites light-colored text (white/gold,
+  no card/frame — the video itself carries the visual richness) on top of the
+  video via true-alpha frame capture, keeps the video's own audio untouched, and
+  trims to the content's length (or loops the video if slides × seconds ever
+  runs longer than it).
 - Create `posts/<date>/publish.json`:
   `{"format":"reel","requested":"<date>","post":"posts/<date>"}`
-- NOTE: morning is still on the CSS-drawn-scene renderer (`generate_reel.py`)
-  pending a morning-specific background video from Reeti, matching evening's
-  `generate_reel_video.py` setup below. Once that video is added (expected at
-  `generator/video/morning_bg.mp4`), switch morning to the same video-overlay
-  pipeline and delete this note.
 
 ## 3b. EVENING run — build the deep-dive Reel
 
 - Write a **6–8 slide** deep-dive spec (more depth, save-worthy).
 - Caption as above (save + share CTA emphasised).
 - Evening reels use a **real background video** (`generator/video/evening_bg.mp4`,
-  ~30s, has its own baked-in music — do NOT add a separate audio track) instead
-  of the CSS-drawn scenes morning uses. Render with the video-overlay generator:
+  ~60s, has its own baked-in music — do NOT add a separate audio track). Render
+  with the video-overlay generator:
   `python3 generator/generate_reel_video.py posts/<date>/spec.json posts/<date> generator/video/evening_bg.mp4 4`
   This composites light-colored text (white/gold, no card/frame — the video
   itself carries the visual richness) on top of the video via true-alpha frame
