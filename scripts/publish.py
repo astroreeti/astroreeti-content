@@ -239,24 +239,41 @@ def yt_upload_short(post, access_token, title, description):
 
 
 def yt_set_thumbnail(video_id, access_token, post):
-    """Best-effort: set the reel's cover.jpg as the YouTube Short's thumbnail."""
+    """Best-effort: set the reel's cover.jpg as the YouTube Short's thumbnail.
+
+    A video freshly finished uploading is often not yet fully registered on
+    YouTube's side -- calling thumbnails.set immediately can fail even though
+    the exact same call succeeds seconds later (confirmed: both 2026-07-22-pm
+    and 2026-07-23-am's Shorts went live with no cover image, then had their
+    thumbnail set successfully on a manual retry a few minutes after
+    publish). Retry with backoff instead of trying once and giving up, and
+    return whether it actually succeeded instead of swallowing the outcome
+    entirely -- so callers/results.json can tell a real failure from success.
+    """
     thumb = pathlib.Path(post) / "cover.jpg"
     if not thumb.exists():
-        return
+        return {"ok": False, "error": "cover.jpg does not exist for this post"}
     data = thumb.read_bytes()
-    req = urllib.request.Request(
-        f"https://www.googleapis.com/upload/youtube/v3/thumbnails/set"
-        f"?uploadType=media&videoId={video_id}",
-        data=data, method="POST",
-        headers={"Authorization": f"Bearer {access_token}", "Content-Type": "image/jpeg"},
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            json.load(r)
-    except urllib.error.HTTPError as e:
-        print(f"YouTube thumbnail set failed (non-fatal): HTTP {e.code}: {e.read().decode()}")
-    except Exception as e:
-        print("YouTube thumbnail set failed (non-fatal):", e)
+    last_err = None
+    for attempt in range(5):  # ~0s, 5s, 10s, 20s, 30s => ~65s of retry budget
+        if attempt:
+            time.sleep([5, 10, 20, 30][attempt - 1])
+        req = urllib.request.Request(
+            f"https://www.googleapis.com/upload/youtube/v3/thumbnails/set"
+            f"?uploadType=media&videoId={video_id}",
+            data=data, method="POST",
+            headers={"Authorization": f"Bearer {access_token}", "Content-Type": "image/jpeg"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                json.load(r)
+            return {"ok": True, "attempts": attempt + 1}
+        except urllib.error.HTTPError as e:
+            last_err = f"HTTP {e.code}: {e.read().decode()}"
+        except Exception as e:
+            last_err = str(e)
+    print(f"YouTube thumbnail set failed after {attempt + 1} attempts (non-fatal): {last_err}")
+    return {"ok": False, "error": last_err, "attempts": attempt + 1}
 
 def publish_to_youtube(post, date, fmt, caption):
     """Best-effort YouTube Shorts cross-post. Only applies to reels. Never raises."""
@@ -270,10 +287,12 @@ def publish_to_youtube(post, date, fmt, caption):
         title = caption.split("\n", 1)[0][:95] + " #Shorts"
         description = caption + "\n\n#Shorts"
         video_id = yt_upload_short(post, access_token, title, description)
+        thumbnail_result = None
         if video_id:
-            yt_set_thumbnail(video_id, access_token, post)
+            thumbnail_result = yt_set_thumbnail(video_id, access_token, post)
         return {"status": "published", "video_id": video_id,
-                "permalink": f"https://youtube.com/shorts/{video_id}" if video_id else ""}
+                "permalink": f"https://youtube.com/shorts/{video_id}" if video_id else "",
+                "thumbnail": thumbnail_result}
     except Exception as e:
         print("YouTube cross-post failed (non-fatal):", e)
         return {"status": "failed", "error": str(e)}
