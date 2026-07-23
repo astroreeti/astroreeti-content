@@ -32,6 +32,7 @@ def main(spec_path, outdir, bg=None):
     bg_idx = bg if bg is not None else random.randint(1, 4)
     template = (BASE / "template_whatsapp.html").read_text()
     template = template.replace("file://FONTDIR/", f"file://{(BASE / 'fonts').resolve()}/")
+    template = template.replace("file://BGDIR/", f"file://{(BASE / 'backgrounds').resolve()}/")
     template = template.replace("BGCLASS", f"bg-{bg_idx}")
     template = template.replace("<!--SLOT-->", slot_html(spec))
 
