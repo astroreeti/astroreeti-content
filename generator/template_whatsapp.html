@@ -38,29 +38,43 @@
     z-index:5;
   }
   .eyebrow {
-    font-family:'Playfair Display'; font-weight:700; font-size:26px;
-    letter-spacing:.28em; text-transform:uppercase; color:#E3B15C;
+    font-family:'Playfair Display'; font-weight:700; font-size:32px;
+    letter-spacing:.26em; text-transform:uppercase; color:#E3B15C;
     text-shadow:0 2px 12px rgba(0,0,0,.6);
-    margin-bottom:18px;
+    margin-bottom:22px;
   }
   h1 {
     font-family:'Noto Serif Devanagari','Playfair Display'; font-weight:800;
-    font-size:64px; line-height:1.28; color:#FFFFFF;
+    font-size:78px; line-height:1.26; color:#FFFFFF;
     text-shadow:0 3px 18px rgba(0,0,0,.65), 0 1px 0 rgba(0,0,0,.4);
-    margin-bottom:28px;
+    margin-bottom:32px;
   }
   h1 em { font-style:normal; color:#F0C36B; }
   .body {
-    font-size:34px; line-height:1.6; font-weight:500; color:#F3E9DA;
+    font-size:41px; line-height:1.55; font-weight:500; color:#F3E9DA;
     text-shadow:0 2px 14px rgba(0,0,0,.6);
-    max-width:900px;
+    max-width:920px;
   }
   .body b { color:#F0C36B; font-weight:700; }
-  .divider { width:120px; height:3px; background:linear-gradient(90deg,#E3B15C,transparent); margin:26px 0 0; border-radius:2px; }
+  .divider { width:120px; height:3px; background:linear-gradient(90deg,#E3B15C,transparent); margin:30px 0 0; border-radius:2px; }
   .handle {
-    margin-top:32px; font-family:'Playfair Display'; font-weight:700; font-size:30px;
+    margin-top:20px; font-family:'Playfair Display'; font-weight:700; font-size:36px;
     color:#E3B15C; text-shadow:0 2px 10px rgba(0,0,0,.6); letter-spacing:.02em;
   }
+
+  /* ---------- footer: website + Instagram follow row ---------- */
+  .footer {
+    margin-top:22px; padding-top:22px;
+    border-top:1px solid rgba(227,177,92,.35);
+    display:flex; align-items:center; gap:36px;
+    flex-wrap:wrap;
+  }
+  .footer-item {
+    display:flex; align-items:center; gap:10px;
+    font-family:'Playfair Display'; font-weight:600; font-size:26px;
+    color:#F3E9DA; text-shadow:0 2px 10px rgba(0,0,0,.6); letter-spacing:.01em;
+  }
+  .footer-item svg { width:26px; height:26px; flex-shrink:0; }
 </style>
 </head>
 <body>
@@ -69,6 +83,24 @@
 
   <div class="content">
     <!--SLOT-->
+    <div class="footer">
+      <div class="footer-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E3B15C" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9.2"/>
+          <ellipse cx="12" cy="12" rx="4" ry="9.2"/>
+          <line x1="2.8" y1="12" x2="21.2" y2="12"/>
+        </svg>
+        <span>astroreeti.com</span>
+      </div>
+      <div class="footer-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E3B15C" stroke-width="1.8">
+          <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5.5"/>
+          <circle cx="12" cy="12" r="4.4"/>
+          <circle cx="17.2" cy="6.8" r="1.15" fill="#E3B15C" stroke="none"/>
+        </svg>
+        <span>@astroreeti</span>
+      </div>
+    </div>
   </div>
 </body>
 </html>

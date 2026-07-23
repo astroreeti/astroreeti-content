@@ -21,9 +21,6 @@ def slot_html(s):
         parts.append(f'<h1>{s["h1"]}</h1>')
     if s.get("body"):
         parts.append(f'<div class="body">{s["body"]}</div>')
-    parts.append('<div class="divider"></div>')
-    if s.get("handle"):
-        parts.append(f'<div class="handle">{s["handle"]}</div>')
     return "\n".join(parts)
 
 
