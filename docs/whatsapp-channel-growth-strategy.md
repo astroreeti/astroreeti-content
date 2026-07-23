@@ -10,7 +10,18 @@ Every caption should do three things, in order, and none of them should restate 
 2. **Follow/retention nudge** — remind lurkers why following pays off (daily habit, first-to-know).
 3. **Share nudge** — give people a reason to forward it to someone specific ("send this to the Gemini in your life," "tag someone born on a Tuesday").
 
-Template:
+Template (English — default from 2026-07-24 onward):
+
+```
+[emoji] [hook — why today matters / consequence / curiosity, 1 line]
+
+[what's inside, 1 line, pointing at the image — not repeating it] 👆
+Follow so you never miss tomorrow's.
+
+[share nudge tied to who this is for] ➡️
+```
+
+Template (Hindi — used through 2026-07-23):
 
 ```
 🪐 [hook — why today matters / consequence / curiosity, 1 line]
@@ -21,7 +32,9 @@ Template:
 [share nudge tied to who this is for] ➡️
 ```
 
-Today's corrected caption is already saved to `posts/2026-07-23-whatsapp/caption.txt`.
+**Language:** posts through 2026-07-23 were in Hindi. Starting 2026-07-24, all WhatsApp Channel posts (image copy + caption) switch to English by default. The template/generator (`generate_whatsapp.py`, `template_whatsapp.html`) are language-agnostic — no code change was needed, only the spec content and captions going forward are written in English.
+
+Today's corrected caption is saved to `posts/2026-07-23-whatsapp/caption.txt` (Hindi, last day). Tomorrow's first English post is saved to `posts/2026-07-24-whatsapp/` (image + caption).
 
 ## 2. Content pillars (what to post)
 
