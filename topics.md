@@ -14,4 +14,6 @@
 | 2026-07-23 | evening | NK | भरणी नक्षत्र — यम की कथा, नचिकेता, शुक्र-यम का चक्र (reel) |
 | 2026-07-24 | morning | RL | पैसा कहाँ से आएगा? — द्वितीय भाव बनाम एकादश भाव, धन योग (reel) |
 
+| 2026-07-24 | evening | DD | नवांश (D9) — शादी का असली सच, वर्गोत्तम, D9 सप्तम भाव (reel) |
+
 Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
