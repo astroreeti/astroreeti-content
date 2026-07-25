@@ -17,3 +17,5 @@
 | 2026-07-24 | evening | DD | नवांश (D9) — शादी का असली सच, वर्गोत्तम, D9 सप्तम भाव (reel) |
 
 Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
+| 2026-07-25 | morning (single Sat post) | RL | विदेश योग — द्वादश भाव का असली सच, चतुर्थ-द्वादश संबंध, राहु (reel) |
+
