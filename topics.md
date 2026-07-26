@@ -20,3 +20,4 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-07-25 | morning (single Sat post) | RL | विदेश योग — द्वादश भाव का असली सच, चतुर्थ-द्वादश संबंध, राहु (reel) |
 | 2026-07-26 | morning | DD | नक्षत्र पाद — 4 चरण, 108 पाद, पाद = नवांश राशि, नामाक्षर (reel) |
 
+| 2026-07-26 | evening | RL | बिज़नेस या नौकरी? — दशम भाव, दशमेश की स्थिति, नौकरी/बिज़नेस के योग (reel) |
