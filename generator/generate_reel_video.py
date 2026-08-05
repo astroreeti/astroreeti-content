@@ -173,11 +173,19 @@ def main(spec_path, outdir, bg_video, min_per_slide=4.0):
     # sharp vertical frame centred on top. Centre-cropping this back to
     # vertical (what the Shorts grid does) still yields the sharp content.
     yt_thumb = outdir / "yt_thumb.jpg"
+    # v1 blurred+darkened the source itself as the background. Every post's
+    # slide 1 in this series is already very dark (measured mean ~10-23/255),
+    # so darkening it further crushed the result to ~5/255 -- real detail
+    # was there (max=255, i.e. the text), but at Studio's small tile size a
+    # near-black image with a few bright pixels reads as fully black, which
+    # is indistinguishable from having no thumbnail at all. Fixed: a solid
+    # brand-purple background (independent of source darkness) with the
+    # sharp vertical frame centred on top, so brightness is never a function
+    # of how dark a given slide 1 happens to be.
     subprocess.run(
         ["ffmpeg", "-y", "-i", str(cover), "-filter_complex",
-         "[0:v]scale=1280:720:force_original_aspect_ratio=increase,"
-         "crop=1280:720,boxblur=24:4,eq=brightness=-0.10[bg];"
-         "[0:v]scale=-1:720[fg];[bg][fg]overlay=(W-w)/2:0",
+         "color=c=0x2A1B3D:s=1280x720[bg];"
+         "[0:v]scale=-1:700[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2",
          "-frames:v", "1", "-q:v", "2", str(yt_thumb)],
         check=True, capture_output=True,
     )
