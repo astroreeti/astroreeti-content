@@ -1,6 +1,5 @@
 {
-  "post_dir": "posts/2026-07-22-am",
-  "status": "success",
-  "video_id": "t0VjAGJNTgw",
-  "permalink": "https://youtube.com/shorts/t0VjAGJNTgw"
+  "post_dir": "posts/2026-08-05-pm",
+  "status": "failed",
+  "error": "YT token refresh -> HTTP 400: {\n  \"error\": \"invalid_grant\",\n  \"error_description\": \"Token has been expired or revoked.\"\n}"
 }
