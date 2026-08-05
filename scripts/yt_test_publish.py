@@ -35,9 +35,18 @@ def main(post_dir):
         print("UPLOAD OK, video_id =", video_id)
         result = {"post_dir": str(post), "status": "success", "video_id": video_id}
         if video_id:
-            yt_set_thumbnail(video_id, access_token, post)
+            # Record the thumbnail outcome instead of discarding it. Dropping
+            # the return value meant a failed cover was invisible: the Short
+            # went live bare and results/yt-test.json still said "success"
+            # with no hint why (hit on 2026-08-05-pm). publish.py's real
+            # pipeline already stores this under youtube.thumbnail; mirror it.
+            result["thumbnail"] = yt_set_thumbnail(video_id, access_token, post)
             result["permalink"] = f"https://youtube.com/shorts/{video_id}"
             print(f"Permalink: {result['permalink']}")
+            print("Thumbnail:", result["thumbnail"])
+            if not (result["thumbnail"] or {}).get("ok"):
+                print("WARNING: thumbnail was NOT set - run the "
+                      "yt-thumb-test workflow to retry it on this video_id.")
         out_path.write_text(json.dumps(result, indent=2))
     except Exception as e:
         print("YOUTUBE TEST FAILED:", e)
