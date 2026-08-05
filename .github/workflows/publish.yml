@@ -3,6 +3,19 @@ on:
   push:
     paths:
       - "posts/**/publish.json"
+  # Scheduled safety net (added 2026-08-05). Cron is UTC; IST = UTC+5:30.
+  # These fire whether or not anyone's desktop app is open, publishing
+  # whatever is already queued in posts/<date>-am|pm/.
+  schedule:
+    - cron: "0 2 * * 1-5"     # 07:30 IST Mon-Fri  -> morning run
+    - cron: "30 4 * * 6"      # 10:00 IST Saturday -> single morning run
+    - cron: "0 5 * * 0"       # 10:30 IST Sunday   -> morning run
+    - cron: "0 14 * * 0-5"    # 19:30 IST Sun-Fri  -> evening run
+  workflow_dispatch:
+    inputs:
+      post_dir:
+        description: "Post folder to publish, e.g. posts/2026-08-06-am"
+        required: true
 
 permissions:
   contents: write
@@ -22,14 +35,43 @@ jobs:
       - name: Find post to publish
         id: find
         run: |
-          DIR=$(git diff --name-only HEAD~1 HEAD | grep -E '^posts/[^/]+/publish\.json$' | head -1 | xargs -r dirname)
-          if [ -z "$DIR" ]; then
-            echo "No new publish.json in this push; nothing to do."
-            echo "dir=" >> "$GITHUB_OUTPUT"
-          else
-            echo "dir=$DIR" >> "$GITHUB_OUTPUT"
-            echo "Publishing $DIR"
-          fi
+          case "${{ github.event_name }}" in
+            push)
+              # Original behaviour: publish whatever publish.json this push added.
+              DIR=$(git diff --name-only HEAD~1 HEAD | grep -E '^posts/[^/]+/publish\.json$' | head -1 | xargs -r dirname)
+              [ -z "$DIR" ] && echo "No new publish.json in this push; nothing to do."
+              # Queued-ahead guard: posts are now authored days in advance, so a
+              # push must NOT fire a post dated in the future -- the scheduled
+              # cron owns those. Only same-day-or-earlier folders publish on push.
+              if [ -n "$DIR" ]; then
+                FOLDER_DATE=$(basename "$DIR" | grep -oE '^[0-9]{4}-[0-9]{2}-[0-9]{2}')
+                TODAY_IST=$(TZ=Asia/Kolkata date +%F)
+                if [ -n "$FOLDER_DATE" ] && [ "$FOLDER_DATE" \> "$TODAY_IST" ]; then
+                  echo "$DIR is queued for $FOLDER_DATE (today IST is $TODAY_IST) - leaving it for the scheduled run."
+                  DIR=""
+                fi
+              fi
+              ;;
+            workflow_dispatch)
+              DIR="${{ github.event.inputs.post_dir }}"
+              ;;
+            schedule)
+              # Slot is implied by the cron that fired: everything before
+              # 12:00 UTC is a morning run, 14:00 UTC is the evening run.
+              # None of these crons cross midnight IST, so the IST date and
+              # the UTC date are the same and a plain date works.
+              HOUR=$(date -u +%H)
+              if [ "$HOUR" -lt 12 ]; then SLOT=am; else SLOT=pm; fi
+              DIR="posts/$(date -u +%Y-%m-%d)-$SLOT"
+              echo "Scheduled $SLOT run -> $DIR"
+              if [ ! -d "$DIR" ]; then
+                echo "::warning::Queue is empty for $DIR - nothing authored for this slot."
+                DIR=""
+              fi
+              ;;
+          esac
+          if [ -n "$DIR" ]; then echo "Publishing $DIR"; fi
+          echo "dir=$DIR" >> "$GITHUB_OUTPUT"
 
       - name: Skip if already published
         id: guard
