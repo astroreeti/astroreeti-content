@@ -165,6 +165,24 @@ def main(spec_path, outdir, bg_video, min_per_slide=4.0):
     )
     print(f"cover.jpg written (frame @ {cover_t:.2f}s)")
 
+    # cover.jpg is 9:16 (it is a frame of the reel). YouTube thumbnails are
+    # 16:9 -- uploading the vertical image gets it pillarboxed into a thin
+    # strip floating in black bars, which reads as "no cover" in the Studio
+    # list and the channel Shorts grid. So also emit a true 1280x720:
+    # the cover blurred and darkened as a full-bleed background, with the
+    # sharp vertical frame centred on top. Centre-cropping this back to
+    # vertical (what the Shorts grid does) still yields the sharp content.
+    yt_thumb = outdir / "yt_thumb.jpg"
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(cover), "-filter_complex",
+         "[0:v]scale=1280:720:force_original_aspect_ratio=increase,"
+         "crop=1280:720,boxblur=24:4,eq=brightness=-0.10[bg];"
+         "[0:v]scale=-1:720[fg];[bg][fg]overlay=(W-w)/2:0",
+         "-frames:v", "1", "-q:v", "2", str(yt_thumb)],
+        check=True, capture_output=True,
+    )
+    print("yt_thumb.jpg written (1280x720 for YouTube)")
+
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2], sys.argv[3], *(sys.argv[4:5] or []))

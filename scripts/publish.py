@@ -250,9 +250,16 @@ def yt_set_thumbnail(video_id, access_token, post):
     return whether it actually succeeded instead of swallowing the outcome
     entirely -- so callers/results.json can tell a real failure from success.
     """
-    thumb = pathlib.Path(post) / "cover.jpg"
+    # Prefer the 16:9 yt_thumb.jpg. cover.jpg is 9:16 (a reel frame), and
+    # YouTube pillarboxes a vertical thumbnail into bars, which looks like no
+    # cover at all. Fall back to cover.jpg for posts rendered before
+    # yt_thumb.jpg existed.
+    post_path = pathlib.Path(post)
+    thumb = post_path / "yt_thumb.jpg"
     if not thumb.exists():
-        return {"ok": False, "error": "cover.jpg does not exist for this post"}
+        thumb = post_path / "cover.jpg"
+    if not thumb.exists():
+        return {"ok": False, "error": "neither yt_thumb.jpg nor cover.jpg exists for this post"}
     data = thumb.read_bytes()
     last_err = None
     for attempt in range(5):  # ~0s, 5s, 10s, 20s, 30s => ~65s of retry budget
@@ -267,7 +274,7 @@ def yt_set_thumbnail(video_id, access_token, post):
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 json.load(r)
-            return {"ok": True, "attempts": attempt + 1}
+            return {"ok": True, "attempts": attempt + 1, "file": thumb.name}
         except urllib.error.HTTPError as e:
             last_err = f"HTTP {e.code}: {e.read().decode()}"
         except Exception as e:

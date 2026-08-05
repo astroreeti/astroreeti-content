@@ -30,7 +30,10 @@ def set_thumbnail_raising(video_id, access_token, cover_path):
 
 def main(video_id, post_dir):
     post = pathlib.Path(post_dir)
-    cover = post / "cover.jpg"
+    # Prefer the 16:9 thumbnail; cover.jpg is 9:16 and gets pillarboxed.
+    cover = post / "yt_thumb.jpg"
+    if not cover.exists():
+        cover = post / "cover.jpg"
     out_path = pathlib.Path("results") / "yt-thumb-test.json"
     out_path.parent.mkdir(exist_ok=True)
     if not cover.exists():

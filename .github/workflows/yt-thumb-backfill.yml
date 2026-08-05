@@ -1,0 +1,33 @@
+name: YouTube thumbnail backfill (all Shorts)
+
+# Re-sets the thumbnail on every already-published Short using the 16:9
+# yt_thumb.jpg. Uploads no video and touches no other platform, so it is
+# safe to re-run. Manual only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Backfill thumbnails
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python3 scripts/yt_backfill_thumbnails.py
+
+      - name: Commit result
+        if: always()
+        run: |
+          git config user.name "astroreeti-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results/yt-thumb-backfill.json
+          git commit -m "yt thumbnail backfill result" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push
