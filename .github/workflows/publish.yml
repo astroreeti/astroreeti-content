@@ -48,6 +48,88 @@ jobs:
             echo "go=yes" >> "$GITHUB_OUTPUT"
           fi
 
+      # ------------------------------------------------------------------
+      # RENDER (added 2026-08-05)
+      # The authoring session can no longer run Chromium -- its sandbox blocks
+      # the Playwright browser download -- so rendering moved here. If the post
+      # folder already contains reel.mp4 this is a no-op, which keeps every
+      # historical post and any locally-rendered post working unchanged.
+      # ------------------------------------------------------------------
+      - name: Check whether a render is needed
+        id: render_needed
+        if: steps.find.outputs.dir != '' && steps.guard.outputs.go == 'yes'
+        run: |
+          DIR="${{ steps.find.outputs.dir }}"
+          FMT=$(python3 -c "import json;print(json.load(open('$DIR/publish.json')).get('format','reel'))")
+          if [ "$FMT" != "reel" ]; then
+            echo "Format is '$FMT', not a reel; no render step."
+            echo "go=no" >> "$GITHUB_OUTPUT"
+          elif [ -f "$DIR/reel.mp4" ]; then
+            echo "reel.mp4 already present; skipping render."
+            echo "go=no" >> "$GITHUB_OUTPUT"
+          elif [ ! -f "$DIR/spec.json" ]; then
+            echo "::error::$DIR has neither reel.mp4 nor spec.json - nothing to render or publish."
+            exit 1
+          else
+            echo "go=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.render_needed.outputs.go == 'yes'
+        with:
+          python-version: "3.11"
+
+      - name: Cache Playwright browser
+        if: steps.render_needed.outputs.go == 'yes'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-v1
+
+      - name: Install render toolchain
+        if: steps.render_needed.outputs.go == 'yes'
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install playwright
+          python3 -m playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fontconfig
+          mkdir -p ~/.fonts && cp generator/fonts/*.ttf ~/.fonts/ && fc-cache -f
+          echo "Devanagari faces available: $(fc-list | grep -ci devanagari)"
+
+      - name: Render reel
+        if: steps.render_needed.outputs.go == 'yes'
+        run: |
+          DIR="${{ steps.find.outputs.dir }}"
+          case "$DIR" in
+            *-pm) BG=generator/video/evening_bg.mp4 ;;
+            *)    BG=generator/video/morning_bg.mp4 ;;
+          esac
+          echo "Rendering $DIR over $BG"
+          python3 generator/generate_reel_video.py "$DIR/spec.json" "$DIR" "$BG" 4
+
+      - name: Verify render
+        if: steps.render_needed.outputs.go == 'yes'
+        run: |
+          DIR="${{ steps.find.outputs.dir }}"
+          test -f "$DIR/reel.mp4"  || { echo "::error::reel.mp4 was not produced"; exit 1; }
+          test -f "$DIR/cover.jpg" || { echo "::error::cover.jpg was not produced"; exit 1; }
+          DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$DIR/reel.mp4")
+          echo "Duration: ${DUR}s"
+          python3 -c "import sys; d=float('$DUR'); sys.exit('::error::reel duration %.1fs outside safe 25-59.5s window' % d) if not (25.0 <= d <= 59.5) else print('duration %.1fs OK' % d)"
+
+      - name: Commit rendered media
+        if: steps.render_needed.outputs.go == 'yes'
+        run: |
+          DIR="${{ steps.find.outputs.dir }}"
+          git config user.name "astroreeti-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$DIR/reel.mp4" "$DIR/cover.jpg"
+          git commit -m "render $DIR" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push
+      # ------------------------- end render ------------------------------
+
       - name: Publish carousel
         if: steps.find.outputs.dir != '' && steps.guard.outputs.go == 'yes'
         env:
