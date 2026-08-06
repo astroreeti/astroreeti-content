@@ -7,10 +7,10 @@ on:
   # These fire whether or not anyone's desktop app is open, publishing
   # whatever is already queued in posts/<date>-am|pm/.
   schedule:
-    - cron: "0 2 * * 1-5"     # 07:30 IST Mon-Fri  -> morning run
-    - cron: "30 4 * * 6"      # 10:00 IST Saturday -> single morning run
-    - cron: "0 5 * * 0"       # 10:30 IST Sunday   -> morning run
-    - cron: "0 14 * * 0-5"    # 19:30 IST Sun-Fri  -> evening run
+    - cron: "7 2 * * 1-5"     # 07:37 IST Mon-Fri  -> morning run (offset off :00 to dodge GH queue congestion)
+    - cron: "37 4 * * 6"      # 10:07 IST Saturday -> single morning run (offset off :30)
+    - cron: "7 5 * * 0"       # 10:37 IST Sunday   -> morning run (offset off :00)
+    - cron: "7 14 * * 0-5"    # 19:37 IST Sun-Fri  -> evening run (offset off :00)
   workflow_dispatch:
     inputs:
       post_dir:
