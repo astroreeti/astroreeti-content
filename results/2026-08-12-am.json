@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-12-am",
+  "format": "reel",
+  "status": "published",
+  "media_id": "17902070784539681",
+  "permalink": "https://www.instagram.com/reel/Db7SbzZDS3B/",
+  "facebook": {
+    "status": "failed",
+    "error": "Facebook reel 1612567833572536 never left draft status after FINISH reported success (last status: {'video_status': 'processing', 'processing_progress': 0, 'uploading_phase': {'status': 'complete', 'bytes_transferred': 5867168}, 'processing_phase': {'status': 'in_progress'}, 'publishing_phase': {'status': 'not_started'}, 'copyright_check_status': {'status': 'in_progress'}}) -- the underlying video upload likely failed silently."
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "asfIeuhWDhM",
+    "permalink": "https://youtube.com/shorts/asfIeuhWDhM",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
