@@ -3,14 +3,15 @@ on:
   push:
     paths:
       - "posts/**/publish.json"
-  # Scheduled safety net (added 2026-08-05). Cron is UTC; IST = UTC+5:30.
-  # These fire whether or not anyone's desktop app is open, publishing
-  # whatever is already queued in posts/<date>-am|pm/.
+  # Scheduled safety net (added 2026-08-05, redesigned to a catch-up ticker
+  # 2026-08-13 after both the AM and PM single-shot crons above were observed
+  # running 40min-2h+ late -- GitHub's own docs warn schedule triggers can be
+  # delayed under load, and a single shot per slot has no way to recover from
+  # that. Ticking every 15 min instead bounds worst-case lateness to ~15min:
+  # each tick checks whether the current IST slot is due and unpublished, and
+  # is a near-instant no-op otherwise (checkout + one python check, no render).
   schedule:
-    - cron: "7 2 * * 1-5"     # 07:37 IST Mon-Fri  -> morning run (offset off :00 to dodge GH queue congestion)
-    - cron: "37 4 * * 6"      # 10:07 IST Saturday -> single morning run (offset off :30)
-    - cron: "7 5 * * 0"       # 10:37 IST Sunday   -> morning run (offset off :00)
-    - cron: "7 14 * * 0-5"    # 19:37 IST Sun-Fri  -> evening run (offset off :00)
+    - cron: "*/15 * * * *"
   workflow_dispatch:
     inputs:
       post_dir:
@@ -55,20 +56,58 @@ jobs:
             workflow_dispatch)
               DIR="${{ github.event.inputs.post_dir }}"
               ;;
-            schedule)
-              # Slot is implied by the cron that fired: everything before
-              # 12:00 UTC is a morning run, 14:00 UTC is the evening run.
-              # None of these crons cross midnight IST, so the IST date and
-              # the UTC date are the same and a plain date works.
-              HOUR=$(date -u +%H)
-              if [ "$HOUR" -lt 12 ]; then SLOT=am; else SLOT=pm; fi
-              DIR="posts/$(date -u +%Y-%m-%d)-$SLOT"
-              echo "Scheduled $SLOT run -> $DIR"
-              if [ ! -d "$DIR" ]; then
-                echo "::warning::Queue is empty for $DIR - nothing authored for this slot."
-                DIR=""
-              fi
-              ;;
+          schedule)
+            # Catch-up ticker (every 15 min, see cron above): pick the
+            # earliest slot for "today" (IST) whose target time has passed
+            # and that isn't published yet. Prints only the chosen dir (or
+            # a blank line) to stdout so it's safe to capture; diagnostics
+            # go to stderr so they show in the log without corrupting DIR.
+            DIR=$(python3 - <<'PYEOF'
+          import datetime, json, os, sys
+
+          IST = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+          now = datetime.datetime.now(IST)
+          today = now.strftime("%Y-%m-%d")
+          dow = now.isoweekday()  # 1=Mon .. 7=Sun
+          minute_of_day = now.hour * 60 + now.minute
+
+          if dow == 6:      # Saturday: morning slot only
+              slots = [("am", 10 * 60)]
+          elif dow == 7:    # Sunday
+              slots = [("am", 10 * 60 + 30), ("pm", 19 * 60 + 30)]
+          else:             # Mon-Fri
+              slots = [("am", 7 * 60 + 30), ("pm", 19 * 60 + 30)]
+
+          def is_published(date_slot):
+              path = f"results/{date_slot}.json"
+              if not os.path.exists(path):
+                  return False
+              try:
+                  return json.load(open(path)).get("status") == "published"
+              except Exception:
+                  return False
+
+          chosen = ""
+          for slot, target in slots:
+              if minute_of_day < target:
+                  continue
+              date_slot = f"{today}-{slot}"
+              post_dir = f"posts/{date_slot}"
+              if not os.path.isdir(post_dir):
+                  print(f"Queue is empty for {post_dir} - nothing authored for this slot yet.", file=sys.stderr)
+                  continue
+              if is_published(date_slot):
+                  continue
+              chosen = post_dir
+              break
+
+          print(chosen)
+          PYEOF
+            )
+            if [ -n "$DIR" ]; then
+              echo "Catch-up run -> $DIR"
+            fi
+            ;;
           esac
           if [ -n "$DIR" ]; then echo "Publishing $DIR"; fi
           echo "dir=$DIR" >> "$GITHUB_OUTPUT"
