@@ -6,6 +6,11 @@ Sat 2026-07-25 *evening*, but GUIDE.md gives Saturday a single morning run,
 so the slot never fired and nobody noticed for two weeks. Anything that can
 drop an episode without an error should fail loudly here instead.
 
+Extended 2026-08-13: also enforces the language policy (morning Hindi /
+evening English from the effective date), the per-theme safety guards
+(health disclaimer, no-wealth-guarantee), and that the queue is deep
+enough that a slot can never arrive with nothing authored for it.
+
 Usage: python3 scripts/validate_calendar.py   (exit 1 on any problem)
 """
 import json, datetime, re, sys, pathlib
@@ -71,10 +76,96 @@ for e in days:
         if len(head) > 4 and any(head in c for c in logged_cells):
             warnings.append(f"{e['date']} {run}: '{head}' looks already covered in topics.md")
 
+
+# 6. Language policy: morning Hindi, evening English from the effective date.
+policy = cal.get("language_policy")
+if not policy:
+    problems.append("calendar.json has no language_policy block")
+else:
+    eff = policy["effective"]
+    for e in days:
+        # Entries written before the policy existed carry no 'lang' field and
+        # were all Hindi by the old blanket rule -- don't retro-fail history.
+        if e["date"] < eff:
+            for run in ("morning", "evening"):
+                item = e.get(run) or {}
+                if item.get("lang") not in (None, policy["before_effective"]):
+                    problems.append(f"{e['date']} {run}: lang="
+                                    f"{item['lang']!r} but everything before "
+                                    f"{eff} is {policy['before_effective']!r}")
+            continue
+        for run, want in (("morning", policy["morning"]),
+                          ("evening", policy["evening"])):
+            item = e.get(run)
+            if not item:
+                continue
+            got = item.get("lang")
+            if got is None:
+                problems.append(f"{e['date']} {run}: no 'lang' field "
+                                f"(expected '{want}')")
+            elif got != want:
+                problems.append(f"{e['date']} {run}: lang='{got}' but policy "
+                                f"says '{want}' for that date")
+
+# 7. Safety guards must ride along with the themes that need them, so an
+#    authoring run physically cannot forget the disclaimer slide.
+REQUIRED_GUARD = {"money": "no-wealth-guarantee", "health": "health-disclaimer"}
+for e in days:
+    for run in ("morning", "evening"):
+        item = e.get(run) or {}
+        theme = item.get("theme")
+        need = REQUIRED_GUARD.get(theme)
+        if need and item.get("guard") != need:
+            problems.append(f"{e['date']} {run}: theme '{theme}' requires "
+                            f"guard '{need}' (found {item.get('guard')!r})")
+
+# 8. Transit slots must carry the verify flag -- these are the only entries
+#    allowed to make dated planetary claims, and only after a live check.
+for e in days:
+    if e["date"] < TODAY.isoformat():
+        continue  # already authored and verified at the time
+    for run in ("morning", "evening"):
+        item = e.get(run) or {}
+        if item.get("pillar") == "TL" and not item.get("verify"):
+            warnings.append(f"{e['date']} {run}: TL slot without a 'verify' flag "
+                            f"- transit claims must be checked live before writing")
+
+# 9. Queue depth: the calendar must stay ahead of the publisher. A slot that
+#    arrives with no calendar entry is how content silently stops.
+horizon = (TODAY + datetime.timedelta(days=14)).isoformat()
+planned = {e["date"] for e in days}
+missing = []
+d = TODAY
+while d.isoformat() <= horizon:
+    if d.isoformat() not in planned:
+        missing.append(d.isoformat())
+    d += datetime.timedelta(days=1)
+if missing:
+    problems.append("no calendar entry for the next-14-day window on: "
+                    + ", ".join(missing))
+
+# 10. Every non-Saturday day needs both slots; Saturday needs its morning.
+for e in days:
+    if e["date"] < today:
+        continue
+    d = datetime.date.fromisoformat(e["date"])
+    if d.weekday() == 5:
+        if not e.get("morning"):
+            problems.append(f"{e['date']} (Saturday) has no morning entry")
+    else:
+        for run in ("morning", "evening"):
+            if not e.get(run):
+                problems.append(f"{e['date']} ({d.strftime('%A')}) has no {run} entry")
+
 print(f"calendar.json: {len(days)} days, {seen[0]} -> {seen[-1]}")
 nk = [(e['date'], e['evening']['topic'].split('—')[0].strip())
       for e in days if (e.get('evening') or {}).get('pillar') == 'NK']
 print(f"Nakshatra serial: {len(nk)} episodes scheduled")
+from collections import Counter
+tc = Counter((e.get(r) or {}).get("theme") for e in days for r in ("morning","evening")
+             if (e.get(r) or {}).get("theme"))
+if tc:
+    print("themes: " + ", ".join(f"{k}={v}" for k, v in sorted(tc.items())))
 
 for w in warnings:
     print(f"  WARN  {w}")

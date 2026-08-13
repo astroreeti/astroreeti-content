@@ -77,6 +77,21 @@ def fb_api(path, params=None, method="GET", full_url=None):
         body = e.read().decode()
         raise RuntimeError(f"{path} -> HTTP {e.code}: {body}")
 
+def _prior_attempts(date):
+    """How many times we have already tried to publish this slot.
+
+    The catch-up ticker uses this to stop hammering a slot that keeps failing
+    (and, since 2026-08-13, to stop a broken post from being retried across
+    the midnight boundary forever).
+    """
+    rj = pathlib.Path("results") / f"{date}.json"
+    if not rj.exists():
+        return 0
+    try:
+        return int(json.loads(rj.read_text()).get("attempts", 0))
+    except Exception:
+        return 0
+
 def fb_publish_reel(post, page_id, caption):
     """Upload local reel.mp4 to the Facebook Page as a Reel (resumable upload)."""
     video_path = post / "reel.mp4"
@@ -118,17 +133,55 @@ def fb_publish_reel(post, page_id, caption):
     # the Page admin) while our code happily reported it as published. Poll
     # the video's own status until it actually reports "published" before
     # trusting this.
-    for _ in range(6):
-        time.sleep(5)
+    # 2026-08-13: the old loop polled 6 x 5s = 30 seconds and then declared
+    # failure. On 2026-08-12 that fired on a reel whose bytes had uploaded
+    # fine ("uploading_phase": complete) and which was simply still being
+    # transcoded ("processing_phase": in_progress, 0%) -- Facebook just took
+    # longer than half a minute. We reported a failure for a video that was
+    # on its way to publishing. Poll for up to ~5 minutes instead, and only
+    # treat an explicit processing *error* as a real failure.
+    deadline = time.time() + 300
+    status, delay = {}, 5
+    while time.time() < deadline:
+        time.sleep(delay)
+        delay = min(delay + 5, 20)
         status = fb_api(video_id, {"fields": "status"}).get("status", {})
-        publish_status = status.get("publishing_phase", {}).get("publish_status")
+        publishing = status.get("publishing_phase", {}) or {}
+        processing = status.get("processing_phase", {}) or {}
+        publish_status = publishing.get("publish_status")
+
         if publish_status == "published":
             return video_id
+        if processing.get("status") == "error":
+            raise RuntimeError(
+                f"Facebook rejected reel {video_id} during processing: "
+                f"{processing.get('errors') or processing}"
+            )
         if publish_status not in (None, "draft", "scheduled"):
             raise RuntimeError(f"Facebook reel {video_id} in unexpected state: {status}")
+        print(f"  fb reel {video_id}: publish={publish_status} "
+              f"processing={processing.get('status')} "
+              f"{processing.get('progress', '')}", flush=True)
+
+    # Still not published after 5 minutes. Re-issue FINISH once -- a dropped
+    # FINISH is the one failure mode a retry actually fixes -- then give it a
+    # final minute before calling it.
+    print("  fb reel still not published after 5min; re-issuing FINISH", flush=True)
+    try:
+        fb_api(f"{page_id}/video_reels", {
+            "upload_phase": "finish", "video_id": video_id,
+            "video_state": "PUBLISHED", "description": caption,
+        }, "POST")
+    except Exception as e:
+        print("  re-FINISH failed:", e, flush=True)
+    for _ in range(6):
+        time.sleep(10)
+        status = fb_api(video_id, {"fields": "status"}).get("status", {})
+        if (status.get("publishing_phase", {}) or {}).get("publish_status") == "published":
+            return video_id
     raise RuntimeError(
         f"Facebook reel {video_id} never left draft status after FINISH reported success "
-        f"(last status: {status}) -- the underlying video upload likely failed silently."
+        f"and a re-issued FINISH (last status: {status})."
     )
 
 def fb_publish_photos(post, repo, branch, page_id, caption):
@@ -355,7 +408,8 @@ def main(post_dir):
                 ig_error = str(e)
                 print("Instagram publish failed (still attempting Facebook/YouTube):", e)
 
-        out = {"date": date, "format": "reel"}
+        out = {"date": date, "format": "reel",
+               "attempts": int(existing.get("attempts", 0)) + 1}
         if ig_error:
             out["status"] = "failed"
             out["error"] = ig_error
@@ -418,7 +472,8 @@ def main(post_dir):
         print("permalink lookup failed:", e)
 
     out = {"date": date, "status": "published", "media_id": media_id,
-           "permalink": perma.get("permalink", ""), "slides": len(slides)}
+           "permalink": perma.get("permalink", ""), "slides": len(slides),
+           "attempts": _prior_attempts(date) + 1}
     out["facebook"] = publish_to_facebook(post, date, repo, branch, fmt, caption)
     out["youtube"] = publish_to_youtube(post, date, fmt, caption)
     rj = pathlib.Path("results") / f"{date}.json"
@@ -433,6 +488,7 @@ if __name__ == "__main__":
         date = pathlib.Path(sys.argv[1]).name
         rj = pathlib.Path("results") / f"{date}.json"
         rj.parent.mkdir(exist_ok=True)
-        rj.write_text(json.dumps({"date": date, "status": "failed", "error": str(e)}, indent=2))
+        rj.write_text(json.dumps({"date": date, "status": "failed", "error": str(e),
+                                  "attempts": _prior_attempts(date) + 1}, indent=2))
         print("FAILED:", e)
         raise

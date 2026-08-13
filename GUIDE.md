@@ -1,7 +1,8 @@
 # Daily post generation guide (for the automated Claude sessions)
 
 You produce content for **@astroreeti** — a Vedic astrology page owning
-*technical Jyotish depth* in relatable Hinglish. There are **two runs per day
+*technical Jyotish depth*, in Hindi in the morning and English in the
+evening (see §1b). There are **two runs per day
 on Sun/Mon-Fri, one run on Saturday**, each fired by its own scheduled task,
 timed per the India posting-time cheat sheet:
 
@@ -34,16 +35,66 @@ exact topics (machine-readable).
 - Pillars: **RL** real-life/house · **NK** Nakshatra Katha (mythology serial) ·
   **DD** technical deep-dive (the white-space moat) · **TL** timely/transit.
 
-## 1b. Language — HINDI (Devanagari)
+## 1b. Language — HINDI mornings, ENGLISH evenings
 
-- All slide text and captions are written in **Hindi in Devanagari script**
-  (शादी कब होगी?, सप्तम भाव, etc.), NOT Latin-script Hinglish.
-- Standard Sanskrit/Jyotish terms stay in their natural Devanagari forms
-  (कुंडली, राशि, नक्षत्र, दशा, गोचर, भाव).
-- English words only where genuinely common in spoken Hindi and no natural Hindi
-  word exists; keep them minimal. Hashtags may mix Hindi + English tags.
-- The template already renders Devanagari (Noto Serif Devanagari) via font
-  fallback — just write Hindi text in the spec and it renders correctly.
+**From 2026-08-26** the two runs are written in different languages. Every
+calendar slot carries an explicit `lang` field — trust it over your memory,
+and `scripts/validate_calendar.py` fails if a slot's language disagrees with
+`calendar.json`'s `language_policy` block.
+
+**MORNING (`lang: "hi"`) — Hindi in Devanagari script**
+
+- All slide text and captions in **Devanagari** (शादी कब होगी?, सप्तम भाव),
+  never Latin-script Hinglish.
+- Jyotish terms keep their natural Devanagari forms (कुंडली, राशि, नक्षत्र,
+  दशा, गोचर, भाव).
+- English words only where genuinely common in spoken Hindi and no natural
+  Hindi word exists. Keep them minimal.
+
+**EVENING (`lang: "en"`) — English**
+
+- Slide text and caption in clear, plain English. The evening slot is the
+  technical deep-dive, and English is where the precise vocabulary lives.
+- Sanskrit/Jyotish terms stay transliterated in Latin script (Navamsa, dasha,
+  gochar, Ashtakavarga, Amatyakaraka) — **gloss each one in a few words the
+  first time it appears in a post**, e.g. "Darakaraka (the planet at the
+  lowest degree — the partner significator)". Never assume the term is known.
+- Do not machine-translate a Hindi draft. Write it in English from the start;
+  the rhythm of a good English hook is different.
+- Hashtags: mix English and Hindi tags as before; `#astroreeti` always.
+
+**Anything dated before 2026-08-26** follows the old blanket rule — Hindi in
+both slots. Do not retro-translate posts already sitting in the queue.
+
+The template renders both scripts (Noto Serif Devanagari via font fallback for
+Hindi, the Latin faces for English) — just write the text and it renders.
+
+## 1c. Themes and the safety guards attached to them
+
+From 2026-08-26 the week has a fixed thematic shape, so followers know what
+each day brings:
+
+| Day | Morning (Hindi) | Evening (English) |
+|-----|-----------------|-------------------|
+| Mon | Marriage & Love | Marriage & Love deep-dive |
+| Tue | Career & Business | Career & Business deep-dive |
+| Wed | Financial Loss & Gain | Wealth-technique deep-dive |
+| Thu | Health | Medical-Jyotish deep-dive |
+| Fri | **Transit slot (TL)** — positions verified live | Technique/craft deep-dive |
+| Sat | Myth-busting / practical literacy (**single post**) | — none, ever |
+| Sun | Cross-theme accessible | Nakshatra Katha serial |
+
+Each slot may carry a `guard` field. It is **mandatory**, not advisory:
+
+- `health-disclaimer` → the post MUST contain an explicit slide saying
+  astrology is not diagnosis or treatment and a doctor should be consulted.
+- `no-wealth-guarantee` → the post MUST contain an explicit slide saying no
+  yoga guarantees wealth.
+
+A slot with `verify: "drikpanchang"` may not state a single planetary
+position until it has been checked against drikpanchang.com sidereal data for
+that exact date. If you cannot verify, swap in a non-transit topic from later
+in `calendar.json` and say so in your report.
 
 ## 2. Accuracy — non-negotiable
 
@@ -96,6 +147,23 @@ exact topics (machine-readable).
   *(evening posts go in the same dated folder but use a distinct filename prefix
   if both run same day — see note below).*
 
+### `time_sensitive` — set it on every TL post
+
+`publish.json` takes an optional fourth key:
+
+```json
+{"format": "reel", "requested": "2026-08-28", "post": "posts/2026-08-28-am",
+ "time_sensitive": true}
+```
+
+If a slot is missed (a GitHub outage, a delayed runner), the ticker now
+recovers it the next day rather than losing it silently. That is right for
+evergreen material and **wrong** for anything dated: "this week's transits"
+published a day late states things that are no longer true. Set
+`"time_sensitive": true` on every **TL** post and on any post whose slides
+name a specific date — the ticker will then skip it rather than publish it
+stale, and log a warning instead.
+
 ### IMPORTANT: two posts, same date
 Put the morning post in `posts/<date>-am/` and the evening in `posts/<date>-pm/`
 so they don't collide. Set `publish.json` `post` and the results filename
@@ -122,6 +190,12 @@ count (`ffprobe -show_entries format=duration posts/<date>/reel.mp4`).
 
 - Add a row to `topics.md` (date, run, pillar, topic).
 - Commit everything and push to `main`. GitHub Actions publishes automatically.
+  Future-dated folders do NOT publish on push — a date guard defers them to the
+  scheduled ticker, which runs every 5 minutes inside the morning and evening
+  slot windows (and every 30 minutes otherwise), recovers a slot missed the
+  previous day unless it is `time_sensitive`, and gives up on a slot after 4
+  failed attempts rather than retrying forever. `scripts/test_publish_ticker.py`
+  covers that logic — run it if you touch the workflow.
   You never call the Instagram or Facebook APIs yourself (blocked from this
   environment; the Action's relay handles it).
 - Poll `results/<folder>.json` (git pull every ~15s, up to 6 min for reels).

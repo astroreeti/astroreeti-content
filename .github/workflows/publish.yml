@@ -11,7 +11,14 @@ on:
   # each tick checks whether the current IST slot is due and unpublished, and
   # is a near-instant no-op otherwise (checkout + one python check, no render).
   schedule:
-    - cron: "*/15 * * * *"
+    # Tightened 2026-08-13. A single */15 ticker bounded lateness to ~15min
+    # everywhere, including the 20 hours a day when nothing is ever due. Tick
+    # every 5 min inside the windows that actually contain a slot, and keep a
+    # cheap half-hourly sweep outside them as the backstop. (Times are UTC;
+    # IST = UTC+5:30.)
+    - cron: "*/5 1-6 * * *"     # IST 06:30-12:29 -> AM slots (7:30 / Sat 10:00 / Sun 10:30)
+    - cron: "*/5 13-16 * * *"   # IST 18:30-22:29 -> PM slot (19:30)
+    - cron: "*/30 * * * *"      # backstop sweep + cross-midnight recovery
   workflow_dispatch:
     inputs:
       post_dir:
@@ -67,39 +74,89 @@ jobs:
 
           IST = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
           now = datetime.datetime.now(IST)
-          today = now.strftime("%Y-%m-%d")
-          dow = now.isoweekday()  # 1=Mon .. 7=Sun
+          today = now.date()
           minute_of_day = now.hour * 60 + now.minute
 
-          if dow == 6:      # Saturday: morning slot only
-              slots = [("am", 10 * 60)]
-          elif dow == 7:    # Sunday
-              slots = [("am", 10 * 60 + 30), ("pm", 19 * 60 + 30)]
-          else:             # Mon-Fri
-              slots = [("am", 7 * 60 + 30), ("pm", 19 * 60 + 30)]
+          # Max publish attempts per slot. Without this a post that fails for
+          # a structural reason (bad spec, revoked token) is retried by every
+          # single tick, forever, hammering the APIs for nothing.
+          MAX_ATTEMPTS = 4
 
-          def is_published(date_slot):
+          def slots_for(d):
+              dow = d.isoweekday()  # 1=Mon .. 7=Sun
+              if dow == 6:      # Saturday: morning slot only
+                  return [("am", 10 * 60)]
+              if dow == 7:      # Sunday
+                  return [("am", 10 * 60 + 30), ("pm", 19 * 60 + 30)]
+              return [("am", 7 * 60 + 30), ("pm", 19 * 60 + 30)]
+
+          def result(date_slot):
               path = f"results/{date_slot}.json"
               if not os.path.exists(path):
-                  return False
+                  return {}
               try:
-                  return json.load(open(path)).get("status") == "published"
+                  return json.load(open(path))
+              except Exception:
+                  return {}
+
+          def time_sensitive(post_dir):
+              try:
+                  return bool(json.load(open(f"{post_dir}/publish.json")).get("time_sensitive"))
               except Exception:
                   return False
 
+          # Today's due slots come FIRST, yesterday's missed slots after.
+          # Order matters: if a stale post is permanently broken it must never
+          # be able to block today's post from going out.
+          candidates = [(today, slot, False)
+                        for slot, target in slots_for(today)
+                        if minute_of_day >= target]
+          yesterday = today - datetime.timedelta(days=1)
+          candidates += [(yesterday, slot, True) for slot, _ in slots_for(yesterday)]
+
           chosen = ""
-          for slot, target in slots:
-              if minute_of_day < target:
-                  continue
-              date_slot = f"{today}-{slot}"
+          for d, slot, is_recovery in candidates:
+              date_slot = f"{d.isoformat()}-{slot}"
               post_dir = f"posts/{date_slot}"
+              res = result(date_slot)
+
               if not os.path.isdir(post_dir):
-                  print(f"Queue is empty for {post_dir} - nothing authored for this slot yet.", file=sys.stderr)
+                  if not is_recovery:
+                      print(f"::warning::Queue gap - nothing authored for {post_dir}",
+                            file=sys.stderr)
                   continue
-              if is_published(date_slot):
+              if res.get("status") == "published":
                   continue
+              if int(res.get("attempts", 0)) >= MAX_ATTEMPTS:
+                  print(f"::warning::{date_slot} has failed {res.get('attempts')} times "
+                        f"({res.get('error', 'see results')}) - giving up, needs a look",
+                        file=sys.stderr)
+                  continue
+              if is_recovery:
+                  # A missed slot is recovered the next day, EXCEPT when the
+                  # content is pinned to its date (transit posts): publishing
+                  # "this week's transits" a day late means publishing
+                  # something false.
+                  if time_sensitive(post_dir):
+                      print(f"::warning::{date_slot} missed its slot and is time-sensitive "
+                            f"- skipping rather than publishing stale transit claims",
+                            file=sys.stderr)
+                      continue
+                  print(f"::warning::{date_slot} missed its slot yesterday - publishing late",
+                        file=sys.stderr)
               chosen = post_dir
               break
+
+          # Queue-depth alarm: shout while there is still time to fix it.
+          depth = 0
+          probe = today + datetime.timedelta(days=1)
+          while all(os.path.isdir(f"posts/{probe.isoformat()}-{s}")
+                    for s, _ in slots_for(probe)):
+              depth += 1
+              probe += datetime.timedelta(days=1)
+          if depth < 3:
+              print(f"::warning::Publishing queue is only {depth} day(s) deep - "
+                    f"author more slots", file=sys.stderr)
 
           print(chosen)
           PYEOF
