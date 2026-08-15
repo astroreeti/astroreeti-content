@@ -3,22 +3,22 @@ on:
   push:
     paths:
       - "posts/**/publish.json"
-  # Scheduled safety net (added 2026-08-05, redesigned to a catch-up ticker
-  # 2026-08-13 after both the AM and PM single-shot crons above were observed
-  # running 40min-2h+ late -- GitHub's own docs warn schedule triggers can be
-  # delayed under load, and a single shot per slot has no way to recover from
-  # that. Ticking every 15 min instead bounds worst-case lateness to ~15min:
-  # each tick checks whether the current IST slot is due and unpublished, and
-  # is a near-instant no-op otherwise (checkout + one python check, no render).
+  # Scheduled safety net (added 2026-08-05, catch-up ticker since 2026-08-13).
+  # HISTORY: v1 was */15 all day (96 runs/day). v2 (2026-08-13 22:33, pushed by
+  # the queue-topup automation) widened this to */5 across two ~5h windows plus
+  # an all-day */30 backstop -- up to 168 runs/day. That is what burned through
+  # $0.34/day gross Actions usage (still $0 billed -- this repo is public, so
+  # Actions minutes are free -- but 114 runs by day 15 of the month for ~30
+  # actual publish events is a real misconfiguration, not just a cost scare).
+  # v3 (2026-08-15): narrow, tight windows around the ONLY two times a post is
+  # ever due, at a still-generous */15. The python find-step below already
+  # recovers a slot missed entirely by one window on the NEXT day's window
+  # (it checks yesterday's unpublished slots too), so no all-day backstop is
+  # needed. 20 runs/day total instead of up to 168. (Times are UTC; IST =
+  # UTC+5:30.)
   schedule:
-    # Tightened 2026-08-13. A single */15 ticker bounded lateness to ~15min
-    # everywhere, including the 20 hours a day when nothing is ever due. Tick
-    # every 5 min inside the windows that actually contain a slot, and keep a
-    # cheap half-hourly sweep outside them as the backstop. (Times are UTC;
-    # IST = UTC+5:30.)
-    - cron: "*/5 1-6 * * *"     # IST 06:30-12:29 -> AM slots (7:30 / Sat 10:00 / Sun 10:30)
-    - cron: "*/5 13-16 * * *"   # IST 18:30-22:29 -> PM slot (19:30)
-    - cron: "*/30 * * * *"      # backstop sweep + cross-midnight recovery
+    - cron: "*/15 2-4 * * *"    # IST 07:30-10:29 -> AM slots (7:30 / Sat 10:00 / Sun 10:30)
+    - cron: "*/15 13-14 * * *"  # IST 18:30-20:29 -> PM slot (19:30)
   workflow_dispatch:
     inputs:
       post_dir:
