@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-19-am",
+  "format": "reel",
+  "attempts": 1,
+  "status": "failed",
+  "error": "reel container ERROR: {'status_code': 'ERROR', 'status': 'ERROR', 'id': '18087836912416231'}",
+  "facebook": {
+    "status": "published",
+    "post_id": "3446127085568357"
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "TRM1aHcd7XQ",
+    "permalink": "https://youtube.com/shorts/TRM1aHcd7XQ",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
