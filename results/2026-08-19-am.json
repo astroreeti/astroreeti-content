@@ -1,9 +1,10 @@
 {
   "date": "2026-08-19-am",
   "format": "reel",
-  "attempts": 1,
-  "status": "failed",
-  "error": "reel container ERROR: {'status_code': 'ERROR', 'status': 'ERROR', 'id': '18087836912416231'}",
+  "attempts": 2,
+  "status": "published",
+  "media_id": "17902890810513709",
+  "permalink": "https://www.instagram.com/reel/DcNPIFhAGKz/",
   "facebook": {
     "status": "published",
     "post_id": "3446127085568357"
