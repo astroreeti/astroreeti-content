@@ -1,0 +1,59 @@
+{
+ "topic": "Dashamsha D10 done properly — lagna, 10th lord and Amatyakaraka together (DD deep-dive reel, English, 2026-09-01 pm)",
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "Deep dive &nbsp;•&nbsp; <span class=\"dev\">Tuesday</span>",
+   "h1": "Dashamsha<br><em>D10</em>",
+   "sub": "The career chart. Almost always read <b>backwards</b>.",
+   "swipe": "Keep watching →"
+  },
+  {
+   "eyebrow": "The term",
+   "h2": "What a <em>varga</em><br>actually is",
+   "body": "A <b>varga</b> is a divisional chart: you cut each sign into equal parts and map every part onto a full sign, producing a second chart from the same birth data.<br><br>The <b>Dashamsha (D10)</b> cuts each 30° sign into <b>ten parts of 3°</b> each. It is the varga classical texts assign to <b>karma</b> — profession, position, and public standing."
+  },
+  {
+   "eyebrow": "The computation",
+   "h2": "How the D10<br>is <em>built</em>",
+   "body": "Take a planet's degree within its sign and divide by 3 to get which of the ten parts it falls in.<br><br>From an <b>odd sign</b>, count the parts from that same sign onward. From an <b>even sign</b>, count from the <b>9th</b> from it. That single odd/even rule is where most hand-drawn D10s go wrong — and a wrong D10 reads convincingly, which is worse than an obviously broken one."
+  },
+  {
+   "eyebrow": "Rule one",
+   "h2": "D1 <em>first</em>,<br>always",
+   "body": "A varga has no independent life. It <b>magnifies</b> what the birth chart already says — it does not overrule it.<br><br>If the 10th house in D1 is weak, a glowing D10 does not cancel that. It describes the texture and the quality of what the D1 promises. Reading D10 before D1 is the single commonest error in career readings."
+  },
+  {
+   "eyebrow": "The three anchors",
+   "h2": "Read these<br><em>together</em>",
+   "points": [
+    "<b>D10 lagna and its lord</b> — the working self, how you show up professionally",
+    "<b>The 10th lord of D1</b>, then where it sits in the D10",
+    "<b>Amatyakaraka</b> — the Jaimini chara karaka at the second-highest degree, the career significator",
+    "Agreement across all three is the signal. One of the three alone is noise."
+   ]
+  },
+  {
+   "eyebrow": "Then refine",
+   "h2": "The checks that<br><em>sharpen</em> it",
+   "points": [
+    "<b>10th from the D10 Moon</b> — the same question asked from the mind",
+    "<b>Dignity</b> in the D10 — exaltation and debilitation still apply inside a varga",
+    "<b>Ashtakavarga</b> — the benefic-point scoring system; count bindus on the D1 10th",
+    "<b>Dasha</b> — the planetary period system; a D10 with no running dasha gives no timing"
+   ]
+  },
+  {
+   "eyebrow": "The honest limit",
+   "h2": "What a D10<br><em>will not</em> do",
+   "body": "It will not name a job title. Classical texts describe <b>karma</b> in categories — teaching, trade, service, craft, authority — not in modern job descriptions, and stretching them into one is invention, not tradition.<br><br>It also guarantees nothing. A strong D10 describes capacity and a likely season. The work still has to be done."
+  },
+  {
+   "icon": "moon",
+   "eyebrow": "One deep technique, daily",
+   "h2": "Check your D10<br><em>lagna</em> lord",
+   "body": "Then check your D1 10th lord. Do the two agree?<br><br>Comment what you find, and save this reel — the odd/even rule on slide 3 is the part people get wrong.",
+   "handle": "Follow @astroreeti ✦"
+  }
+ ]
+}

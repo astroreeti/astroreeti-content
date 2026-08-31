@@ -1,0 +1,54 @@
+{
+ "topic": "Bhava bala — how house strength is actually computed (DD deep-dive reel, English, 2026-09-04 pm)",
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "Deep dive &nbsp;•&nbsp; <span class=\"dev\">Friday</span>",
+   "h1": "Bhava<br><em>bala</em>",
+   "sub": "Everyone says a house is \"strong\". The texts actually <b>compute</b> it.",
+   "swipe": "Keep watching →"
+  },
+  {
+   "eyebrow": "The term",
+   "h2": "Strength as a<br><em>number</em>",
+   "body": "<b>Bala</b> means strength. <b>Bhava bala</b> is the classical scheme for scoring a <b>house</b> — not a planet — as a quantity you can actually compare against another house.<br><br>It sits beside <b>Shadbala</b>, the six-fold strength system for planets. Same instinct, different subject: Shadbala scores the actors, Bhava bala scores the stages they act on."
+  },
+  {
+   "eyebrow": "Component 1",
+   "h2": "Bhavadhipati<br><em>bala</em>",
+   "body": "The strength of the <b>house lord</b>, carried over from that planet's own Shadbala score.<br><br>This is the largest single input, and it is the one intuition already reaches for — a house whose lord is strong is a house that can deliver. The scheme simply makes it numeric instead of impressionistic."
+  },
+  {
+   "eyebrow": "Component 2",
+   "h2": "Bhava digbala<br>— <em>direction</em>",
+   "body": "Each house gains strength from a <b>direction</b>, in the same way planets do in their own digbala.<br><br>The classical assignment ties houses to the cardinal directions, and a house is credited according to how well its position agrees with the direction it favours. It is a small contributor, but it is part of the stated computation and gets dropped constantly."
+  },
+  {
+   "eyebrow": "Component 3",
+   "h2": "Bhava drishti<br><em>bala</em>",
+   "body": "The net effect of <b>aspects</b> falling on the house. Benefic aspects add, malefic aspects subtract, and the result can be negative.<br><br>This is why a house with a strong lord can still underperform: a well-scored lord and a heavily afflicted house are two different measurements, and Bhava bala keeps them separate on purpose."
+  },
+  {
+   "eyebrow": "How to use it",
+   "h2": "What the number<br>is <em>for</em>",
+   "points": [
+    "<b>Comparison</b> — which of two houses is better placed to deliver",
+    "<b>Ranking</b> — the classical texts rank all twelve and read the extremes",
+    "Pair it with <b>Ashtakavarga</b>, the benefic-point system, as a second opinion",
+    "<b>Dasha</b> still supplies the timing — bala says capacity, never when"
+   ]
+  },
+  {
+   "eyebrow": "The honest caveat",
+   "h2": "A number is not<br>a <em>verdict</em>",
+   "body": "Bhava bala is computed differently across texts and software, so two programs can hand you two scores for the same chart. Treat it as a <b>relative</b> measure inside one chart, never as an absolute grade, and never compare a score across two people's charts.<br><br>And a low score is not a sentence. It describes capacity under conditions, which dasha and effort both move."
+  },
+  {
+   "icon": "moon",
+   "eyebrow": "One deep technique, daily",
+   "h2": "Rank your own<br><em>twelve</em>",
+   "body": "Pull the Bhava bala table your software already computes and look only at the top two and bottom two.<br><br>Comment which house came out strongest, and save this reel — the three components are the whole scheme.",
+   "handle": "Follow @astroreeti ✦"
+  }
+ ]
+}

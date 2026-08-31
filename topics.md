@@ -73,3 +73,15 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-08-25 | evening | RL | मुक़दमा और छिपे शत्रु (छूटी कड़ी) — षष्ठ भाव, षष्ठ बनाम सप्तम, बलवान षष्ठ = जीतने की क्षमता, विपरीत राज/हर्ष योग की शर्तें, ज्योतिष क़ानूनी सलाह नहीं (reel) |
 | 2026-08-26 | morning | RL | आमदनी बढ़ती है बचत नहीं — बलवान एकादश + कमज़ोर द्वितीय, राहु का लाभ भाव, अष्टकवर्ग बिंदु, गुरु की दृष्टि, कोई योग धन की गारंटी नहीं (reel) |
 | 2026-08-26 | evening | DD | Dhana yogas (English) — classical list (2/11 exchange, Lakshmi, Chandra-Mangala, Gaja Kesari), kendra-trikona, dignity/placement/dasha, Navamsa, Ashtakavarga, yoga-bhanga, no yoga guarantees wealth (reel) |
+| 2026-08-31 | evening | DD | Darakaraka (English) — Jaimini chara karakas ranked by degree, lowest = DK, 7-vs-8 karaka schemes, nature not identity, read with 7th house/lord, Venus, Navamsa, Upapada Lagna, dasha (reel) |
+| 2026-09-01 | morning | RL | नौकरी बदलने का समय — दशा बनाम गोचर, दशमेश/षष्ठेश/एकादशेश/द्वादशेश की दशा, महादशा-अंतर्दशा का दोहरा इशारा, दशमांश D10, कोई गारंटी नहीं (reel) |
+| 2026-09-01 | evening | DD | Dashamsha D10 (English) — varga defined, 3° parts, odd/even counting rule, D1 first always, three anchors (D10 lagna lord, D1 10th lord, Amatyakaraka), Ashtakavarga, no job titles (reel) |
+| 2026-09-02 | morning | RL | क़र्ज़ और EMI — षष्ठ/द्वितीय/एकादश/द्वादश का हिसाब, बलवान षष्ठ = चुकाने की शक्ति, शनि का अनुशासन, गुरु की दृष्टि, कोई योग धन की गारंटी नहीं (reel) |
+| 2026-09-02 | evening | DD | Shastra vs folklore (English) — three-question test (source/definition/cancellation), Lakshmi yoga defined strictly, what cancels it, the "Kubera yoga" problem, no yoga guarantees wealth (reel) |
+| 2026-09-03 | morning | RL | पाचन, भूख और अग्नि तत्व — अग्नि राशियाँ, सूर्य-मंगल, पंचम-षष्ठ भाव, तेज़ बनाम मंद अग्नि, दिनचर्या का उपयोग, ज्योतिष निदान नहीं — डॉक्टर से मिलें (reel) |
+| 2026-09-03 | evening | DD | Rogesha (English) — 6th lord + dispositor chain, reading order, strong 6th = resistance not illness, Vipareeta Raja yoga, categories never diagnoses, not diagnosis — see a doctor (reel) |
+| 2026-09-04 | morning | TL | इस सप्ताह का गोचर (4–10 सितंबर) — बुध का कन्या प्रवेश 7 सितंबर 1:35 PM (स्वराशि+उच्च), सूर्य सिंह, शुक्र तुला, गुरु कर्क उच्च, शनि मीन वक्री, बुध अस्त, चंद्र वृषभ→सिंह (reel) |
+| 2026-09-04 | evening | DD | Bhava bala (English) — house strength computed, vs Shadbala, bhavadhipati bala, bhava digbala, bhava drishti bala, use for ranking + Ashtakavarga, relative within one chart only (reel) |
+| 2026-09-05 | morning (single Sat post) | DD | मिथक "राहु हमेशा बुरा" — छाया ग्रह और पात बिंदु, समुद्र मंथन परंपरा, फल तय करने वाली चार बातें (भाव/राशि/संगति/दशा), 3-6-11 में बल, कोई ग्रह हमेशा बुरा नहीं (reel) |
+| 2026-09-06 | morning | RL | अमीर कुंडली बनाम स्थिर कुंडली — धन भाव बनाम चतुर्थ/स्थिर राशि/शनि/गुरु/चंद्र, चार तस्वीरें, कोई योग गारंटी नहीं, स्थिरता पर आदत का ज़ोर (reel) |
+| 2026-09-06 | evening | NK | Anuradha (English) — वृश्चिक 3°20′–16°40′, Shani lord, Mitra the Aditya, anu-radha after Vishakha, Mitra-Varuna pairing, lotus + archway, devotion & friendship across distance, shadow side (reel) |
