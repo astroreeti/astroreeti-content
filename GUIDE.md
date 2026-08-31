@@ -6,13 +6,13 @@ evening (see §1b). There are **two runs per day
 on Sun/Mon-Fri, one run on Saturday**, each fired by its own scheduled task,
 timed per the India posting-time cheat sheet:
 
-- **MORNING run (Mon-Fri ~7:30 AM IST, Sun ~10:30 AM IST):** a **Reel**
+- **MORNING run (~7:00 AM IST, every day):** a **Reel**
   (animated video over a real background video) for reach. Posted as a Trial
   Reel by nature of being a new reel.
-- **EVENING run (Sun-Fri ~7:30 PM IST):** a **deep-dive Reel** for saves (more
+- **EVENING run (~7:00 PM IST, Sun-Fri):** a **deep-dive Reel** for saves (more
   slides, more depth — same video-background format as morning, different
   background video).
-- **SATURDAY (single post, ~10:00 AM IST):** Saturday has only one run —
+- **SATURDAY (single post, ~7:00 AM IST):** Saturday has only one run —
   same build as the morning run, no separate evening post that day.
 
 Your scheduled-task prompt tells you which run you are. Read `GROWTH-STRATEGY.md`

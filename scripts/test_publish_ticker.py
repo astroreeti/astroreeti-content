@@ -54,25 +54,25 @@ def scenario(name, now, posts, results, expect, expect_warn=None):
     return ok and warn_ok
 
 R = []
-# Thu 2026-08-13. AM slot 07:30, PM slot 19:30.
-R.append(scenario("before AM slot -> nothing", "2026-08-13T07:00",
+# Thu 2026-08-13. AM slot 07:00, PM slot 19:00 (uniform daily, set 2026-08-31).
+R.append(scenario("before AM slot -> nothing", "2026-08-13T06:45",
     {"2026-08-13-am":None,"2026-08-13-pm":None}, {}, ""))
-R.append(scenario("after AM slot -> publishes AM", "2026-08-13T07:35",
+R.append(scenario("after AM slot -> publishes AM", "2026-08-13T07:05",
     {"2026-08-13-am":None,"2026-08-13-pm":None}, {}, "posts/2026-08-13-am"))
 R.append(scenario("AM done, before PM -> nothing", "2026-08-13T12:00",
     {"2026-08-13-am":None,"2026-08-13-pm":None},
     {"2026-08-13-am":{"status":"published"}}, ""))
-R.append(scenario("after PM slot -> publishes PM", "2026-08-13T19:35",
+R.append(scenario("after PM slot -> publishes PM", "2026-08-13T19:05",
     {"2026-08-13-am":None,"2026-08-13-pm":None},
     {"2026-08-13-am":{"status":"published"}}, "posts/2026-08-13-pm"))
 
 # THE BUG THIS FIXES: a slot missed before midnight used to be unrecoverable.
-R.append(scenario("missed yesterday PM -> recovered next morning", "2026-08-14T06:00",
+R.append(scenario("missed yesterday PM -> recovered next morning", "2026-08-14T06:30",
     {"2026-08-13-pm":None,"2026-08-14-am":None},
     {"2026-08-13-am":{"status":"published"}}, "posts/2026-08-13-pm",
     expect_warn="missed its slot yesterday"))
 R.append(scenario("missed yesterday PM but time-sensitive -> skipped, not stale-published",
-    "2026-08-14T06:00",
+    "2026-08-14T06:30",
     {"2026-08-13-pm":{"time_sensitive":True},"2026-08-14-am":None},
     {"2026-08-13-am":{"status":"published"}}, "",
     expect_warn="time-sensitive"))
@@ -93,13 +93,27 @@ R.append(scenario("failed but under the cap -> retried", "2026-08-13T08:00",
 R.append(scenario("Saturday evening never fires", "2026-08-15T20:00",
     {"2026-08-15-am":None,"2026-08-15-pm":None},
     {"2026-08-15-am":{"status":"published"}}, ""))
-R.append(scenario("Saturday morning at 10:00", "2026-08-15T10:05",
+R.append(scenario("Saturday morning at 07:00", "2026-08-15T07:05",
     {"2026-08-15-am":None}, {}, "posts/2026-08-15-am"))
-# Sunday 2026-08-16: AM 10:30
-R.append(scenario("Sunday AM not due at 09:00", "2026-08-16T09:00",
+# Sunday 2026-08-16: AM 07:00, same as every other day now.
+R.append(scenario("Sunday AM not due at 06:45", "2026-08-16T06:45",
     {"2026-08-16-am":None,"2026-08-16-pm":None}, {}, ""))
-R.append(scenario("Sunday AM due at 10:35", "2026-08-16T10:35",
+R.append(scenario("Sunday AM due at 07:05", "2026-08-16T07:05",
     {"2026-08-16-am":None,"2026-08-16-pm":None}, {}, "posts/2026-08-16-am"))
+# Exact-boundary tests for the 07:00 / 19:00 uniform times (v4, 2026-08-31).
+R.append(scenario("AM fires exactly at 07:00", "2026-08-13T07:00",
+    {"2026-08-13-am":None,"2026-08-13-pm":None}, {}, "posts/2026-08-13-am"))
+R.append(scenario("PM fires exactly at 19:00", "2026-08-13T19:00",
+    {"2026-08-13-am":None,"2026-08-13-pm":None},
+    {"2026-08-13-am":{"status":"published"}}, "posts/2026-08-13-pm"))
+R.append(scenario("PM not due at 18:45", "2026-08-13T18:45",
+    {"2026-08-13-am":None,"2026-08-13-pm":None},
+    {"2026-08-13-am":{"status":"published"}}, ""))
+# Sunday PM was 19:30 before v4; pin it at 19:00 now.
+R.append(scenario("Sunday PM fires at 19:00", "2026-08-16T19:00",
+    {"2026-08-16-am":None,"2026-08-16-pm":None},
+    {"2026-08-16-am":{"status":"published"}}, "posts/2026-08-16-pm"))
+
 # queue alarms
 R.append(scenario("empty queue warns", "2026-08-13T08:00",
     {"2026-08-13-pm":None}, {}, "", expect_warn="Queue gap"))

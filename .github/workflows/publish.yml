@@ -16,9 +16,12 @@ on:
   # (it checks yesterday's unpublished slots too), so no all-day backstop is
   # needed. 20 runs/day total instead of up to 168. (Times are UTC; IST =
   # UTC+5:30.)
+  # v4 (2026-08-31, requested by the account owner in the main session): slot
+  # times unified to 07:00 and 19:00 IST every day, so followers see posts at
+  # the same two times daily. Windows re-centred on those targets; 16 runs/day.
   schedule:
-    - cron: "*/15 2-4 * * *"    # IST 07:30-10:29 -> AM slots (7:30 / Sat 10:00 / Sun 10:30)
-    - cron: "*/15 13-14 * * *"  # IST 18:30-20:29 -> PM slot (19:30)
+    - cron: "*/15 1-2 * * *"    # IST 06:30-08:15 -> AM slot (07:00 every day)
+    - cron: "*/15 13-14 * * *"  # IST 18:30-20:15 -> PM slot (19:00 every day)
   workflow_dispatch:
     inputs:
       post_dir:
@@ -84,11 +87,14 @@ jobs:
 
           def slots_for(d):
               dow = d.isoweekday()  # 1=Mon .. 7=Sun
+              # Uniform daily times, set 2026-08-31 at the account owner's
+              # request: 07:00 IST morning, 19:00 IST evening, every day.
+              # Sunday no longer has its own later slots; Saturday is still
+              # morning-only because no Saturday evening content is ever
+              # authored (calendar.json has no Saturday evening entries).
               if dow == 6:      # Saturday: morning slot only
-                  return [("am", 10 * 60)]
-              if dow == 7:      # Sunday
-                  return [("am", 10 * 60 + 30), ("pm", 19 * 60 + 30)]
-              return [("am", 7 * 60 + 30), ("pm", 19 * 60 + 30)]
+                  return [("am", 7 * 60)]
+              return [("am", 7 * 60), ("pm", 19 * 60)]
 
           def result(date_slot):
               path = f"results/{date_slot}.json"
