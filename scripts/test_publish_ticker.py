@@ -28,7 +28,39 @@ def extract_chooser():
     return path
 
 
+def extract_guard():
+    """Extract the push-time 'is this slot due yet' guard from publish.yml.
+
+    Separate block from the ticker chooser, and separately fallible: on
+    2026-08-31 the date-only version of it let a same-day post published at
+    11:31 IST go out immediately instead of waiting for its 19:00 slot.
+    """
+    y = WORKFLOW.read_text()
+    marker = "<<'PYGUARD'"
+    block = y[y.index(marker) + len(marker):y.index("          PYGUARD")]
+    code = textwrap.dedent(block).replace(
+        "now = datetime.datetime.now(IST)",
+        "import os as _os; now = datetime.datetime.fromisoformat("
+        "_os.environ['FAKE_NOW']).replace(tzinfo=IST)")
+    path = TMP / "guard.py"
+    path.write_text(code)
+    return path
+
+
 CHOOSER = extract_chooser()
+GUARD = extract_guard()
+
+
+def guard_case(name, now, folder, expect):
+    env = dict(os.environ, FAKE_NOW=now)
+    p = subprocess.run([sys.executable, str(GUARD), f"posts/{folder}"],
+                       capture_output=True, text=True, env=env)
+    got = p.stdout.strip()
+    ok = got == expect
+    print(("PASS " if ok else "FAIL ") + name)
+    if not ok:
+        print(f"   expected {expect!r} got {got!r}   stderr: {p.stderr.strip()}")
+    return ok
 
 def scenario(name, now, posts, results, expect, expect_warn=None):
     root = TMP / "work"; shutil.rmtree(root, ignore_errors=True)
@@ -121,6 +153,22 @@ R.append(scenario("shallow queue warns", "2026-08-13T21:00",
     {"2026-08-13-am":None,"2026-08-13-pm":None,"2026-08-14-am":None,"2026-08-14-pm":None},
     {"2026-08-13-am":{"status":"published"},"2026-08-13-pm":{"status":"published"}}, "",
     expect_warn="queue is only 1 day(s) deep"))
+
+# --- push-time guard: a push must never publish a post off its slot ---
+# Mon 2026-08-31. AM slot 07:00, PM slot 19:00.
+R.append(guard_case("push: future-dated slot deferred",
+    "2026-08-31T11:31", "2026-09-01-am", "yes"))
+R.append(guard_case("push: today's AM before 07:00 deferred",
+    "2026-08-31T06:30", "2026-08-31-am", "yes"))
+R.append(guard_case("push: today's AM after 07:00 publishes",
+    "2026-08-31T07:30", "2026-08-31-am", "no"))
+# THE 2026-08-31 BUG: this returned "no" and published at 11:31 instead of 19:00.
+R.append(guard_case("push: today's PM before 19:00 deferred",
+    "2026-08-31T11:31", "2026-08-31-pm", "yes"))
+R.append(guard_case("push: today's PM after 19:00 publishes",
+    "2026-08-31T19:30", "2026-08-31-pm", "no"))
+R.append(guard_case("push: yesterday's slot still publishes",
+    "2026-08-31T11:31", "2026-08-30-pm", "no"))
 
 shutil.rmtree(TMP, ignore_errors=True)
 print(f"\n{sum(R)}/{len(R)} passed")
