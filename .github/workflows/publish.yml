@@ -19,9 +19,23 @@ on:
   # v4 (2026-08-31, requested by the account owner in the main session): slot
   # times unified to 07:00 and 19:00 IST every day, so followers see posts at
   # the same two times daily. Windows re-centred on those targets; 16 runs/day.
+  # v5 (2026-09-01): back to an all-day */15 ticker. NOT a relapse of the v2
+  # mistake -- v2 was */5 across two ~5h windows PLUS an all-day */30 backstop
+  # (up to 168 runs/day from three overlapping crons). This is one plain */15,
+  # 96 runs/day, and on a public repo Actions minutes are free ($0 billed).
+  # WHY: measured GitHub dispatch for this repo, from the Actions run list.
+  # Through 2026-08-26 the cron fired ~6x/day, every run inside its window.
+  # From 2026-08-27 it collapsed to ~2x/day at arbitrary hours (12:03, 22:53,
+  # 08:20, 17:02, 07:33, 17:16, 19:27 UTC) and on 2026-09-01 the AM window got
+  # no dispatch at all, so the 07:00 IST reel never went out. That degradation
+  # tracks the 5-day commit blackout (2026-08-26 -> 2026-08-31) while the queue
+  # was dry: GitHub deprioritises schedules in repos that look inactive.
+  # Narrow windows cannot survive dispatch that arrives hours off-cron, so the
+  # ticker now gets a chance every 15 minutes around the clock. It still only
+  # publishes a slot at or after that slot's own target time, so this widens
+  # the net without moving when posts actually go out.
   schedule:
-    - cron: "*/15 1-2 * * *"    # IST 06:30-08:15 -> AM slot (07:00 every day)
-    - cron: "*/15 13-14 * * *"  # IST 18:30-20:15 -> PM slot (19:00 every day)
+    - cron: "*/15 * * * *"      # all day; ticker publishes only at/after 07:00 & 19:00 IST
   workflow_dispatch:
     inputs:
       post_dir:
