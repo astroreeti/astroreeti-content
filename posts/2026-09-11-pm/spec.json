@@ -1,0 +1,56 @@
+{
+ "topic": "Shadbala without the maths phobia — what each of the six strengths means (DD craft deep-dive reel, English, 2026-09-11 pm)",
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "Technique deep-dive &nbsp;•&nbsp; <span class=\"dev\">Friday</span>",
+   "h1": "Shad<br><em>bala</em>",
+   "sub": "Six strengths, no arithmetic — what each one is actually <b>measuring</b>",
+   "swipe": "Keep watching →"
+  },
+  {
+   "eyebrow": "The premise",
+   "h2": "Six kinds of<br><em>strong</em>",
+   "body": "<b>Shadbala</b> means <i>six strengths</i>. Parashara's insight is that \"strong planet\" is not one question — a planet can be strong in its placement and weak in its timing, and calling that a single number hides more than it reveals.<br><br>So six separate quantities are computed and then added. The addition is the part people fear. The six ideas underneath it are not hard at all."
+  },
+  {
+   "eyebrow": "One and two",
+   "h2": "<em>Sthana</em> and<br><em>Dig</em> bala",
+   "body": "<b>Sthana bala</b> — positional strength. Dignity by sign: exalted, own sign, friendly, debilitated; plus its standing across the vargas (divisional charts). This is the one most people already read by eye.<br><br><b>Dig bala</b> — directional strength. Each planet has one house where it is at home in the sky: Jupiter and Mercury in the 1st, the Sun and Mars in the 10th, Saturn in the 7th, the Moon and Venus in the 4th."
+  },
+  {
+   "eyebrow": "Three and four",
+   "h2": "<em>Kala</em> and<br><em>Cheshta</em> bala",
+   "body": "<b>Kala bala</b> — temporal strength. Day or night birth, the paksha (lunar fortnight), the year, month, hour and weekday lords, and the planet's position relative to the ayana. It is the bulkiest of the six.<br><br><b>Cheshta bala</b> — motional strength. How the planet is <b>moving</b>: retrograde motion scores high here, fast direct motion low. This is why a retrograde planet is not simply weak, and why saying so is one of the commonest errors online."
+  },
+  {
+   "eyebrow": "Five and six",
+   "h2": "<em>Naisargika</em><br>and <em>Drik</em> bala",
+   "body": "<b>Naisargika bala</b> — natural strength. A fixed ranking by apparent brightness, identical in every chart: Sun, Moon, Venus, Jupiter, Mercury, Mars, Saturn, in that order. Nothing to compute, it is a constant.<br><br><b>Drik bala</b> — aspectual strength. The net effect of every aspect falling on the planet: benefic aspects add, malefic aspects subtract. A planet can be beautifully placed and still be dragged down here."
+  },
+  {
+   "eyebrow": "The units",
+   "h2": "Rupas and<br><em>virupas</em>",
+   "body": "The results come in <b>virupas</b>, and <b>60 virupas = 1 rupa</b>. Classical texts give each planet a <b>minimum required strength</b> — a threshold it should clear, different for each planet — and the useful reading is how far above or below its own threshold a planet lands.<br><br>That framing matters. The question is never \"who scored highest\", it is \"which planets met their own bar\"."
+  },
+  {
+   "eyebrow": "Using it honestly",
+   "h2": "What it does<br><em>not</em> tell you",
+   "points": [
+    "Strength is <b>not</b> benevolence — a strong malefic is strongly itself",
+    "The numbers are <b>relative within one chart</b>, never across charts",
+    "Different software uses different formulae; <b>totals will disagree</b>",
+    "It says nothing about <b>timing</b> — that is dasha's job, always",
+    "<b>Ashtakavarga</b> is a separate system measuring a different thing",
+    "And <b>bhava bala</b> measures houses, not planets — do not mix them up"
+   ]
+  },
+  {
+   "icon": "moon",
+   "eyebrow": "Friday — technique deep-dive",
+   "h2": "Which of the six<br>was <em>new</em>?",
+   "body": "Comment it — for most people it is Cheshta bala, and finding out that retrogression scores high there tends to rearrange a few assumptions.<br><br>Save this as a reference sheet, and follow along.",
+   "handle": "Follow @astroreeti ✦"
+  }
+ ]
+}

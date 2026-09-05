@@ -1,0 +1,50 @@
+{
+ "topic": "Shashtamsa D6 — the health varga and how to use it cautiously (DD deep-dive reel, English, 2026-09-10 pm, guard: health-disclaimer)",
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "Medical Jyotish deep-dive &nbsp;•&nbsp; <span class=\"dev\">Thursday</span>",
+   "h1": "Shash<br><em>tamsa</em>",
+   "sub": "The <b>D6</b> — the divisional chart traditionally read for health, and its limits",
+   "swipe": "Keep watching →"
+  },
+  {
+   "eyebrow": "Before anything else",
+   "h2": "Not diagnosis,<br>not <em>treatment</em>",
+   "body": "<b>Astrology is not diagnosis and it is not treatment. If something is wrong, see a doctor.</b> No chart, no varga and no dasha can identify an illness, and nobody should delay medical care because of one.<br><br>What follows is a description of a classical technique and where it is legitimately weak. Read it as method, not as medicine."
+  },
+  {
+   "eyebrow": "The definition",
+   "h2": "What a <em>varga</em><br>is doing",
+   "body": "A <b>varga</b> (divisional chart) splits each sign into equal parts and maps each part onto a full zodiac, so a single degree of the birth chart opens into a whole second chart.<br><br>The <b>Shashtamsa</b> is the sixth division — each 30° sign cut into <b>six parts of 5°</b> each. It is abbreviated <b>D6</b>, and Parashara assigns it to <i>arogya</i>: health, resistance, and the sixth-house matters generally."
+  },
+  {
+   "eyebrow": "The computation",
+   "h2": "How D6 is<br><em>cast</em>",
+   "points": [
+    "Take a planet's position and find which <b>5° part</b> of its sign it occupies",
+    "For <b>odd signs</b>, the count most texts give begins from <b>Mesha</b>",
+    "For <b>even signs</b>, that count begins from <b>Tula</b>",
+    "The sign you land on is that planet's <b>D6 position</b>",
+    "Texts do vary on this rule — <b>know which convention your software uses</b>"
+   ]
+  },
+  {
+   "eyebrow": "Reading order",
+   "h2": "D1 <em>first</em>,<br>always",
+   "body": "The D6 is an amplifier, never a starting point. The order that keeps you honest:<br><br><b>1.</b> The <b>6th house</b> of the birth chart and its lord. <b>2.</b> The <b>rogesha</b> (6th lord) chain and its dispositor. <b>3.</b> The <b>Lagna and Lagna lord</b> — vitality lives there. <b>4.</b> Only then the D6, to see whether it <b>echoes</b> what D1 already said. If D6 says something D1 does not, D1 wins."
+  },
+  {
+   "eyebrow": "Being honest about it",
+   "h2": "Where D6 is<br><em>weak</em>",
+   "body": "Not every varga is equally attested. The D1, D9 and D10 carry centuries of continuous use; the <b>D6 is thinly documented</b> by comparison, and classical texts give it far less commentary than its reputation online suggests.<br><br>A 5° division is also unforgiving of birth-time error — a few minutes of uncertainty can move a planet a whole sign in D6. That is a real limitation, not a technicality."
+  },
+  {
+   "icon": "moon",
+   "eyebrow": "Thursday — medical Jyotish",
+   "h2": "Have you ever seen<br>a <em>D6</em> used?",
+   "body": "Comment — most consultations never open it, and the ones that do rarely mention the birth-time sensitivity.<br><br>Saying it once more, because it matters: astrology is not diagnosis or treatment. See a doctor. Save this and follow along.",
+   "handle": "Follow @astroreeti ✦"
+  }
+ ]
+}
