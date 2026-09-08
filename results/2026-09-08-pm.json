@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-08-pm",
+  "format": "reel",
+  "attempts": 1,
+  "status": "published",
+  "media_id": "17884997457621536",
+  "permalink": "https://www.instagram.com/reel/DdB2cFkiCj3/",
+  "facebook": {
+    "status": "published",
+    "post_id": "1452577353357811"
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "IwiDy60HHBI",
+    "permalink": "https://youtube.com/shorts/IwiDy60HHBI",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
