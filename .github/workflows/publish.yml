@@ -36,6 +36,11 @@ on:
   # the net without moving when posts actually go out.
   schedule:
     - cron: "*/15 * * * *"      # all day; ticker publishes only at/after 07:00 & 19:00 IST
+  # v6 (2026-09-17, requested by the account owner in the main session):
+  # evening slot moved from 19:00 to 16:00 IST. Cron cadence (*/15 all day)
+  # is unchanged -- the ticker still only publishes a slot at/after its own
+  # target time, so this only moves WHEN posts go out, not how often the
+  # workflow wakes up.
   workflow_dispatch:
     inputs:
       post_dir:
@@ -84,7 +89,7 @@ jobs:
               print("no")          # unrecognised folder name: publish as before
               sys.exit(0)
           d = datetime.date.fromisoformat(m.group(1))
-          target = 7 * 60 if m.group(2) == "am" else 19 * 60
+          target = 7 * 60 if m.group(2) == "am" else 16 * 60
           if d > now.date():
               print("yes")
           elif d == now.date() and (now.hour * 60 + now.minute) < target:
@@ -123,14 +128,16 @@ jobs:
 
           def slots_for(d):
               dow = d.isoweekday()  # 1=Mon .. 7=Sun
-              # Uniform daily times, set 2026-08-31 at the account owner's
-              # request: 07:00 IST morning, 19:00 IST evening, every day.
+              # Uniform daily times: 07:00 IST morning, every day. Evening moved
+              # from 19:00 to 16:00 IST on 2026-09-17 at the account owner's
+              # explicit request (main session, reviewed before push -- not an
+              # unattended queue-topup change).
               # Sunday no longer has its own later slots; Saturday is still
               # morning-only because no Saturday evening content is ever
               # authored (calendar.json has no Saturday evening entries).
               if dow == 6:      # Saturday: morning slot only
                   return [("am", 7 * 60)]
-              return [("am", 7 * 60), ("pm", 19 * 60)]
+              return [("am", 7 * 60), ("pm", 16 * 60)]
 
           def result(date_slot):
               path = f"results/{date_slot}.json"

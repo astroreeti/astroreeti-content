@@ -77,12 +77,16 @@ for e in days:
             warnings.append(f"{e['date']} {run}: '{head}' looks already covered in topics.md")
 
 
-# 6. Language policy: morning Hindi, evening English from the effective date.
+# 6. Language policy: morning Hindi / evening English between 'effective' and
+#    'weekday_effective'; a per-weekday rule (Mon/Tue Hindi both slots,
+#    Wed-Sun English both slots) from 'weekday_effective' onward.
 policy = cal.get("language_policy")
 if not policy:
     problems.append("calendar.json has no language_policy block")
 else:
     eff = policy["effective"]
+    weekday_eff = policy.get("weekday_effective")
+    weekday_rule = policy.get("weekday_rule", {})
     for e in days:
         # Entries written before the policy existed carry no 'lang' field and
         # were all Hindi by the old blanket rule -- don't retro-fail history.
@@ -93,6 +97,25 @@ else:
                     problems.append(f"{e['date']} {run}: lang="
                                     f"{item['lang']!r} but everything before "
                                     f"{eff} is {policy['before_effective']!r}")
+            continue
+        if weekday_eff and e["date"] >= weekday_eff:
+            dow = str(datetime.date.fromisoformat(e["date"]).isoweekday())
+            want = weekday_rule.get(dow)
+            if want is None:
+                problems.append(f"{e['date']}: weekday_rule has no entry for "
+                                f"isoweekday {dow}")
+                continue
+            for run in ("morning", "evening"):
+                item = e.get(run)
+                if not item:
+                    continue
+                got = item.get("lang")
+                if got is None:
+                    problems.append(f"{e['date']} {run}: no 'lang' field "
+                                    f"(expected '{want}')")
+                elif got != want:
+                    problems.append(f"{e['date']} {run}: lang='{got}' but "
+                                    f"weekday policy says '{want}' for that date")
             continue
         for run, want in (("morning", policy["morning"]),
                           ("evening", policy["evening"])):

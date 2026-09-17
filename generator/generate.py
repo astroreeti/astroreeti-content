@@ -26,6 +26,24 @@ STAR = """<svg class="icon-top" width="90" height="90" viewBox="0 0 90 90" fill=
 
 ICONS = {"moon": MOON, "star": STAR, "": ""}
 
+PLAY_TRIANGLE = """<svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+  <circle cx="17" cy="17" r="16" stroke="#E9C165" stroke-width="1.6"/>
+  <path d="M13 9.5 L25 17 L13 24.5 Z" fill="#E9C165"/>
+</svg>"""
+
+def qr_cta_html():
+    """CTA block for the last slide of a carousel/reel: Play Store badge +
+    scannable QR. Uses an absolute file:// path to generator/assets so this
+    renders correctly regardless of which post directory the HTML ends up
+    written into (both the carousel and reel-video pipelines dump slide
+    HTML into per-post temp files, not next to generator/assets)."""
+    qr_path = (BASE / "assets" / "qr_playstore.png").resolve()
+    return f'''<div class="qr-block">
+  <div class="playstore-badge">{PLAY_TRIANGLE}<span>GET IT ON<br><b>Google Play</b></span></div>
+  <img class="qr-code" src="file://{qr_path}">
+  <div class="qr-caption">Scan to install &middot; astroreeti</div>
+</div>'''
+
 def slide_html(s):
     parts = []
     if s.get("icon"):
@@ -50,6 +68,8 @@ def slide_html(s):
         parts.append(f'<div class="cta-handle">{s["handle"]}</div>')
     if s.get("swipe"):
         parts.append(f'<div class="swipe">{s["swipe"]}</div>')
+    if s.get("qr"):
+        parts.append(qr_cta_html())
     return "\n".join(parts)
 
 def main(spec_path, outdir):

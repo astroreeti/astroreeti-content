@@ -86,7 +86,7 @@ def scenario(name, now, posts, results, expect, expect_warn=None):
     return ok and warn_ok
 
 R = []
-# Thu 2026-08-13. AM slot 07:00, PM slot 19:00 (uniform daily, set 2026-08-31).
+# Thu 2026-08-13. AM slot 07:00, PM slot 16:00 (evening moved 2026-09-17).
 R.append(scenario("before AM slot -> nothing", "2026-08-13T06:45",
     {"2026-08-13-am":None,"2026-08-13-pm":None}, {}, ""))
 R.append(scenario("after AM slot -> publishes AM", "2026-08-13T07:05",
@@ -94,7 +94,7 @@ R.append(scenario("after AM slot -> publishes AM", "2026-08-13T07:05",
 R.append(scenario("AM done, before PM -> nothing", "2026-08-13T12:00",
     {"2026-08-13-am":None,"2026-08-13-pm":None},
     {"2026-08-13-am":{"status":"published"}}, ""))
-R.append(scenario("after PM slot -> publishes PM", "2026-08-13T19:05",
+R.append(scenario("after PM slot -> publishes PM", "2026-08-13T16:05",
     {"2026-08-13-am":None,"2026-08-13-pm":None},
     {"2026-08-13-am":{"status":"published"}}, "posts/2026-08-13-pm"))
 
@@ -132,17 +132,17 @@ R.append(scenario("Sunday AM not due at 06:45", "2026-08-16T06:45",
     {"2026-08-16-am":None,"2026-08-16-pm":None}, {}, ""))
 R.append(scenario("Sunday AM due at 07:05", "2026-08-16T07:05",
     {"2026-08-16-am":None,"2026-08-16-pm":None}, {}, "posts/2026-08-16-am"))
-# Exact-boundary tests for the 07:00 / 19:00 uniform times (v4, 2026-08-31).
+# Exact-boundary tests for the 07:00 / 16:00 uniform times (v6, 2026-09-17).
 R.append(scenario("AM fires exactly at 07:00", "2026-08-13T07:00",
     {"2026-08-13-am":None,"2026-08-13-pm":None}, {}, "posts/2026-08-13-am"))
-R.append(scenario("PM fires exactly at 19:00", "2026-08-13T19:00",
+R.append(scenario("PM fires exactly at 16:00", "2026-08-13T16:00",
     {"2026-08-13-am":None,"2026-08-13-pm":None},
     {"2026-08-13-am":{"status":"published"}}, "posts/2026-08-13-pm"))
-R.append(scenario("PM not due at 18:45", "2026-08-13T18:45",
+R.append(scenario("PM not due at 15:45", "2026-08-13T15:45",
     {"2026-08-13-am":None,"2026-08-13-pm":None},
     {"2026-08-13-am":{"status":"published"}}, ""))
-# Sunday PM was 19:30 before v4; pin it at 19:00 now.
-R.append(scenario("Sunday PM fires at 19:00", "2026-08-16T19:00",
+# Sunday PM: pin it at 16:00 (v6, 2026-09-17).
+R.append(scenario("Sunday PM fires at 16:00", "2026-08-16T16:00",
     {"2026-08-16-am":None,"2026-08-16-pm":None},
     {"2026-08-16-am":{"status":"published"}}, "posts/2026-08-16-pm"))
 
@@ -155,7 +155,7 @@ R.append(scenario("shallow queue warns", "2026-08-13T21:00",
     expect_warn="queue is only 1 day(s) deep"))
 
 # --- push-time guard: a push must never publish a post off its slot ---
-# Mon 2026-08-31. AM slot 07:00, PM slot 19:00.
+# Mon 2026-08-31. AM slot 07:00, PM slot 16:00.
 R.append(guard_case("push: future-dated slot deferred",
     "2026-08-31T11:31", "2026-09-01-am", "yes"))
 R.append(guard_case("push: today's AM before 07:00 deferred",
@@ -163,10 +163,10 @@ R.append(guard_case("push: today's AM before 07:00 deferred",
 R.append(guard_case("push: today's AM after 07:00 publishes",
     "2026-08-31T07:30", "2026-08-31-am", "no"))
 # THE 2026-08-31 BUG: this returned "no" and published at 11:31 instead of 19:00.
-R.append(guard_case("push: today's PM before 19:00 deferred",
+R.append(guard_case("push: today's PM before 16:00 deferred",
     "2026-08-31T11:31", "2026-08-31-pm", "yes"))
-R.append(guard_case("push: today's PM after 19:00 publishes",
-    "2026-08-31T19:30", "2026-08-31-pm", "no"))
+R.append(guard_case("push: today's PM after 16:00 publishes",
+    "2026-08-31T16:30", "2026-08-31-pm", "no"))
 R.append(guard_case("push: yesterday's slot still publishes",
     "2026-08-31T11:31", "2026-08-30-pm", "no"))
 
