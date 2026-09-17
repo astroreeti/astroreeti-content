@@ -1,0 +1,51 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "MEDICAL JYOTISH",
+   "h1": "The Zodiac Is a <em>Body</em>",
+   "sub": "Kalapurusha — the cosmic man classical Jyotish maps onto all twelve signs."
+  },
+  {
+   "h2": "Aries to Virgo: head to gut",
+   "points": [
+    "Aries — head & brain",
+    "Taurus — face, throat, neck",
+    "Gemini — arms, shoulders, lungs",
+    "Cancer — chest, stomach",
+    "Leo — heart, spine",
+    "Virgo — abdomen, digestive tract"
+   ]
+  },
+  {
+   "h2": "Libra to Pisces: the lower half",
+   "points": [
+    "Libra — kidneys, lower back",
+    "Scorpio — reproductive organs",
+    "Sagittarius — hips, thighs",
+    "Capricorn — knees, joints",
+    "Aquarius — calves, circulation",
+    "Pisces — feet, lymphatic system"
+   ]
+  },
+  {
+   "h2": "It's not your Sun sign that matters",
+   "body": "Look at which planet is afflicted and which house it rules. <b>That</b> planet's Kalapurusha zone is the one under strain — not simply your Moon or Lagna sign."
+  },
+  {
+   "h2": "Where the map has limits",
+   "body": "Brihat Parashara Hora Shastra treats this as <b>one</b> diagnostic layer among several — alongside dasha, transit and Ayurvedic dosha — never definitive alone. Two charts with the same affliction can still manifest completely differently."
+  },
+  {
+   "icon": "star",
+   "body": "<b>Jyotish is not diagnosis or treatment.</b> It describes tendency, not certainty — for any health concern, please see a qualified doctor."
+  },
+  {
+   "icon": "moon",
+   "h2": "Know your zone",
+   "body": "Comment your Moon sign and I'll tell you its Kalapurusha zone.",
+   "handle": "@astroreeti",
+   "swipe": "FOLLOW FOR MORE MEDICAL JYOTISH"
+  }
+ ]
+}
