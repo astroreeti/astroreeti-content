@@ -1,0 +1,38 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "WHY YOUR APP CONTRADICTS ITSELF",
+   "h1": "Why Do Astrology Apps Give You <em>Generic</em> Advice?",
+   "sub": "The honest answer is a design flaw, not a mystery."
+  },
+  {
+   "h2": "Most engines check one placement",
+   "body": "A rule-based app reads your Sun sign or Moon sign in isolation and prints a matching template. That's the entire computation."
+  },
+  {
+   "h2": "Real charts don't work that way",
+   "body": "A strong 10th house can sit right next to an afflicted D-10 (career divisional chart) — two signals pointing in different directions, both real."
+  },
+  {
+   "h2": "What synthesis actually means",
+   "points": [
+    "Dasha: which period is active",
+    "Gochar: what's transiting now",
+    "Varga: the relevant divisional chart",
+    "Ashtakavarga: planetary strength score"
+   ]
+  },
+  {
+   "h2": "The result",
+   "body": "Hyper-personalized, context-aware guidance — not a horoscope template that reads the same for a million people."
+  },
+  {
+   "icon": "moon",
+   "h2": "See the difference",
+   "body": "Get your free AI Dasha Timeline and see how many variables actually go into it.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

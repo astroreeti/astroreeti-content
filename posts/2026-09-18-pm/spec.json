@@ -1,0 +1,38 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "A WORKED EXAMPLE",
+   "h1": "Two People, <em>Same</em> Sun Sign, Opposite Careers",
+   "sub": "If Sun sign alone decided outcomes, this couldn't happen — and it happens constantly."
+  },
+  {
+   "h2": "The setup",
+   "body": "Both are Virgo Sun. One is a stable, senior operator. The other has restarted careers three times. Same sign, same generic horoscope."
+  },
+  {
+   "h2": "Where the chart actually diverges",
+   "points": [
+    "10th lord's strength differs",
+    "D-10 (career chart) placements differ",
+    "Active Mahadasha differs",
+    "Ashtakavarga bindus on the 10th differ"
+   ]
+  },
+  {
+   "h2": "Why this matters",
+   "body": "A single-placement reading can't see any of this. It has one input. A synthesis engine has four, cross-checked against each other."
+  },
+  {
+   "h2": "The nuance most tools skip",
+   "body": "When Rasi (birth chart) and Navamsa (D-9) disagree, the right move isn't averaging them — it's understanding <b>which life area</b> each one governs."
+  },
+  {
+   "icon": "moon",
+   "h2": "Try it on your own chart",
+   "body": "See your D-10 career signature for free — no generic template.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
