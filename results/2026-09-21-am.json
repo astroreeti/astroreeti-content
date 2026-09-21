@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-21-am",
+  "format": "reel",
+  "attempts": 1,
+  "status": "published",
+  "media_id": "17915706201451604",
+  "permalink": "https://www.instagram.com/reel/DdiA5ohCGRz/",
+  "facebook": {
+    "status": "failed",
+    "error": "1224808644049541/video_reels -> HTTP 400: {\"error\":{\"message\":\"Error validating access token: Session has expired on Friday, 18-Sep-26 23:53:46 PDT. The current time is Sunday, 20-Sep-26 18:47:45 PDT.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":463,\"fbtrace_id\":\"AGaG1Ap1QTArqNMF9cvPg51\"}}"
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "WF_Ygmi9014",
+    "permalink": "https://youtube.com/shorts/WF_Ygmi9014",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
