@@ -1,0 +1,44 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "THE CONSISTENCY CHECK",
+   "h1": "When A '<em>Strong</em>' Planet Is Actually Weak",
+   "sub": "Own-sign or exalted isn't the whole strength story. Shadbala is what catches the gap."
+  },
+  {
+   "h2": "The illusion",
+   "body": "A planet in its own sign or exaltation looks unambiguously strong. Most apps stop there. But dignity (Sthana Bala) is only one of six strength components — not the total score."
+  },
+  {
+   "h2": "The six components of Shadbala",
+   "points": [
+    "Sthana Bala — positional dignity (own sign, exaltation)",
+    "Dig Bala — directional strength by house",
+    "Kala Bala — time-based strength (day/night, paksha)",
+    "Cheshta Bala — motional strength (retrograde scores high)",
+    "Naisargika Bala — fixed natural strength",
+    "Drik Bala — aspect strength, benefic vs malefic"
+   ]
+  },
+  {
+   "h2": "Where the contradiction shows up",
+   "body": "An exalted planet that's also combust (too close to the Sun) loses Kala and Drik Bala fast. Dignity says \"strong.\" The full Shadbala score says otherwise. Only one of these is the whole picture."
+  },
+  {
+   "h2": "What this changes",
+   "body": "Shadbala is measured in rupas, with minimum thresholds per planet. A planet below its minimum doesn't reliably deliver its significations — even sitting in its own sign. This is the check a single-placement reading skips entirely."
+  },
+  {
+   "h2": "Where it doesn't apply",
+   "body": "Shadbala ranks strength within one chart. It's not a timing tool by itself, and it's distinct from Ashtakavarga (which measures benefic points across transits) and Bhava Bala (house strength). Different questions, different tools."
+  },
+  {
+   "icon": "moon",
+   "h2": "Check your own chart",
+   "body": "See which of your planets are dignified but structurally weak — free Shadbala snapshot.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
