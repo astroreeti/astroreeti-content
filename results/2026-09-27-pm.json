@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-27-pm",
+  "format": "reel",
+  "attempts": 1,
+  "status": "published",
+  "media_id": "17957443710012147",
+  "permalink": "https://www.instagram.com/reel/DdysfrignRE/",
+  "facebook": {
+    "status": "published",
+    "post_id": "1662546698574236"
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "MGFhCcUdClI",
+    "permalink": "https://youtube.com/shorts/MGFhCcUdClI",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
