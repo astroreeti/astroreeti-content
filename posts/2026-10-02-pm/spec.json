@@ -1,0 +1,43 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY · CONSISTENCY",
+   "h1": "Why Two Astrology Apps Give You <em>Opposite</em> Answers",
+   "sub": "Rule-based engine vs. synthesis engine — the difference, in plain terms.",
+   "swipe": "Swipe for the difference →"
+  },
+  {
+   "h2": "The rule-based engine",
+   "body": "A long list of if-then rules. If Mars sits in the 7th house, flag it. Each rule fires on its own, with no awareness of the others."
+  },
+  {
+   "h2": "Where the contradictions come from",
+   "points": [
+    "Rule A says: strong career",
+    "Rule B says: obstacles",
+    "Both get printed — you sort it out",
+    "More rules means more clashes, not more clarity"
+   ]
+  },
+  {
+   "h2": "The synthesis engine",
+   "body": "It weighs layers together: the birth chart (D-1), Varga (divisional sub-charts for one life area), dasha (planetary period), gochar (current transits) and Ashtakavarga (bindu strength points)."
+  },
+  {
+   "h2": "How a clash gets resolved",
+   "body": "Instead of printing both answers, it asks which layer governs this question and which timing window is live. A conflict becomes a ranked, explainable answer."
+  },
+  {
+   "h2": "Where AI helps — and where it doesn't",
+   "body": "Weighing all these layers by hand is slow and error-prone. That is where AI earns its place. Judgement on the result still belongs to a trained astrologer."
+  },
+  {
+   "icon": "moon",
+   "h2": "See how each layer is weighed",
+   "body": "Try a free AI chart read that shows which layers drove each statement.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

@@ -106,3 +106,14 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-09-29 | evening | DD | दूसरा भाव तकनीकी roop se — कारक गुरु, द्वितीयेश की स्थिति (भाव/दिग्नता/दृष्टि/दशा), मेष लग्न उदाहरण (शुक्र), गुरु की दृष्टि, कोई योग धन की गारंटी नहीं (reel) |
 | 2026-09-30 | morning | DD | Dasha Seasons Part 3: Jupiter Dasha (English) — scale/fundraising phase, expansion via network, trap of over-expanding before Saturn's base holds, Antardasha mapping (reel) |
 | 2026-09-30 | evening | DD | Dasha Seasons Part 4: Moon Dasha (English) — adaptability/EQ phase, contrast with Sun Dasha visibility, over-adapting trap, Antardasha mapping (reel) |
+| 2026-10-02 | morning | DD | Ashtakavarga bindus vs sign placement (English) — dignity is the planet's quality, bindus (0–8) are delivery in your chart, neither overrules, read both then dasha (reel) |
+| 2026-10-02 | evening | DD | Rule-based vs synthesis engine (English) — if-then rules contradict, synthesis weighs D-1/Varga/dasha/gochar/Ashtakavarga, clash becomes ranked answer, AI computes, astrologer judges (reel) |
+| 2026-10-03 | morning | DD | Case study: D-10 pattern of leaders who scale an org (English, illustrative, no named chart) — D-10 lagna lord, 10th-11th link, Saturn, D-1 agreement, activation via dasha (reel) |
+| 2026-10-04 | morning | DD | Planetary bias: Rahu (English) — no yoga guarantees wealth, FOMO/hype-chasing, 2nd/11th/dasha signals, fix is position cap + 48-hour wait (reel) |
+| 2026-10-04 | evening | DD | 2nd vs 11th house (English) — no yoga guarantees wealth, held vs flowing money, mismatched strengths, matching habit to gap, dasha timing (reel) |
+| 2026-10-05 | morning | RL | नवरात्रि: नौ रूप, नौ ग्रह — पारंपरिक मान्यता, शैलपुत्री-चंद्र से सिद्धिदात्री-केतु, कोई गारंटी नहीं (reel) |
+| 2026-10-05 | evening | DD | नवरात्रि तकनीकी गाइड — दिन 1–9 और ग्रह, महादशा/कमज़ोर ग्रह से मिलान, तिथि पंचांग से पक्की करें (reel) |
+| 2026-10-06 | morning | RL | भाव यात्रा · तीसरा भाव — साहस, भाई-बहन, प्रयास; कारक मंगल, उपचय भाव, तृतीयेश की दशा (reel) |
+| 2026-10-06 | evening | DD | तीसरा भाव तकनीकी रूप से — तृतीयेश पहचान (मेष लग्न: बुध), कारक मंगल, स्थिति, दृष्टि/युति, दशा (reel) |
+| 2026-10-07 | morning | DD | Dasha Seasons Part 5: Rahu Dasha (English) — disruptive-pivot phase, 18 years, contrast with Saturn, novelty trap, small reversible experiments (reel) |
+| 2026-10-07 | evening | DD | Dasha Seasons Part 6: Mars Dasha (English) — execution phase, 7 years, contrast with Rahu, helps/trap, Antardasha mapping (reel) |
