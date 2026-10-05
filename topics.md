@@ -117,3 +117,10 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-10-06 | evening | DD | तीसरा भाव तकनीकी रूप से — तृतीयेश पहचान (मेष लग्न: बुध), कारक मंगल, स्थिति, दृष्टि/युति, दशा (reel) |
 | 2026-10-07 | morning | DD | Dasha Seasons Part 5: Rahu Dasha (English) — disruptive-pivot phase, 18 years, contrast with Saturn, novelty trap, small reversible experiments (reel) |
 | 2026-10-07 | evening | DD | Dasha Seasons Part 6: Mars Dasha (English) — execution phase, 7 years, contrast with Rahu, helps/trap, Antardasha mapping (reel) |
+| 2026-10-08 | morning | DD | Biohacking: 6th house + dinacharya (English) — routine-fit by 6th-house pattern (Moon/Saturn/Mars), health disclaimer, one-variable timing experiment (reel) |
+| 2026-10-08 | evening | DD | Hora pairing (English) — Venus Hora for creative work, Mars Hora for training, fixed pairing removes decisions, two-week self-test, limits stated (reel) |
+| 2026-10-09 | morning | DD | Synthesis step by step (English) — Dasha sets period, Rasi/Varga check promise, Gochar adds timing, weigh layers and state conflicts (reel) |
+| 2026-10-09 | evening | DD | Rasi vs Navamsa contradiction (English) — appears vs holds, 'visible but fragile', vargottama/dasha/Ashtakavarga tie-breakers, no averaging (reel) |
+| 2026-10-10 | morning | DD | Case study: dasha-pair timing of a career breakout (English, illustrative, no named chart) — MD+AD both linked to 10th, dignity + D-10 support, find your window (reel) |
+| 2026-10-11 | morning | DD | Planetary bias: Mercury (English) — no yoga guarantees wealth, overtrading/analysis paralysis, 2nd/11th pattern, fix is trade cap + review date (reel) |
+| 2026-10-11 | evening | DD | Planetary bias: Ketu (English) — no yoga guarantees wealth, sudden detachment before compounding, 2nd/11th pattern, fix is written reasons + 30-day wait (reel) |

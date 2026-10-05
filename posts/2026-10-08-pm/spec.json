@@ -1,0 +1,47 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "BIOHACKING · HORA",
+   "h1": "Same Task, Different Hour: <em>Why Timing Changes the Result</em>",
+   "sub": "Hora (the planetary hour) is a classical way to match the work to the hour.",
+   "swipe": "Swipe for the pairing →"
+  },
+  {
+   "h2": "What is a Hora?",
+   "body": "Hora is a planetary hour: each day is split into hours ruled in sequence by the seven classical planets. The day's first hour belongs to the day lord."
+  },
+  {
+   "h2": "Venus Hora: creative and design work",
+   "body": "Venus (Shukra) is the planet of aesthetics and harmony. Its hour is a traditional pick for design, writing, music and anything where taste matters."
+  },
+  {
+   "h2": "Mars Hora: physical training",
+   "body": "Mars (Mangala) rules drive, muscle and effort. Its hour suits workouts, tough chores and tasks that need raw energy and push."
+  },
+  {
+   "h2": "Why this works as a habit tool",
+   "body": "A fixed pairing removes a daily decision. You stop asking when to train or when to design, and the hour answers it for you."
+  },
+  {
+   "h2": "How to test it fairly",
+   "points": [
+    "Look up Hora times for your city's sunrise",
+    "Use the pairing for two weeks",
+    "Log energy and output, not mood",
+    "Keep it only if your own data agrees"
+   ]
+  },
+  {
+   "h2": "Honest limits",
+   "body": "Hora is a tradition, not a laboratory result. Treat it as a scheduling experiment. It is not medical advice or a guarantee of performance."
+  },
+  {
+   "icon": "moon",
+   "h2": "Find your best hours",
+   "body": "Try the free Hora planner and schedule your next week by planetary hour.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

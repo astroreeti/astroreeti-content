@@ -1,0 +1,47 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY · CONTRADICTIONS",
+   "h1": "Your Rasi Says Yes. Your Navamsa Says No. <em>Now What?</em>",
+   "sub": "A good reading resolves the contradiction. A weak one averages it into mush.",
+   "swipe": "Swipe for the method →"
+  },
+  {
+   "h2": "Why the two charts can disagree",
+   "body": "The Rasi (main birth chart) shows the visible promise. The Navamsa (the ninth divisional chart, D-9) shows inner strength and how a planet matures over time."
+  },
+  {
+   "h2": "The lazy fix: average them",
+   "body": "Many apps score both charts and blend the result into 'moderate'. That answer is useless. A strong promise with a weak foundation is a specific situation, not a mild one."
+  },
+  {
+   "h2": "The rigorous fix: ask what each chart governs",
+   "body": "Rasi usually decides what appears in life. Navamsa decides how well it holds and whether it matures. Contradiction often means 'visible, but fragile'."
+  },
+  {
+   "h2": "Tie-breakers worth checking",
+   "points": [
+    "Is the planet strong in both charts, or only one?",
+    "Vargottama (same sign in both) adds consistency",
+    "What does the running dasha activate?",
+    "Does Ashtakavarga support the placement?"
+   ]
+  },
+  {
+   "h2": "The output you should expect",
+   "body": "Not 'maybe'. Something like: this theme shows early, but needs maintenance, and the dasha of the weaker planet is when it is tested."
+  },
+  {
+   "h2": "Where AI helps",
+   "body": "Software can compute and compare every layer in seconds. The judgment about what the contradiction means still belongs to a trained astrologer."
+  },
+  {
+   "icon": "moon",
+   "h2": "Test your own contradictions",
+   "body": "Get the free Rasi-vs-Navamsa check and see where your charts disagree.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
