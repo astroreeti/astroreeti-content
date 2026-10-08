@@ -124,3 +124,9 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-10-10 | morning | DD | Case study: dasha-pair timing of a career breakout (English, illustrative, no named chart) — MD+AD both linked to 10th, dignity + D-10 support, find your window (reel) |
 | 2026-10-11 | morning | DD | Planetary bias: Mercury (English) — no yoga guarantees wealth, overtrading/analysis paralysis, 2nd/11th pattern, fix is trade cap + review date (reel) |
 | 2026-10-11 | evening | DD | Planetary bias: Ketu (English) — no yoga guarantees wealth, sudden detachment before compounding, 2nd/11th pattern, fix is written reasons + 30-day wait (reel) |
+| 2026-10-12 | morning | RL | Navratri: Durga's nine forms and the Jyotish link (Hindi) — nine roop, traditional graha mapping flagged as non-uniform, Chandra/Mangal as shakti, simple sadhana (reel) |
+| 2026-10-12 | evening | DD | Ashtami-Navami significance (Hindi) — tithi as 12-degree Sun-Moon gap, Mahagauri/Siddhidatri, sandhi puja, check local panchang, no guarantees (reel) |
+| 2026-10-13 | morning | RL | Bhava tour: 4th house (Hindi) — home, mother, peace of mind, Chandra karaka, kendra/sukha sthana, evergreen (no transit claims) (reel) |
+| 2026-10-13 | evening | DD | 4th house technical reading (Hindi) — lord, karakas, Moon strength, D-4, dasha timing, mental-health disclaimer (reel) |
+| 2026-10-14 | morning | DD | Dasha Seasons Part 7: Venus Dasha (English) — partnership phase, 20 years, contrast with Mars, helps/trap, Antardasha mapping (reel) |
+| 2026-10-14 | evening | DD | Dasha Seasons Part 8: Ketu Dasha (English) — letting-go/pivot phase, 7 years, contrast with Venus, helps/trap, prune on purpose (reel) |
