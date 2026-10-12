@@ -1,0 +1,47 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY · THE REAL PROBLEM",
+   "h1": "What 'Hyper-Personalized' Actually <em>Requires</em>",
+   "sub": "Why most astrology tools skip the hard computation.",
+   "swipe": "Swipe for the breakdown →"
+  },
+  {
+   "h2": "The usual shortcut",
+   "body": "Many tools check one or two placements, such as Sun sign or Moon sign, and attach a stock paragraph. That is why advice contradicts itself."
+  },
+  {
+   "h2": "What real personalisation needs",
+   "points": [
+    "Dasha (planetary period) timing",
+    "Gochar (current transits) for now",
+    "Varga (divisional charts) like D-9 and D-10",
+    "Ashtakavarga (point-strength system) scores"
+   ]
+  },
+  {
+   "h2": "Why it is hard",
+   "body": "Each layer has its own rules and they can disagree. Doing this by hand for every chart is slow and error-prone. Shadbala (six-fold planetary strength) adds more calculation."
+  },
+  {
+   "h2": "Where AI helps",
+   "body": "AI is good at tedious, rule-based computation at scale. It computes every layer consistently, so the astrologer can focus on judgement."
+  },
+  {
+   "h2": "What AI should not do",
+   "body": "It should not replace the astrologer's judgement or hide conflicts. A good reading states where layers disagree rather than averaging them away."
+  },
+  {
+   "h2": "The test",
+   "body": "Ask any tool: which layers did you check, and what happens when they conflict? A clear answer is the sign of a real reading."
+  },
+  {
+   "icon": "moon",
+   "h2": "See the layers for yourself",
+   "body": "Get a free AI Chart Report that shows each layer, not just a summary.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

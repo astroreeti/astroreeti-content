@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "BIOHACKING · HORA",
+   "h1": "Mercury Hora for Calls, Saturn Hora for the <em>Grind</em>",
+   "sub": "A practical weekly template using planetary hours.",
+   "swipe": "Swipe for the template →"
+  },
+  {
+   "h2": "What is a Hora?",
+   "body": "Hora means planetary hour. Each day is split into hours ruled in turn by a planet, counted from local sunrise. Check a panchang for your city's exact timings."
+  },
+  {
+   "h2": "Mercury Hora: talk",
+   "body": "Mercury (planet of communication and trade) hours suit negotiation calls, emails, contracts and anything that needs clear words."
+  },
+  {
+   "h2": "Saturn Hora: grind",
+   "body": "Saturn (planet of discipline) hours suit slow, unglamorous work: backlog, accounts, documentation, the task you keep postponing."
+  },
+  {
+   "h2": "Your weekly template",
+   "points": [
+    "Pick one Mercury Hora for key calls",
+    "Pick one Saturn Hora for deep work",
+    "Keep both slots fixed all week",
+    "Review after two weeks"
+   ]
+  },
+  {
+   "icon": "moon",
+   "h2": "Get your own Hora planner",
+   "body": "Try the free Hora Planner and see your best slots for calls and focused work.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

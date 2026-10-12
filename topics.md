@@ -130,3 +130,10 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-10-13 | evening | DD | 4th house technical reading (Hindi) — lord, karakas, Moon strength, D-4, dasha timing, mental-health disclaimer (reel) |
 | 2026-10-14 | morning | DD | Dasha Seasons Part 7: Venus Dasha (English) — partnership phase, 20 years, contrast with Mars, helps/trap, Antardasha mapping (reel) |
 | 2026-10-14 | evening | DD | Dasha Seasons Part 8: Ketu Dasha (English) — letting-go/pivot phase, 7 years, contrast with Venus, helps/trap, prune on purpose (reel) |
+| 2026-10-15 | morning | DD | Mercury Hora for calls, Saturn Hora for the grind (English) — weekly Hora template, fixed slots, two-week test (reel) |
+| 2026-10-15 | evening | DD | Retrograde Mercury and your calendar (English) — review windows vs launch windows, apparent motion, honest limits (reel) |
+| 2026-10-16 | morning | DD | Same Sun sign, different D-10 outcomes (English, illustrative, no named people) — dasha + D-10 + house strength vs sun-sign advice (reel) |
+| 2026-10-16 | evening | DD | What hyper-personalized requires computationally (English) — dasha/gochar/varga/Ashtakavarga layers, where AI helps and where it should not (reel) |
+| 2026-10-17 | morning | DD | Amatyakaraka and advisory careers (English, illustrative, no named chart) — Jaimini minister significator, what to check (reel) |
+| 2026-10-18 | morning | DD | Planetary bias: Venus (English) — no yoga guarantees wealth, lifestyle inflation, 2nd/11th pattern, save-first fix (reel) |
+| 2026-10-18 | evening | DD | Planetary bias: Sun (English) — no yoga guarantees wealth, prestige concentration, 2nd/11th pattern, size cap + exit conditions (reel) |
