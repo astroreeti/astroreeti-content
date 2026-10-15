@@ -137,3 +137,9 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-10-17 | morning | DD | Amatyakaraka and advisory careers (English, illustrative, no named chart) — Jaimini minister significator, what to check (reel) |
 | 2026-10-18 | morning | DD | Planetary bias: Venus (English) — no yoga guarantees wealth, lifestyle inflation, 2nd/11th pattern, save-first fix (reel) |
 | 2026-10-18 | evening | DD | Planetary bias: Sun (English) — no yoga guarantees wealth, prestige concentration, 2nd/11th pattern, size cap + exit conditions (reel) |
+| 2026-10-19 | morning | RL | Vijayadashami (Hindi) — Puranic account, 6th house, upachaya, inner shatrus (reel) |
+| 2026-10-19 | evening | DD | Vijayadashami as swayam-siddha muhurta (Hindi) — sade teen muhurta, practical cautions (reel) |
+| 2026-10-20 | morning | RL | 5th house bhava tour (Hindi) — santaan, buddhi, prem, Jupiter karaka, trikona (reel) |
+| 2026-10-20 | evening | DD | How to read the 5th house (Hindi) — lord, Jupiter, 5th/9th link, D-7, timing (reel) |
+| 2026-10-21 | morning | DD | Dasha Seasons: Mercury Dasha (English) — analytics/negotiation/iteration season, trap, limits (reel) |
+| 2026-10-21 | evening | DD | Dasha Seasons: Jupiter-Saturn friction (English) — vision vs build quality, antardasha sprint (reel) |

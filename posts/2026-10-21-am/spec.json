@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "DASHA SEASONS · MERCURY",
+   "h1": "Mercury Dasha: The <em>Analytics Season</em>",
+   "sub": "Data, negotiation and fast iteration.",
+   "swipe": "Swipe for the season →"
+  },
+  {
+   "h2": "What a dasha is",
+   "body": "A dasha (planetary period) is a chapter of life coloured by one planet. Mercury (intellect, speech, trade) has a 17-year Mahadasha (major period) in the Vimshottari system."
+  },
+  {
+   "h2": "What the season rewards",
+   "points": [
+    "Data and analytics skills",
+    "Negotiation and clear communication",
+    "Rapid test-and-learn cycles",
+    "Networks and small, frequent wins"
+   ]
+  },
+  {
+   "h2": "The trap",
+   "body": "Too many threads at once. Mercury can mean overthinking, scattered focus and talking more than doing. Pick fewer experiments and finish them."
+  },
+  {
+   "h2": "Make it practical",
+   "body": "Check Mercury's sign, house and strength, then the antardasha (sub-period). A dasha describes a tendency, never a guarantee."
+  },
+  {
+   "icon": "moon",
+   "h2": "Which season are you in?",
+   "body": "Get your free AI Dasha Timeline and see when Mercury's season starts and ends in your chart.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
