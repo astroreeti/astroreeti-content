@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-21-pm",
+  "format": "reel",
+  "attempts": 1,
+  "status": "published",
+  "media_id": "17920254864244305",
+  "permalink": "https://www.instagram.com/reel/Dewf-6DlTdH/",
+  "facebook": {
+    "status": "failed",
+    "error": "1224808644049541/video_reels -> HTTP 400: {\"error\":{\"message\":\"You cannot access the app till you log in to www.facebook.com and follow the instructions given.\",\"type\":\"OAuthException\",\"code\":190,\"error_data\":\"{\\\"checkpoint_url\\\":\\\"https:\\\\\\/\\\\\\/www.facebook.com\\\"}\",\"error_subcode\":459,\"fbtrace_id\":\"AV1bXNTu4XeBu68HEPj2wc2\"}}"
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "VRRvyn-nUwE",
+    "permalink": "https://youtube.com/shorts/VRRvyn-nUwE",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
