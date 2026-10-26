@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY · CONSISTENCY",
+   "h1": "Is Your 'Strong' Planet <em>Actually Strong?</em>",
+   "sub": "A Shadbala sanity check.",
+   "swipe": "Swipe for the logic →"
+  },
+  {
+   "h2": "What is Shadbala",
+   "body": "Shadbala (six-fold strength) is a classical calculation. It scores a planet on position, direction, time, motion, natural strength and aspects."
+  },
+  {
+   "h2": "Use the ratio",
+   "body": "Each planet has a minimum Shadbala in rupas (units of strength). Divide the planet's total by its minimum. A ratio under 1 means it falls short."
+  },
+  {
+   "h2": "Catch the mismatch",
+   "points": [
+    "High dignity, low ratio: looks strong, isn't",
+    "Low dignity, high ratio: quieter but capable",
+    "Compare across planets using the ratio",
+    "Cross-check with the dasha lord"
+   ]
+  },
+  {
+   "h2": "Why a machine helps",
+   "body": "Calculating six components by hand for nine planets is slow and error-prone. Software can do it consistently. Judging the result is still yours."
+  },
+  {
+   "icon": "moon",
+   "h2": "Run your own check",
+   "body": "Free AI Shadbala snapshot: see which of your planets truly carry weight.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

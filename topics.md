@@ -143,3 +143,14 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-10-20 | evening | DD | How to read the 5th house (Hindi) — lord, Jupiter, 5th/9th link, D-7, timing (reel) |
 | 2026-10-21 | morning | DD | Dasha Seasons: Mercury Dasha (English) — analytics/negotiation/iteration season, trap, limits (reel) |
 | 2026-10-21 | evening | DD | Dasha Seasons: Jupiter-Saturn friction (English) — vision vs build quality, antardasha sprint (reel) |
+| 2026-10-27 | morning | RL | 6th house bhava tour (Hindi) — rog/rin/shatru, upachaya, Mars karaka, strong 6th = resistance, health disclaimer; transit angle dropped (unverified) (reel) |
+| 2026-10-27 | evening | DD | How to read the 6th house (Hindi) — shashtesh, karaka Mars/Saturn, occupants, Harsha yoga, dasha timing, health disclaimer (reel) |
+| 2026-10-28 | morning | DD | Dasha Seasons: Sun Dasha (English) — visibility/authority season, 6 years, trap, limits (reel) |
+| 2026-10-28 | evening | DD | Dasha Seasons: Saturn Dasha (English) — 19-year infrastructure season, antardasha sprint, limits (reel) |
+| 2026-10-29 | morning | DD | Ascendant lord's Hora (English) — Hora order, lagna-lord window, two-week test (reel) |
+| 2026-10-29 | evening | DD | Surya vs Chandra chronotype (English) — luminary lean, where to look, hypothesis not rule, sleep disclaimer (reel) |
+| 2026-10-30 | morning | DD | Shadbala ratio check (English) — total/minimum rupas, dignity vs ratio mismatch, AI consistency (reel) |
+| 2026-10-30 | evening | DD | Strong 10th vs stressed D-10: three-question checklist (English) — both-chart strength, running dasha, pattern vs single flag (reel) |
+| 2026-10-31 | morning | DD | Gaja-Kesari Yoga real definition (English) — kendra from Moon, ~1 in 3 qualify, strength conditions, no guarantee (reel) |
+| 2026-11-01 | morning | DD | Moon bias (English) — no yoga guarantees wealth, mood-driven moves, 2nd/11th, rules + 48h wait + automation (reel) |
+| 2026-11-01 | evening | DD | Saturn bias (English) — no yoga guarantees wealth, cash hoarding, cost of waiting, emergency fund then scheduled investing (reel) |

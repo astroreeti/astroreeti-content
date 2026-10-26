@@ -1,0 +1,47 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "JYOTISH BIOHACKING · CHRONOTYPE",
+   "h1": "Surya or Chandra: <em>Early Bird or Night Owl?</em>",
+   "sub": "Your dominant planet as a rhythm clue.",
+   "swipe": "Swipe for the logic →"
+  },
+  {
+   "h2": "The idea",
+   "body": "Chronotype is when your energy naturally peaks. Jyotish offers a lens: which luminary, the Sun or the Moon, dominates your chart's temperament."
+  },
+  {
+   "h2": "Surya-leaning",
+   "body": "A strong Sun, or the Sun tied to the Ascendant, is traditionally linked with energy that rises early: clear mornings, structured starts, decisive action."
+  },
+  {
+   "h2": "Chandra-leaning",
+   "body": "A strong Moon, or the Moon tied to the Ascendant, is linked with a more fluid rhythm: ideas and focus that bloom later in the day and evening."
+  },
+  {
+   "h2": "Where to look",
+   "points": [
+    "Ascendant and its lord",
+    "Sun and Moon strength and houses",
+    "The 6th house (daily routine)",
+    "Moon's nakshatra (lunar mansion)"
+   ]
+  },
+  {
+   "h2": "Use it lightly",
+   "body": "Treat it as a hypothesis. Track when you do your best work for two weeks, then compare with what your chart suggests."
+  },
+  {
+   "h2": "Honest limits",
+   "body": "This is not medical or sleep advice. If sleep is a concern, please speak to a doctor. The chart is one lens among many."
+  },
+  {
+   "icon": "moon",
+   "h2": "Check your rhythm",
+   "body": "Free AI chart reading: see where your Sun and Moon sit.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "JYOTISH BIOHACKING · HORA",
+   "h1": "The One Daily Window <em>Worth Protecting</em>",
+   "sub": "Your Ascendant lord's Hora.",
+   "swipe": "Swipe for the logic →"
+  },
+  {
+   "h2": "The order",
+   "body": "Hora is a planetary hour, counted from sunrise. The order runs Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, then repeats. The first hour belongs to the weekday's ruler."
+  },
+  {
+   "h2": "Your Ascendant lord",
+   "body": "Your lagna (Ascendant, the rising sign) has a ruling planet. Its Hora is the hour the day lines up with your chart's own chief significator."
+  },
+  {
+   "h2": "How to use it",
+   "points": [
+    "Find your Ascendant lord",
+    "Find its Hora on today's table",
+    "Block that hour for your hardest task",
+    "Protect it like a meeting"
+   ]
+  },
+  {
+   "h2": "Test it, don't trust it",
+   "body": "Run it for two weeks and note your focus and output. Keep it if it helps. A scheduling experiment, not a promise."
+  },
+  {
+   "icon": "moon",
+   "h2": "Get your Hora table",
+   "body": "Free AI tool: see your Ascendant lord and today's Hora windows.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
