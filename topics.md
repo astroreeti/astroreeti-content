@@ -154,3 +154,9 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-10-31 | morning | DD | Gaja-Kesari Yoga real definition (English) — kendra from Moon, ~1 in 3 qualify, strength conditions, no guarantee (reel) |
 | 2026-11-01 | morning | DD | Moon bias (English) — no yoga guarantees wealth, mood-driven moves, 2nd/11th, rules + 48h wait + automation (reel) |
 | 2026-11-01 | evening | DD | Saturn bias (English) — no yoga guarantees wealth, cash hoarding, cost of waiting, emergency fund then scheduled investing (reel) |
+| 2026-11-02 | morning | RL | Dhanteras-Diwali week (Hindi) — dates 6/8 Nov, muhurta basics, 2nd/11th houses, no guarantee (reel) |
+| 2026-11-02 | evening | DD | Dhanteras: Kuber and Dhanvantari in the chart (Hindi) — 2nd/11th, 6th house, health + no-wealth-guarantee slides (reel) |
+| 2026-11-03 | morning | RL | 7th house tour (Hindi) — marriage, partnership, karakas; no transit claims (reel) |
+| 2026-11-03 | evening | DD | Reading the 7th house technically (Hindi) — lord, karaka/Darakaraka, aspects, navamsa, dasha (reel) |
+| 2026-11-04 | morning | DD | Dasha Seasons: Moon dasha as adaptability/EQ phase (English) (reel) |
+| 2026-11-04 | evening | DD | Dasha Seasons: Jupiter dasha as scale phase, antardasha sprint (English) (reel) |
