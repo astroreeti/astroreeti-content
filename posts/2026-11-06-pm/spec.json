@@ -1,0 +1,42 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "ASHTAKAVARGA",
+   "h1": "Bindus vs <em>Sign Placement</em>",
+   "sub": "Why a planet's sign is only half the story.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "Sign placement",
+   "body": "A planet in its own or exalted sign is usually read as strong. That is the first layer, and many apps stop right here."
+  },
+  {
+   "h2": "What are bindus?",
+   "body": "Ashtakavarga is a point system. Each planet gets bindus (points) in each sign, from 0 to 8, contributed by the other planets and the Ascendant."
+  },
+  {
+   "h2": "A strong planet, few points",
+   "body": "A planet can sit in a friendly sign yet hold few bindus there. Its promise may deliver less than the sign alone suggests."
+  },
+  {
+   "h2": "A modest planet, many points",
+   "body": "The reverse also happens. A planet in an ordinary sign with high bindus can quietly perform better than expected."
+  },
+  {
+   "h2": "Read both together",
+   "body": "Sign placement shows the planet's quality. Bindus show how much support it gets in that sign. Together they give a fuller picture."
+  },
+  {
+   "h2": "Honest limits",
+   "body": "Neither layer is a verdict. Dasha timing, house and aspects matter too. Use bindus as one more lens on the chart."
+  },
+  {
+   "icon": "moon",
+   "h2": "Check your bindus",
+   "body": "Free Ashtakavarga View: see your bindus sign by sign.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

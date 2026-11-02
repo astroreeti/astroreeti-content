@@ -1,0 +1,34 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY",
+   "h1": "Rule-Based vs <em>Synthesis</em> Engine",
+   "sub": "Why your horoscope app contradicts itself.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The rule-based engine",
+   "body": "It checks one or two placements and prints a fixed line. Moon in a sign? Here is your paragraph. Simple, fast and often generic."
+  },
+  {
+   "h2": "Where it breaks",
+   "body": "Real charts have many layers. Two rules can point in opposite directions, so the app contradicts itself and you are left confused."
+  },
+  {
+   "h2": "The synthesis engine",
+   "body": "It weighs many variables together: dasha (planetary period), gochar (transit), divisional charts and Ashtakavarga (strength points)."
+  },
+  {
+   "h2": "An example",
+   "body": "A strong 10th house but a weak career divisional chart (D-10) is not ignored. It is reconciled into one nuanced reading."
+  },
+  {
+   "icon": "moon",
+   "h2": "See the difference",
+   "body": "Free AI Chart Reading: one reading built from your full chart.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

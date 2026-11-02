@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "MOON · SLEEP",
+   "h1": "Moon Sign & Sleep: <em>What Helps</em>",
+   "sub": "Beyond generic sleep-hygiene tips.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The Moon's role",
+   "body": "In Jyotish (Vedic astrology), the Moon signifies mind, mood and rest. Your Moon sign describes how your mind settles, or doesn't."
+  },
+  {
+   "h2": "The basics still win",
+   "body": "A fixed wake time, dim evening light and a cool dark room beat any chart tip. Astrology cannot replace these basics."
+  },
+  {
+   "h2": "Where the chart adds a lens",
+   "points": [
+    "Water-sign Moon: winding down often needs emotional release first",
+    "Fire-sign Moon: restless energy may need a physical outlet by evening",
+    "Earth-sign Moon: comfort and routine tend to anchor sleep",
+    "Air-sign Moon: a busy mind may need a screen-free buffer"
+   ]
+  },
+  {
+   "h2": "Honest limits",
+   "body": "Astrology is not diagnosis or treatment. For persistent sleep trouble, please see a doctor."
+  },
+  {
+   "icon": "moon",
+   "h2": "Know your Moon",
+   "body": "Free AI Birth Chart: find your Moon sign and nakshatra in one view.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

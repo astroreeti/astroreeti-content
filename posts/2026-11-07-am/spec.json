@@ -1,0 +1,34 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "CASE STUDY LENS",
+   "h1": "Same Planet, <em>Different Results</em>",
+   "sub": "Panchadha Maitri: five-fold friendship.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The puzzle",
+   "body": "Two people can have the same planet in the same sign and live it very differently. Panchadha Maitri helps explain part of why."
+  },
+  {
+   "h2": "Two kinds of friendship",
+   "body": "Each planet has natural friends, neutrals and enemies. It also forms temporary friendships based on how planets sit in your own chart."
+  },
+  {
+   "h2": "Five grades",
+   "body": "Combine the two and you get five grades: great friend, friend, neutral, enemy and great enemy. This grade shows how comfortable a planet is."
+  },
+  {
+   "h2": "Honest limits",
+   "body": "This is one factor among many. Houses, aspects and dasha all shape the outcome. No single rule decides a life."
+  },
+  {
+   "icon": "moon",
+   "h2": "Test your chart",
+   "body": "Free Planet Friendship Check: see each planet's grade in your chart.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

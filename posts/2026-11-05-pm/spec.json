@@ -1,0 +1,52 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "HORA · PLANETARY HOURS",
+   "h1": "Use <em>Hora</em> to Plan Your Day",
+   "sub": "High-stakes meetings vs deep work blocks.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "What is a Hora?",
+   "body": "Hora means planetary hour. Each day is split into 24 horas starting at sunrise, and each is ruled by one of seven planets in a fixed order."
+  },
+  {
+   "h2": "The day lord leads",
+   "body": "The first hora of the day belongs to that weekday's ruling planet. The rest follow in the traditional sequence."
+  },
+  {
+   "h2": "Good for meetings and people",
+   "points": [
+    "Jupiter hora: advice, mentors, big conversations",
+    "Venus hora: negotiation, partnerships, creative pitches",
+    "Mercury hora: communication, writing, quick decisions",
+    "Moon hora: rapport and reading the room"
+   ]
+  },
+  {
+   "h2": "Good for deep work",
+   "points": [
+    "Saturn hora: discipline and long, steady effort",
+    "Mercury hora: analysis, planning, detail work",
+    "Sun hora: focus and leadership tasks",
+    "Mars hora: energy for tough, action-heavy tasks"
+   ]
+  },
+  {
+   "h2": "A concrete tip",
+   "body": "Find your Ascendant lord (the ruler of your rising sign). Try placing your hardest task in that planet's hora and note how it goes."
+  },
+  {
+   "h2": "Honest limits",
+   "body": "Hora is a scheduling lens, not a guarantee. Treat it as an experiment and let your own results decide how much weight it gets."
+  },
+  {
+   "icon": "moon",
+   "h2": "Plan with Hora",
+   "body": "Free Hora Timetable: see today's planetary hours for your city.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
