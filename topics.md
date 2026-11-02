@@ -160,3 +160,10 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-11-03 | evening | DD | Reading the 7th house technically (Hindi) — lord, karaka/Darakaraka, aspects, navamsa, dasha (reel) |
 | 2026-11-04 | morning | DD | Dasha Seasons: Moon dasha as adaptability/EQ phase (English) (reel) |
 | 2026-11-04 | evening | DD | Dasha Seasons: Jupiter dasha as scale phase, antardasha sprint (English) (reel) |
+| 2026-11-05 | morning | DD | Moon Sign and Sleep: What Actually Helps (English) (reel) |
+| 2026-11-05 | evening | DD | Hora: Schedule Meetings vs Deep Work (English) (reel) |
+| 2026-11-06 | morning | DD | Rule-Based vs Synthesis Engine (English) (reel) |
+| 2026-11-06 | evening | DD | Ashtakavarga Bindus vs Sign Placement (English) (reel) |
+| 2026-11-07 | morning | DD | Panchadha Maitri (English) (reel) |
+| 2026-11-08 | morning | DD | 2nd vs 11th House (English) (reel) |
+| 2026-11-08 | evening | DD | Rahu Bias: FOMO (English) (reel) |
