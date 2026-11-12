@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY",
+   "h1": "Rasi says yes.<br><em>Navamsa says no.</em>",
+   "sub": "So which chart is right?",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "Two charts, two jobs",
+   "body": "The Rasi (main birth chart) shows what is visible. The Navamsa (D-9, the ninth-harmonic chart) shows inner strength and how a promise matures."
+  },
+  {
+   "h2": "Why averaging fails",
+   "body": "Many apps split the difference or pick one chart. The result is vague advice that fits everyone and helps no one."
+  },
+  {
+   "h2": "How it is resolved",
+   "points": [
+    "Compare the planet's dignity in both charts",
+    "Read Navamsa as the test of the Rasi promise",
+    "Weigh the running dasha (planetary period)",
+    "Note vargottama: same sign in both charts"
+   ]
+  },
+  {
+   "h2": "Honest limits",
+   "body": "Chart readings show tendencies, not verdicts. Use them as a lens for reflection, not a final answer on your life."
+  },
+  {
+   "icon": "moon",
+   "h2": "See your D-1 and D-9 together",
+   "body": "Free Chart Consistency Check: one reading from both charts.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

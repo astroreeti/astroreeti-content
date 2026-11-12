@@ -167,3 +167,14 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-11-07 | morning | DD | Panchadha Maitri (English) (reel) |
 | 2026-11-08 | morning | DD | 2nd vs 11th House (English) (reel) |
 | 2026-11-08 | evening | DD | Rahu Bias: FOMO (English) (reel) |
+| 2026-11-13 | morning | DD | Rasi vs Navamsa contradiction: resolved, not averaged (English) (reel) |
+| 2026-11-13 | evening | DD | What synthesizing Dasha + Gochar + Varga means, step by step (English) (reel) |
+| 2026-11-14 | morning | DD | Vipreet Raja Yoga: hard houses, unusual strength (English) (reel) |
+| 2026-11-15 | morning | DD | Ketu Bias: walking away before it compounds (English) (reel) |
+| 2026-11-15 | evening | DD | Mercury Bias: overtrading and analysis-paralysis (English) (reel) |
+| 2026-11-16 | morning | RL | Chhath Puja: Surya upasana, 1st and 9th house (Hindi) (reel) |
+| 2026-11-16 | evening | DD | Chhath: setting and rising Sun, lesson of dasha cycles (Hindi) (reel) |
+| 2026-11-17 | morning | RL | 9th house: bhagya, pita, dharma (Hindi, evergreen) (reel) |
+| 2026-11-17 | evening | DD | 9th house karaka and lord: how to read it (Hindi) (reel) |
+| 2026-11-18 | morning | DD | Dasha Seasons: Ketu dasha, letting-go phase (English) (reel) |
+| 2026-11-18 | evening | DD | Dasha Seasons: Venus dasha, partnerships phase (English) (reel) |

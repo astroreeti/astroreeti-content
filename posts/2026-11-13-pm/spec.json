@@ -1,0 +1,47 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "DEEP DIVE",
+   "h1": "What does <em>synthesis</em> actually mean?",
+   "sub": "Dasha + Gochar + Varga, step by step.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The problem",
+   "body": "A rule-based app checks one or two placements and prints a line. Real reading holds many layers at the same time."
+  },
+  {
+   "h2": "Layer 1: Dasha",
+   "body": "The dasha (planetary period system) tells which planet's themes are active in your life right now. It sets the stage."
+  },
+  {
+   "h2": "Layer 2: Gochar",
+   "body": "Gochar (current planetary transit) shows what is passing over your chart today. It is the timing trigger inside the stage."
+  },
+  {
+   "h2": "Layer 3: Varga",
+   "body": "Varga (divisional charts such as D-9 and D-10) test whether a promise in the main chart has real strength in a specific area of life."
+  },
+  {
+   "h2": "Putting it together",
+   "points": [
+    "Start with the active dasha lord",
+    "Check how that planet sits in D-1 and the relevant varga",
+    "Overlay current gochar for timing",
+    "Weigh Ashtakavarga bindus (strength points)"
+   ]
+  },
+  {
+   "h2": "Where AI helps",
+   "body": "Holding all these layers by hand is slow and error-prone. AI computes them fast. The astrologer's judgment still decides."
+  },
+  {
+   "icon": "moon",
+   "h2": "Try the AI Dasha Timeline",
+   "body": "Free Dasha Timeline Generator: see your layers in one view.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
