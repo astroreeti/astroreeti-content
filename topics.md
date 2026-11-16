@@ -178,3 +178,10 @@ Note: from 2026-07-21 all content is HINDI (Devanagari). Follow calendar.json.
 | 2026-11-17 | evening | DD | 9th house karaka and lord: how to read it (Hindi) (reel) |
 | 2026-11-18 | morning | DD | Dasha Seasons: Ketu dasha, letting-go phase (English) (reel) |
 | 2026-11-18 | evening | DD | Dasha Seasons: Venus dasha, partnerships phase (English) (reel) |
+| 2026-11-19 | morning | DD | Mercury retrograde: review windows vs launch windows (English, evergreen, no dated transit claims) (reel) |
+| 2026-11-19 | evening | DD | Hora weekly template: Mercury Hora for calls, Saturn Hora for deep work (English) (reel) |
+| 2026-11-20 | morning | DD | Why most astrology apps skip the hard computation (English) (reel) |
+| 2026-11-20 | evening | DD | Worked example: same Sun sign, different D-10 (English, illustrative) (reel) |
+| 2026-11-21 | morning | DD | Raja Yoga in an ordinary chart (English, no named person) (reel) |
+| 2026-11-22 | morning | DD | Sun bias: all-in on prestige (English) — no yoga guarantees wealth (reel) |
+| 2026-11-22 | evening | DD | Venus bias: comfort over the plan (English) — no yoga guarantees wealth (reel) |

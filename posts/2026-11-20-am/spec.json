@@ -1,0 +1,34 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY",
+   "h1": "Why Most Astrology Apps<br><em>Skip the Hard Part</em>",
+   "sub": "The computing behind a real reading.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The shortcut",
+   "body": "A Sun-sign horoscope is one lookup. Twelve answers cover millions of people."
+  },
+  {
+   "h2": "The real inputs",
+   "body": "A real reading uses exact birth time and place, divisional charts (vargas, sub-charts), the running dasha (planetary period), current transits (gochar) and Ashtakavarga (a point-strength system)."
+  },
+  {
+   "h2": "Why it multiplies",
+   "body": "Each layer has its own rules, and the layers can disagree. Resolving that disagreement is the real work, and it is slow and error-prone by hand."
+  },
+  {
+   "h2": "Where AI helps",
+   "body": "Calculating charts and applying rules consistently, every time. Judging what matters for a person stays with a trained astrologer."
+  },
+  {
+   "icon": "moon",
+   "h2": "See the layers",
+   "body": "Free AI Dasha Timeline Generator: see your running dasha.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "BIOHACKING WITH JYOTISH",
+   "h1": "Your Week Has a<br><em>Built-In Schedule</em>",
+   "sub": "A practical Hora template for calls and deep work.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "What is a Hora?",
+   "body": "A Hora is a planetary hour, roughly an hour counted from sunrise. Exact length varies with day length. The day lord's Hora comes first."
+  },
+  {
+   "h2": "The order",
+   "body": "After the day lord, Horas follow a fixed sequence: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, then repeat."
+  },
+  {
+   "h2": "Mercury Hora: calls",
+   "body": "Mercury (Budha) governs speech, numbers and negotiation. Traditionally a good fit for calls, proposals and contract reviews."
+  },
+  {
+   "h2": "Saturn Hora: the grind",
+   "body": "Saturn (Shani) governs discipline and structure. A fit for audits, backlog and long, repetitive deep work, less so for charm-heavy persuasion."
+  },
+  {
+   "h2": "A simple weekly template",
+   "points": [
+    "Pick one Mercury Hora a day for your key call",
+    "Block one Saturn Hora for deep work",
+    "Keep a Jupiter Hora for mentors and planning",
+    "Look up your own city's times; they shift daily"
+   ]
+  },
+  {
+   "h2": "Honest limits",
+   "body": "Hora is a traditional timing aid, not a guarantee. Preparation beats any hour. Treat it as a two-week experiment and note what you see."
+  },
+  {
+   "icon": "moon",
+   "h2": "Get your Hora table",
+   "body": "Free daily Hora table for your city.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

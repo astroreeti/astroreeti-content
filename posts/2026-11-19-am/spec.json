@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "BIOHACKING WITH JYOTISH",
+   "h1": "Mercury Retrograde:<br><em>Review, Don't Launch</em>",
+   "sub": "A calendar habit, not a curse.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "What retrograde means",
+   "body": "Retrograde (vakri) is when a planet appears to move backward against the stars as seen from Earth. Mercury does this a few times a year."
+  },
+  {
+   "h2": "Why Mercury matters",
+   "body": "Mercury (Budha) rules contracts, messages, logistics and detail. Tradition advises extra care with these during its vakri phase."
+  },
+  {
+   "h2": "Good for review windows",
+   "points": [
+    "Re-read contracts and terms",
+    "Audit your calendar and backlog",
+    "Close open loops and follow-ups",
+    "Test backups and systems"
+   ]
+  },
+  {
+   "h2": "Hold the big launch",
+   "body": "If you can, defer first launches and big signatures to a cleaner window. If you cannot, add a second pair of eyes."
+  },
+  {
+   "icon": "moon",
+   "h2": "Know your Mercury",
+   "body": "Free Mercury Placement Check: see how your chart handles detail and deadlines.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

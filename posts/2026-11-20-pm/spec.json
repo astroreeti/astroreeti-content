@@ -1,0 +1,38 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "AI + ASTROLOGY",
+   "h1": "Same Sun Sign,<br><em>Different D-10</em>",
+   "sub": "A worked example, illustrative only.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The setup",
+   "body": "Two people share a Sun sign and both have a strong 10th house (the house of career). These are illustrative people, not real ones."
+  },
+  {
+   "h2": "What is the D-10?",
+   "body": "The Dasamsa (D-10) is a divisional chart, a magnified view of career. It is read together with the main birth chart."
+  },
+  {
+   "h2": "Person A",
+   "body": "The D-10 shows a well placed 10th lord, and the running dasha supports career themes. The pattern can support steady progress."
+  },
+  {
+   "h2": "Person B",
+   "body": "The D-10 shows a stressed 10th lord, and the running dasha is of a planet tied to the 12th house (withdrawal, change). The pattern suggests a slower, more uneven path and a need to build skills."
+  },
+  {
+   "h2": "What the Sun sign missed",
+   "body": "A Sun-sign horoscope reads neither chart nor dasha. It gives both people the same line."
+  },
+  {
+   "icon": "moon",
+   "h2": "See your own D-10",
+   "body": "Free D-10 Career Snapshot.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}

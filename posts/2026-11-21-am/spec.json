@@ -1,0 +1,39 @@
+{
+ "slides": [
+  {
+   "icon": "star",
+   "eyebrow": "CHART DECONSTRUCTION",
+   "h1": "Raja Yoga<br><em>In an Ordinary Chart</em>",
+   "sub": "Not just the famous ones.",
+   "swipe": "Swipe →"
+  },
+  {
+   "h2": "The classical idea",
+   "body": "A Raja Yoga (royal combination) forms when the lord of a kendra (angular house: 1, 4, 7, 10) connects with the lord of a trikona (trine house: 1, 5, 9). Connection means conjunction, mutual aspect or exchange."
+  },
+  {
+   "h2": "Why it is common",
+   "body": "Many charts hold some version of this. Famous charts show it at full strength. Yours may be smaller, partial or well hidden."
+  },
+  {
+   "h2": "How to size it",
+   "points": [
+    "Are both planets strong in sign and house?",
+    "Are they free of heavy affliction?",
+    "Does the Navamsa (D-9, inner-strength chart) support them?",
+    "Does a dasha of these planets ever run?"
+   ]
+  },
+  {
+   "h2": "Honest limits",
+   "body": "A yoga shows potential, not a promise. Strength, timing and effort decide what shows up. Be wary of anyone who says a yoga guarantees success."
+  },
+  {
+   "icon": "moon",
+   "h2": "Find yoga in your chart",
+   "body": "Free yoga scan: see which combinations your chart forms.",
+   "handle": "@astroreeti",
+   "qr": true
+  }
+ ]
+}
