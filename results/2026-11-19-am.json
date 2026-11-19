@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-19-am",
+  "format": "reel",
+  "attempts": 1,
+  "status": "published",
+  "media_id": "17994769491072839",
+  "permalink": "https://www.instagram.com/reel/Df6KshuCc9T/",
+  "facebook": {
+    "status": "published",
+    "post_id": "2278045346072436"
+  },
+  "youtube": {
+    "status": "published",
+    "video_id": "erppFyQH_uc",
+    "permalink": "https://youtube.com/shorts/erppFyQH_uc",
+    "thumbnail": {
+      "ok": true,
+      "attempts": 1,
+      "file": "yt_thumb.jpg"
+    }
+  }
+}
